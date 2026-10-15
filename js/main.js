@@ -8,7 +8,43 @@
   const nav = document.getElementById("site-nav");
   const overlay = document.querySelector(".nav-overlay");
 
+  const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  // Scroll reveal: elements with data-reveal fade in as they enter the viewport.
+  // Siblings that appear together are staggered via the --i custom property.
+  const revealItems = document.querySelectorAll("[data-reveal]");
+
+  if (REDUCED_MOTION.matches || !("IntersectionObserver" in window)) {
+    revealItems.forEach(function (el) {
+      el.classList.add("is-visible");
+    });
+  } else {
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries
+          .filter(function (entry) {
+            return entry.isIntersecting;
+          })
+          .forEach(function (entry, index) {
+            entry.target.style.setProperty("--i", index);
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+      },
+      { rootMargin: "0px 0px -10% 0px" }
+    );
+
+    revealItems.forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+
   if (!toggle || !nav) return;
+
+  // Index nav items so the mobile menu can stagger them in
+  nav.querySelectorAll(".nav-list li").forEach(function (item, index) {
+    item.style.setProperty("--i", index);
+  });
 
   function openNav() {
     body.classList.add("nav-open");
