@@ -6,3 +6,7 @@
 #97A87A
 #A8BBA3
 Link: https://colorhunt.co/palette/db9558fcf9ea97a87aa8bba3
+
+## How to Open:
+**Terminal Commands**: python3 -m http.server 8000
+**Local Host**: http://localhost:8000 
