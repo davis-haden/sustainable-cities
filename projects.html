@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <title>Projects | Site Name</title>
+  <meta name="description" content="About the Brook Byers Institute for Sustainable Systems at Georgia Tech: vision, mission, focus areas and climate impacts research.">
+  <title>About BBISS | Site Name</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/bbiss.css">
   <script>document.documentElement.classList.add("js");</script>
   <script src="js/main.js" defer></script>
+  <script src="js/bbiss.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -35,10 +37,249 @@
   </header>
   <div class="nav-overlay" aria-hidden="true"></div>
 
-  <main id="main">
-    <div class="container">
-      <h1 data-reveal>Projects</h1>
-    </div>
+  <main id="main" class="bbiss">
+    <header class="bb-hero">
+      <div class="bb-hero__media" aria-hidden="true">
+        <!-- Placeholder: replace this SVG with the campus aerial, e.g. <img src="images/campus-aerial.jpg" alt=""> -->
+        <svg viewBox="0 0 960 600" preserveAspectRatio="xMidYMid slice">
+          <rect width="960" height="600" style="fill: var(--moss)"/>
+          <g class="rings">
+            <circle cx="760" cy="160" r="70"/><circle cx="760" cy="160" r="130"/><circle cx="760" cy="160" r="200"/><circle cx="760" cy="160" r="280"/>
+            <circle cx="160" cy="520" r="90"/><circle cx="160" cy="520" r="170"/><circle cx="160" cy="520" r="260"/>
+          </g>
+        </svg>
+      </div>
+      <div class="bb-hero__inner">
+        <span class="bb-label bb-label--dark">[ ABOUT BBISS ]</span>
+        <h1>Brook Byers Institute for Sustainable Systems</h1>
+      </div>
+      <a class="bb-hero__cue" href="#who">
+        <span class="bb-label">Scroll</span>
+        <svg viewBox="0 0 48 24" aria-hidden="true"><path d="M0 0h48L24 24z"/></svg>
+      </a>
+    </header>
+
+    <section class="bbiss-section" id="who" aria-labelledby="who-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 01 — ABOUT ]</span></div>
+          <h2 id="who-title">Who is <em>BBISS?</em></h2>
+        </div>
+        <p class="bbiss-copy" data-reveal>The Brook Byers Institute for Sustainable Systems (BBISS) at Georgia Tech advances interdisciplinary sustainability research and education to create a more sustainable future. As a key partner in Georgia Tech's Sustainability Next 2023–2030 Strategic Plan, it connects researchers across disciplines to address global challenges and advance the UN Sustainable Development Goals. Its work focuses on climate science, environmental health, sustainable cities, resource use, equitable development, and sustainability economics. Through research, leadership development, and strategic partnerships, BBISS translates knowledge into practical solutions that benefit society.</p>
+
+        <div class="bbiss-pair">
+          <article class="bb-feature" data-reveal>
+            <div class="bb-feature__inner">
+              <div class="bb-feature__face bb-feature__front">
+                <div class="bb-photo bb-photo--empty" role="img" aria-label="Photo placeholder: tech tower, spring">
+                  <span class="bb-photo__tick bb-photo__tick--tl"></span>
+                  <span class="bb-photo__tick bb-photo__tick--br"></span>
+                  <span class="bb-photo__cap bb-label">[ PHOTO — TECH TOWER, SPRING ]</span>
+                </div>
+                <div class="bb-feature__bar"><h3>Vision</h3></div>
+              </div>
+              <div class="bb-feature__face bb-feature__back">
+                <p>To grow and mobilize Georgia Tech's knowledge assets to create a sustainable future for all.</p>
+                <span class="bb-feature__label" aria-hidden="true">Vision</span>
+              </div>
+            </div>
+            <button class="bb-feature__hit" type="button" aria-pressed="false" aria-label="Vision: show statement"></button>
+          </article>
+          <article class="bb-feature" data-reveal>
+            <div class="bb-feature__inner">
+              <div class="bb-feature__face bb-feature__front">
+                <div class="bb-photo bb-photo--empty" role="img" aria-label="Photo placeholder: commencement">
+                  <span class="bb-photo__tick bb-photo__tick--tl"></span>
+                  <span class="bb-photo__tick bb-photo__tick--br"></span>
+                  <span class="bb-photo__cap bb-label">[ PHOTO — COMMENCEMENT ]</span>
+                </div>
+                <div class="bb-feature__bar"><h3>Mission</h3></div>
+              </div>
+              <div class="bb-feature__face bb-feature__back">
+                <p>To catalyze high-impact research, develop future leaders, and foster partnerships that translate knowledge into practice.</p>
+                <span class="bb-feature__label" aria-hidden="true">Mission</span>
+              </div>
+            </div>
+            <button class="bb-feature__hit" type="button" aria-pressed="false" aria-label="Mission: show statement"></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbiss-section" aria-labelledby="focus-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 02 — FOCUS AREAS ]</span></div>
+          <h2 id="focus-title">What we <em>work on</em></h2>
+        </div>
+        <ul class="bb-rows bbiss-stack">
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="area-01">
+              <span class="bb-row__idx">01</span>
+              <span class="bb-row__title">Climate science</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="area-01"><div><p>Understanding how a changing climate reshapes the Southeast, from heat to sea-level rise.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="area-02">
+              <span class="bb-row__idx">02</span>
+              <span class="bb-row__title">Environmental health</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="area-02"><div><p>How air, water and the built environment affect the health of communities.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="area-03">
+              <span class="bb-row__idx">03</span>
+              <span class="bb-row__title">Sustainable cities</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="area-03"><div><p>Infrastructure, mobility and land use for cities that work for everyone who lives in them.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="area-04">
+              <span class="bb-row__idx">04</span>
+              <span class="bb-row__title">Resource use</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="area-04"><div><p>Energy, water and materials, used efficiently and kept in circulation.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="area-05">
+              <span class="bb-row__idx">05</span>
+              <span class="bb-row__title">Equitable development</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="area-05"><div><p>Making sure the benefits of sustainability reach the communities that need them most.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="area-06">
+              <span class="bb-row__idx">06</span>
+              <span class="bb-row__title">Sustainability economics</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="area-06"><div><p>Markets, policy and finance that make sustainable choices the practical choice.</p></div></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bbiss-section" aria-labelledby="research-title">
+      <div class="container">
+        <div class="bb-heading bb-heading--center" data-reveal>
+          <span class="bb-label">[ 03 — RESEARCH ]</span>
+          <h2 id="research-title">Climate impacts research</h2>
+        </div>
+      </div>
+      <div class="bb-strip bbiss-stack">
+        <div class="bb-strip__track">
+        <article class="bb-tile">
+          <div class="bb-tile__media">
+            <div class="bb-photo bb-photo--empty" role="img" aria-label="Photo placeholder: mangrove roots">
+              <span class="bb-photo__tick bb-photo__tick--tl"></span>
+              <span class="bb-photo__tick bb-photo__tick--br"></span>
+              <span class="bb-photo__cap bb-label">[ PHOTO — MANGROVE ROOTS ]</span>
+            </div>
+            <div class="bb-tile__cap"><h3>Mangrove resilience</h3><span class="bb-label bb-label--dark">[ 01 ]</span></div>
+            <span class="bb-tile__x" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></span>
+            <button class="bb-tile__toggle" type="button" aria-expanded="false" aria-controls="research-01" aria-label="Mangrove resilience: show summary"></button>
+          </div>
+          <div class="bb-tile__body" id="research-01">
+            <div>
+              <h4>Mangroves on the move</h4>
+              <p>Draft summary: replace with the team's write-up. Researchers are tracking how mangrove forests shift north as winters warm, and what that means for coastal protection.</p>
+              <a class="bb-btn bb-btn--primary" href="#">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="bb-tile">
+          <div class="bb-tile__media">
+            <div class="bb-photo bb-photo--empty" role="img" aria-label="Photo placeholder: georgia emissions map">
+              <span class="bb-photo__tick bb-photo__tick--tl"></span>
+              <span class="bb-photo__tick bb-photo__tick--br"></span>
+              <span class="bb-photo__cap bb-label">[ PHOTO — GEORGIA EMISSIONS MAP ]</span>
+            </div>
+            <div class="bb-tile__cap"><h3>A greener Georgia</h3><span class="bb-label bb-label--dark">[ 02 ]</span></div>
+            <span class="bb-tile__x" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></span>
+            <button class="bb-tile__toggle" type="button" aria-expanded="false" aria-controls="research-02" aria-label="A greener Georgia: show summary"></button>
+          </div>
+          <div class="bb-tile__body" id="research-02">
+            <div>
+              <h4>Georgia emissions declining</h4>
+              <p>Georgia's overall greenhouse gases have decreased. The decline in emissions comes against a 10% expansion in the state's economy, showing the potential for reducing emissions while pursuing economic growth, according to the team.</p>
+              <a class="bb-btn bb-btn--primary" href="#">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="bb-tile">
+          <div class="bb-tile__media">
+            <div class="bb-photo bb-photo--empty" role="img" aria-label="Photo placeholder: harbor aerial">
+              <span class="bb-photo__tick bb-photo__tick--tl"></span>
+              <span class="bb-photo__tick bb-photo__tick--br"></span>
+              <span class="bb-photo__cap bb-label">[ PHOTO — HARBOR AERIAL ]</span>
+            </div>
+            <div class="bb-tile__cap"><h3>Coastal cities</h3><span class="bb-label bb-label--dark">[ 03 ]</span></div>
+            <span class="bb-tile__x" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></span>
+            <button class="bb-tile__toggle" type="button" aria-expanded="false" aria-controls="research-03" aria-label="Coastal cities: show summary"></button>
+          </div>
+          <div class="bb-tile__body" id="research-03">
+            <div>
+              <h4>Designing for higher water</h4>
+              <p>Draft summary: replace with the team's write-up. Planning tools that help coastal cities weigh living shorelines, barriers and retreat as seas rise.</p>
+              <a class="bb-btn bb-btn--primary" href="#">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="bb-tile">
+          <div class="bb-tile__media">
+            <div class="bb-photo bb-photo--empty" role="img" aria-label="Photo placeholder: atlanta canopy">
+              <span class="bb-photo__tick bb-photo__tick--tl"></span>
+              <span class="bb-photo__tick bb-photo__tick--br"></span>
+              <span class="bb-photo__cap bb-label">[ PHOTO — ATLANTA CANOPY ]</span>
+            </div>
+            <div class="bb-tile__cap"><h3>Urban heat</h3><span class="bb-label bb-label--dark">[ 04 ]</span></div>
+            <span class="bb-tile__x" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></span>
+            <button class="bb-tile__toggle" type="button" aria-expanded="false" aria-controls="research-04" aria-label="Urban heat: show summary"></button>
+          </div>
+          <div class="bb-tile__body" id="research-04">
+            <div>
+              <h4>Mapping Atlanta's heat</h4>
+              <p>Draft summary: replace with the team's write-up. Street-level sensors show where tree canopy cools Atlanta neighborhoods, and where it is missing.</p>
+              <a class="bb-btn bb-btn--primary" href="#">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+            </div>
+          </div>
+        </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbiss-section bbiss-section--narrow" aria-labelledby="video-title">
+      <div class="container">
+        <div class="bb-heading bb-heading--center" data-reveal>
+          <span class="bb-label">[ 04 — WATCH ]</span>
+          <h2 id="video-title">Climate featured video</h2>
+        </div>
+        <div class="bb-video bbiss-stack">
+          <div class="bb-video__frame">
+            <!-- Replace the play button with the video embed (<iframe> or <video>) -->
+            <span class="bb-video__corner bb-video__corner--tl"></span>
+            <span class="bb-video__corner bb-video__corner--tr"></span>
+            <span class="bb-video__corner bb-video__corner--bl"></span>
+            <span class="bb-video__corner bb-video__corner--br"></span>
+            <div class="bb-video__meta">
+              <span class="bb-label bb-label--dark">[ FEATURED VIDEO ]</span>
+            </div>
+            <button class="bb-video__play" type="button" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3.5v17L20 12z"/></svg></button>
+          </div>
+          <h3 class="bb-video__title">Through a UWB Looking Glass: Data Reduction Strategies for a Greener Planet</h3>
+        </div>
+        <div class="bbiss-actions">
+          <a class="bb-btn bb-btn--primary" href="#">Explore BBISS research <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+          <a class="bb-btn bb-btn--secondary" href="#">Georgia Tech initiatives</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
