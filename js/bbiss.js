@@ -1,6 +1,18 @@
 (function () {
   "use strict";
 
+  // Header: frosted over the hero, solid once the hero's dark top has scrolled away
+  const header = document.querySelector(".bb-header");
+  const hero = document.querySelector(".bb-hero");
+
+  if (header && hero) {
+    const updateHeader = function () {
+      header.classList.toggle("is-scrolled", window.scrollY > hero.offsetHeight * 0.45);
+    };
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  }
+
   // Vision / Mission cards: hover flips them (CSS); click, tap or keyboard pins the flip
   document.querySelectorAll(".bb-feature__hit").forEach(function (button) {
     button.addEventListener("click", function () {

@@ -224,12 +224,86 @@ main.bbiss { padding-block: 0; font-family: var(--font-sans); color: var(--fores
 .bbiss-pair { display: grid; gap: var(--space-6); margin-top: var(--space-12); }
 .bbiss-stack { margin-top: var(--space-8); }
 .bbiss-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin: var(--space-8) 0 var(--space-24); }
-.bb-hero { min-height: calc(var(--hero-height) - var(--header-height)); }
+.bb-hero { min-height: var(--hero-height); }
 .bb-hero__media svg { width: 100%; height: 100%; }
 .bb-hero__media .rings { fill: none; stroke: var(--olive); stroke-opacity: 0.35; }
 
 @media (min-width: 768px) {
   .bbiss-pair { grid-template-columns: 1fr 1fr; }
+}
+
+/* Sources (APA references) in the footer: forest on sage, hanging indent */
+.bbiss-sources { margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid rgba(43, 49, 35, 0.25); }
+.bbiss-sources h2 { margin: 0 0 var(--space-3); color: var(--forest); }
+.bbiss-refs { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; font-family: var(--font-sans); font-size: 14px; line-height: 1.5; }
+.bbiss-refs li { padding-left: 2em; text-indent: -2em; }
+.bbiss-refs a { color: var(--forest); overflow-wrap: anywhere; }
+
+/* ==========================================================================
+   Header: the style guide's nav pill over the hero (projects.html only).
+   Phones keep the site's menu button + side panel from css/styles.css.
+   ========================================================================== */
+
+.site-header.bb-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  background: transparent;
+  border-bottom: 0;
+  transition: background-color var(--dur-base) ease, box-shadow var(--dur-base) ease;
+}
+
+.bb-header .site-logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  color: var(--on-dark);
+}
+
+.bb-header .nav-toggle-bar { background: var(--on-dark); }
+
+.site-header.bb-header.is-scrolled { background: var(--cream); box-shadow: 0 1px 0 var(--line); }
+.bb-header.is-scrolled .site-logo,
+.nav-open .bb-header .site-logo { color: var(--forest); }
+.bb-header.is-scrolled .nav-toggle-bar,
+.nav-open .bb-header .nav-toggle-bar { background: var(--forest); }
+
+@media (min-width: 768px) {
+  .site-header.bb-header,
+  .site-header.bb-header.is-scrolled { background: transparent; box-shadow: none; pointer-events: none; }
+
+  .bb-header .container { justify-content: center; height: auto; padding-block: var(--space-6); }
+  .bb-header .site-logo { display: none; }
+
+  .site-header.bb-header .site-nav {
+    pointer-events: auto;
+    padding: 6px;
+    border: 1px solid rgba(252, 249, 234, 0.35);
+    border-radius: var(--radius-pill);
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-glass);
+    transition: background-color var(--dur-base) ease, border-color var(--dur-base) ease;
+  }
+
+  .bb-header .nav-list { gap: var(--space-1); }
+
+  .bb-header .nav-list a {
+    padding: var(--space-2) 14px;
+    border-radius: var(--radius-pill);
+    font: 500 14px/20px var(--font-sans);
+    color: var(--on-dark);
+    white-space: nowrap;
+    transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+  }
+
+  .bb-header .nav-list a::after { display: none; }
+  .bb-header .nav-list a:hover { background: rgba(252, 249, 234, 0.2); }
+  .bb-header .nav-list a[aria-current="page"] { background: var(--cream); color: var(--forest); font-weight: 600; }
+  .bb-header .nav-list a:focus-visible { outline: none; box-shadow: var(--focus); }
+
+  .site-header.bb-header.is-scrolled .site-nav { background: var(--forest); border-color: var(--forest); }
 }
 
 @media (prefers-reduced-motion: reduce) {
