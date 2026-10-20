@@ -1,0 +1,97 @@
+/* The section below the hero: three phase cards. And the home footer. */
+
+/* --- Phases section below the hero: three boxed sheets --- */
+.phases {
+  padding-block: 5rem 3rem;
+}
+
+.phases h2 {
+  max-width: 18ch;
+  text-wrap: balance;
+  font-size: clamp(2rem, 1.2rem + 2.8vw, 3.75rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.phase-list {
+  display: grid;
+  gap: 1rem;
+  margin: 3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.phase-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem 1.125rem 1.25rem;
+  border: 1px solid var(--vc-line);
+}
+
+/* filled corner square, like the leader-line ends */
+.phase-card::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 7px;
+  height: 7px;
+  background: var(--vc-ink);
+}
+
+.phase-num {
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.phase-card h3 {
+  margin: 2.5rem 0 0.25rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.phase-years {
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+}
+
+.phase-card p:not(.phase-years) {
+  flex: 1;
+  margin: 0 0 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+}
+
+.phase-go {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--vc-ink);
+  background: none;
+  color: var(--vc-ink);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.phase-go::before {
+  content: "[ ";
+}
+
+.phase-go::after {
+  content: " ]";
+}
+
+.phase-go:hover {
+  background: var(--vc-ink);
+  color: var(--color-bg);
+}
+
+.page-home .site-footer {
+  background: transparent;
+  border-top-color: var(--vc-hair);
+}

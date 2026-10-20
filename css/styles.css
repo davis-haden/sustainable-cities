@@ -93,6 +93,11 @@ body.nav-open {
   overflow: hidden;
 }
 
+/* Keep the hidden attribute authoritative even when a class sets display */
+[hidden] {
+  display: none !important;
+}
+
 img,
 svg,
 video {

@@ -1,0 +1,194 @@
+/* Boxed panels: the readout (top right), "Jump to" legend (bottom left) and about box (bottom right). */
+
+/* --- Boxed panels (reference: thin rule, header strip, mono label) --- */
+.vc-box {
+  border: 1px solid var(--vc-line);
+  background: var(--palette-cream);
+}
+
+.vc-box-hd {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.375rem 0.625rem;
+  border-bottom: 1px solid var(--vc-hair);
+  color: var(--color-muted);
+}
+
+.vc-box-hd b {
+  font-weight: 500;
+  color: var(--vc-ink);
+}
+
+.vc-box-hd b::before {
+  content: "[ ";
+}
+
+.vc-box-hd b::after {
+  content: " ]";
+}
+
+/* Readout, top right */
+.vc-spec {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--vc-frame) + var(--header-height) + 1rem);
+  right: var(--vc-inset);
+  width: 15.5rem;
+}
+
+.vc-board {
+  display: grid;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0.625rem;
+}
+
+.vc-board div {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.3rem 0.5rem;
+  align-items: baseline;
+}
+
+/* a small filled square before each row, like the reference's bullet list */
+.vc-board div::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--vc-ink);
+}
+
+.vc-board dt {
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.vc-board dd {
+  margin: 0;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Green bars grow as the city cleans up; the CO2 bar (orange) shrinks */
+.vc-bar {
+  grid-column: 1 / -1;
+  display: block;
+  height: 2px;
+  background: var(--vc-hair);
+  overflow: hidden;
+}
+
+.vc-bar i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--palette-olive);
+}
+
+.vc-bar-co2 i {
+  background: var(--color-accent);
+}
+
+/* zoomed in or reading a tile: panels that would sit on top of the city step aside */
+.vc-stage.has-sel .vc-spec,
+.hero.is-zoomed .vc-about,
+.vc-stage.has-sel .vc-about {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Legend: "Jump to" list */
+.vc-explore {
+  width: 15.5rem;
+  min-width: 0;
+}
+
+.vc-legend {
+  display: grid;
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+}
+
+.vc-chip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.25rem 0.625rem;
+  border: 0;
+  background: transparent;
+  color: var(--vc-ink);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.vc-chip:hover {
+  background: var(--vc-ink);
+  color: var(--color-bg);
+}
+
+.vc-chip i {
+  width: 0.5rem;
+  height: 0.5rem;
+  outline: 1px solid rgb(0 0 0 / 0.25);
+  outline-offset: -1px;
+}
+
+.vc-chip b {
+  font-weight: 400;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.vc-chip:hover b {
+  color: inherit;
+}
+
+/* About: short text + boxed links */
+.vc-about {
+  width: 19rem;
+}
+
+.vc-about .hero-lede {
+  margin: 0;
+  padding: 0.625rem 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--vc-ink);
+}
+
+.vc-links {
+  display: flex;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0 0.625rem 0.625rem;
+}
+
+.vc-links a {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--vc-ink);
+  color: var(--vc-ink);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.vc-links a::before {
+  content: "[ ";
+}
+
+.vc-links a::after {
+  content: " ]";
+}
+
+.vc-links a:hover {
+  background: var(--vc-ink);
+  color: var(--color-bg);
+}

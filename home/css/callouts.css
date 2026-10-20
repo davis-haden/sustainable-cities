@@ -1,0 +1,87 @@
+/* Callouts: leader lines from live tiles to labels in the side columns (positioned by ui/callouts.js). */
+
+/* --- Callouts: leader lines + labels (wide screens) --- */
+.vc-lines,
+.vc-calls {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-slow) ease;
+}
+
+.vc-lines {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.vc-lines path {
+  fill: none;
+  stroke: var(--vc-ink);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.vc-lines rect {
+  fill: var(--vc-ink);
+}
+
+.vc-stage.calls-on :is(.vc-lines, .vc-calls) {
+  opacity: 1;
+}
+
+.vc-stage.calls-on .vc-call {
+  pointer-events: auto;
+}
+
+.vc-call {
+  position: absolute;
+  display: grid;
+  gap: 0.125rem;
+  width: 15.5rem;
+  padding: 0.4rem 0.625rem 0.45rem;
+  border: 1px solid var(--vc-ink);
+  background: var(--color-bg);
+  color: var(--vc-ink);
+  text-align: left;
+  line-height: 1.35;
+  cursor: pointer;
+  translate: 0 -50%;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.vc-call b {
+  font-weight: 500;
+}
+
+.vc-call span {
+  color: var(--color-muted);
+}
+
+.vc-call:hover {
+  background: var(--vc-ink);
+  color: var(--color-bg);
+}
+
+.vc-call:hover span {
+  color: var(--palette-sage);
+}
+
+.vc-call.is-swap {
+  animation: vc-swap var(--dur-slow) var(--ease-out);
+}
+
+@keyframes vc-swap {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+/* two slots in each side column, lined up with the boxes; JS sets their height */
+.vc-call[data-slot="0"],
+.vc-call[data-slot="1"] { left: var(--vc-inset); }
+.vc-call[data-slot="2"],
+.vc-call[data-slot="3"] { right: var(--vc-inset); }

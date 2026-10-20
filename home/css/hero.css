@@ -1,0 +1,199 @@
+/* Hero: headline, intro animation, and the stage (sage backdrop, cream sheet, city canvas). */
+
+/* --- Hero: the headline and the stage share one grid cell --- */
+.hero {
+  position: relative;
+  display: grid;
+  background: var(--color-bg);
+}
+
+.hero-copy,
+.vc-stage {
+  grid-area: 1 / 1;
+}
+
+.hero-copy {
+  --vc-sk: 0;
+  position: relative;
+  z-index: 3;
+  align-self: start;
+  padding: calc(var(--vc-frame) + var(--header-height) + 0.5rem) var(--vc-inset) 0;
+  /* scroll parallax (set by JS); filter + translate so it isn't smoothed by the transitions below */
+  filter: opacity(calc(1 - var(--vc-sk) * 1.6));
+  translate: 0 calc(var(--vc-sk) * -4rem);
+  pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2.75rem, 0.75rem + 5.6vw, 6.75rem);
+  font-weight: 500;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+/* Each headline line rises out of its own mask */
+.hero-copy .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.05em;
+}
+
+.hero-copy .line > span {
+  display: block;
+}
+
+.hero-tag {
+  display: inline-block;
+  margin-left: 0.75rem;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid var(--vc-ink);
+  vertical-align: top;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  translate: 0 0.35em;
+}
+
+/* Zoomed in on the city: the headline steps aside */
+.hero.is-zoomed .hero-copy {
+  opacity: 0;
+  transform: translateX(-1.5rem);
+  visibility: hidden;
+  transition: opacity var(--dur-base) ease, transform var(--dur-base) ease, visibility 0s var(--dur-base);
+}
+
+/* --- Intro. JS adds .is-intro as soon as it runs, .intro-type when the headline
+   should rise, and .intro-done once the window has opened. If the script never
+   runs, vc-failsafe shows everything after a moment. --- */
+.js .hero:not(.intro-type) .line > span {
+  transform: translateY(105%);
+}
+
+.js .hero:not(.intro-done) :is(.vc-box, .vc-frame i) {
+  opacity: 0;
+  translate: 0 0.75rem;
+}
+
+.js .hero:not(.is-intro):not(.intro-done) :is(.line > span, .vc-box, .vc-frame i, .vc-stage, .vc-line > *),
+.js .hero:not(.is-intro):not(.intro-done) .vc-line::before {
+  animation: vc-failsafe 0s 3s forwards;
+}
+
+@keyframes vc-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+    translate: none;
+    clip-path: none;
+  }
+}
+
+.js .hero .line > span {
+  transition: transform 900ms var(--ease-out);
+}
+
+.js .hero.intro-type .line > span {
+  transform: none;
+}
+
+.js .hero.intro-type .line:nth-child(2) > span {
+  transition-delay: 90ms;
+}
+
+.vc-box,
+.vc-frame i {
+  transition: opacity 700ms ease, translate 900ms var(--ease-out);
+}
+
+.hero.intro-done .vc-spec { transition-delay: 100ms; }
+.hero.intro-done .vc-explore { transition-delay: 200ms; }
+.hero.intro-done .vc-about { transition-delay: 300ms; }
+
+.js .hero:not(.intro-done) .vc-line {
+  pointer-events: none;
+}
+
+/* The stage starts as a closed square window; JS opens it (inline clip-path) */
+.js .hero:not(.intro-done) .vc-stage {
+  clip-path: inset(50% 50% 50% 50%);
+}
+
+/* --- Stage: sage backdrop, cream sheet inset by the frame, city canvas on top --- */
+.vc-stage {
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  max-height: 1100px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--palette-sage), #bfccb6);
+}
+
+.vc-frame {
+  position: absolute;
+  inset: var(--vc-frame);
+  border: 1px solid var(--vc-line);
+  background: var(--palette-cream);
+  pointer-events: none;
+}
+
+/* faint dashed horizon through the middle of the sheet; the island floats over it */
+.vc-frame::before {
+  content: "";
+  position: absolute;
+  left: var(--vc-pad);
+  right: var(--vc-pad);
+  top: 52%;
+  border-top: 1px dashed var(--vc-hair);
+}
+
+/* corner ticks */
+.vc-frame i {
+  position: absolute;
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 0 solid var(--vc-ink);
+}
+
+.vc-frame i:nth-child(1) { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.vc-frame i:nth-child(2) { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.vc-frame i:nth-child(3) { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.vc-frame i:nth-child(4) { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+/* While engaged (clicked or focused) the wheel zooms the scene; a hairline frame says so */
+.vc-stage::after {
+  content: "";
+  position: absolute;
+  inset: var(--vc-frame);
+  z-index: 1;
+  box-shadow: inset 0 0 0 1px var(--vc-ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) ease;
+}
+
+.vc-stage.is-engaged::after {
+  opacity: 1;
+}
+
+.vc-stage canvas {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.vc-stage canvas:focus-visible {
+  outline: 0;
+}
+
+.vc-stage canvas:active {
+  cursor: grabbing;
+}
+
+.vc-stage canvas.pick {
+  cursor: pointer;
+}

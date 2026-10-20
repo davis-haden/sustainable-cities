@@ -4,17 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
-  <title>Home | Site Name</title>
+  <title>Home | Greenprint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="home/css/home.css">
   <script>document.documentElement.classList.add("js");</script>
   <script src="js/main.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script type="module" src="home/js/main.js"></script>
 </head>
-<body>
+<body class="page-home">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="container">
-      <a class="site-logo" href="index.html">Site Name</a>
+      <a class="site-logo" href="index.html">Greenprint</a>
+
+      <p class="hdr-tag" aria-hidden="true">
+        <span>Block by block</span>
+        <svg viewBox="0 0 20 20"><path d="M10 2.5 17 6.5v7L10 17.5 3 13.5v-7z"/><path d="M3 6.5 10 10.5 17 6.5M10 10.5v7"/></svg>
+      </p>
+
+      <p class="hdr-clock" aria-hidden="true"><span>Local time</span><span id="hdr-clock">--:--:--</span></p>
 
       <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
         <span class="nav-toggle-bar"></span>
@@ -35,15 +48,132 @@
   </header>
   <div class="nav-overlay" aria-hidden="true"></div>
 
-  <main id="main">
-    <div class="container">
-      <h1 data-reveal>Home</h1>
-    </div>
+  <main id="main" class="main-home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">
+          <span class="line"><span>Cities</span></span>
+          <span class="line"><span>by design.<span class="hero-tag">2000&ndash;2050</span></span></span>
+        </h1>
+      </div>
+
+      <div class="vc-stage" id="vc-stage">
+        <div class="vc-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <canvas id="vc-gl" tabindex="0" aria-label="3D voxel city, ten by ten tiles, changing from polluted to green between 2000 and 2050. Drag to orbit, scroll to zoom once selected, arrow keys to rotate."></canvas>
+
+        <!-- leader lines from live tiles to their labels (desktop) -->
+        <svg class="vc-lines" id="vc-lines" aria-hidden="true"></svg>
+        <div class="vc-calls" id="vc-calls" role="group" aria-label="Featured tiles"></div>
+
+        <div class="vc-tip" id="vc-tip" hidden></div>
+        <div class="vc-msg" id="vc-msg" hidden></div>
+        <div class="vc-toast" id="vc-toast" aria-hidden="true">Click the city to zoom with your scroll wheel</div>
+
+        <section class="vc-box vc-spec" aria-label="City readout">
+          <p class="vc-box-hd"><b>River City</b><span>10&times;10 tiles</span></p>
+          <dl class="vc-board">
+            <div><dt>Clean power</dt><dd id="vc-bPower">0%</dd><span class="vc-bar"><i id="vc-barPower"></i></span></div>
+            <div><dt>Green tiles</dt><dd id="vc-bTiles">0/100</dd><span class="vc-bar"><i id="vc-barTiles"></i></span></div>
+            <div><dt>CO&#8322; index</dt><dd id="vc-bCo2">100</dd><span class="vc-bar vc-bar-co2"><i id="vc-barCo2" style="width:100%"></i></span></div>
+          </dl>
+        </section>
+
+        <aside class="vc-pop" id="vc-pop" hidden aria-live="polite">
+          <button type="button" class="vc-close" id="vc-popClose" aria-label="Close details">&times;</button>
+          <div class="vc-meta"><span class="vc-tag" id="vc-popTag"></span><span id="vc-popWhere"></span></div>
+          <h2 id="vc-popTitle"></h2>
+          <p id="vc-popBlurb"></p>
+          <dl id="vc-popStats"></dl>
+          <button type="button" class="vc-skip" id="vc-popSkip" hidden></button>
+          <p class="vc-note">Typical figures for illustration. Real values vary by site and technology.</p>
+        </aside>
+
+        <div class="vc-dock" id="vc-dock">
+          <div class="vc-dock-top">
+            <div class="vc-box vc-explore">
+              <p class="vc-box-hd" id="vc-legend-label"><b>Jump to</b><span>Done</span></p>
+              <ul class="vc-legend" id="vc-legend" aria-labelledby="vc-legend-label"></ul>
+            </div>
+            <div class="vc-box vc-about">
+              <p class="vc-box-hd"><b>About the model</b><span>v1.0</span></p>
+              <p class="hero-lede">A river city trades coal, cars and clear-cut land for clean power, light rail and restored nature, one hectare at a time.</p>
+              <p class="vc-links">
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+                <a href="resources.html">Resources</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="vc-line">
+            <button type="button" class="vc-play" id="vc-play" data-state="play" aria-label="Play">
+              <svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.5v11l9-5.5z"/></svg>
+              <svg class="i-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4.5h2.75v11H6zM11.25 4.5H14v11h-2.75z"/></svg>
+              <svg class="i-replay" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 8.5A6 6 0 1 1 4 11.5"/><path d="M4 4v4.5h4.5"/></svg>
+            </button>
+            <div class="vc-when">
+              <span class="vc-year" id="vc-year">2000</span>
+              <span class="vc-phase" id="vc-phase">Starting point</span>
+            </div>
+            <span class="vc-end" aria-hidden="true">2000</span>
+            <div class="vc-track">
+              <input class="vc-scrub" id="vc-scrub" type="range" min="0" max="30" step="0.05" value="0" aria-label="Timeline, 2000 to 2050">
+              <div class="vc-phases">
+                <button type="button" data-vc-seek="0">01 Clean power</button>
+                <button type="button" data-vc-seek="10">02 Light rail</button>
+                <button type="button" data-vc-seek="20">03 Nature</button>
+              </div>
+            </div>
+            <span class="vc-end" aria-hidden="true">2050</span>
+            <div class="vc-zoom" id="vc-zoom" role="group" aria-label="View">
+              <button type="button" id="vc-zoomIn" aria-label="Zoom in">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+              </button>
+              <button type="button" id="vc-zoomOut" aria-label="Zoom out">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12"/></svg>
+              </button>
+              <button type="button" id="vc-resetView" aria-label="Reset view">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 8.5A6 6 0 1 1 4 11.5"/><path d="M4 4v4.5h4.5"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="phases" aria-labelledby="phases-title">
+      <div class="container">
+        <h2 id="phases-title" data-reveal>Three phases to a green city</h2>
+        <ol class="phase-list">
+          <li class="phase-card" data-reveal>
+            <span class="phase-num">01</span>
+            <h3>Clean power</h3>
+            <p class="phase-years">2000&ndash;2017</p>
+            <p>Coal stacks, factories and tank farms give way to wind turbines, solar fields and a low-carbon reactor.</p>
+            <button type="button" class="phase-go" data-vc-seek="0">Watch phase 1</button>
+          </li>
+          <li class="phase-card" data-reveal>
+            <span class="phase-num">02</span>
+            <h3>Light rail</h3>
+            <p class="phase-years">2017&ndash;2033</p>
+            <p>Two light-rail lines grow out from a central interchange, replacing car-choked roads and gas stations.</p>
+            <button type="button" class="phase-go" data-vc-seek="10">Watch phase 2</button>
+          </li>
+          <li class="phase-card" data-reveal>
+            <span class="phase-num">03</span>
+            <h3>Nature</h3>
+            <p class="phase-years">2033&ndash;2050</p>
+            <p>The river is restored, clear-cut land grows back as forest, and vacant lots become community gardens.</p>
+            <button type="button" class="phase-go" data-vc-seek="20">Watch phase 3</button>
+          </li>
+        </ol>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year"></span> Site Name</p>
+      <p>&copy; <span id="year"></span> Greenprint</p>
     </div>
   </footer>
 </body>
