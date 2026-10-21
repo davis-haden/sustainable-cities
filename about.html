@@ -3,18 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <title>About | Site Name</title>
+  <meta name="description" content="How air pollution harms people and city infrastructure, and why sustainable air practices matter: stories from Islamabad, Kalimantan and Sumatra.">
+  <title>Clean Air &amp; Cities | Site Name</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/bbiss.css">
+  <style>
+    /* Page-only helpers: stat callouts laid out in a row */
+    .aq-stats { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8); }
+    .aq-stats .bb-note { flex: 1 1 200px; max-width: none; }
+    .aq-story { display: grid; gap: var(--space-6); margin-top: var(--space-8); }
+    @media (min-width: 768px) { .aq-story { grid-template-columns: 3fr 2fr; align-items: start; } }
+  </style>
   <script>document.documentElement.classList.add("js");</script>
   <script src="js/main.js" defer></script>
+  <script src="js/bbiss.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
+  <header class="site-header bb-header">
     <div class="container">
-      <a class="site-logo" href="index.html">Site Name</a>
+      <a class="site-logo" href="index.html">BBISS</a>
 
       <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
         <span class="nav-toggle-bar"></span>
@@ -25,24 +34,197 @@
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <ul class="nav-list">
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html" aria-current="page">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">Why It Matters</a></li>
+          <li><a href="projects.html">About BBISS</a></li>
+          <li><a href="air-quality.html" aria-current="page">Clean Air</a></li>
+          <li><a href="resources.html">Georgia Tech Initiatives</a></li>
         </ul>
       </nav>
     </div>
   </header>
   <div class="nav-overlay" aria-hidden="true"></div>
 
-  <main id="main">
-    <div class="container">
-      <h1 data-reveal>About</h1>
-    </div>
+  <main id="main" class="bbiss">
+    <header class="bb-hero">
+      <div class="bb-hero__media" aria-hidden="true">
+        <!-- Placeholder: replace this SVG with a hero photo, e.g. <img src="images/city-smog.jpg" alt=""> -->
+        <svg viewBox="0 0 960 600" preserveAspectRatio="xMidYMid slice">
+          <rect width="960" height="600" style="fill: var(--moss)"/>
+          <g class="rings">
+            <circle cx="200" cy="140" r="70"/><circle cx="200" cy="140" r="130"/><circle cx="200" cy="140" r="200"/><circle cx="200" cy="140" r="280"/>
+            <circle cx="780" cy="500" r="90"/><circle cx="780" cy="500" r="170"/><circle cx="780" cy="500" r="260"/>
+          </g>
+        </svg>
+      </div>
+      <div class="bb-hero__inner">
+        <span class="bb-label bb-label--dark">[ CLEAN AIR ]</span>
+        <h1>Air pollution and the cities we depend on</h1>
+      </div>
+      <a class="bb-hero__cue" href="#why">
+        <span class="bb-label">Scroll</span>
+        <svg viewBox="0 0 48 24" aria-hidden="true"><path d="M0 0h48L24 24z"/></svg>
+      </a>
+    </header>
+
+    <section class="bbiss-section" id="why" aria-labelledby="why-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 01 — WHY IT MATTERS ]</span></div>
+          <h2 id="why-title">Dirty air is a <em>city-wide</em> problem</h2>
+        </div>
+        <p class="bbiss-copy" data-reveal>Fine particulate matter (PM2.5) is the most harmful form of air pollution. It is small enough to travel deep into the lungs and bloodstream. When it builds up, the damage does not stop at personal health. Hospitals fill, workers miss shifts, schools and flights are disrupted, and governments are forced into emergency measures. Cities run on people and networks that all depend on breathable air, which makes sustainable air practices a matter of protecting infrastructure as much as protecting lungs.</p>
+
+        <ul class="bb-rows bbiss-stack">
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="why-01">
+              <span class="bb-row__idx">01</span>
+              <span class="bb-row__title">Health systems</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="why-01"><div><p>Smoke and smog send people to clinics and hospitals at the same moment. During Indonesia&rsquo;s 2015 haze, almost half a million people fell ill across six provinces, and infants needed intensive care for respiratory illness.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="why-02">
+              <span class="bb-row__idx">02</span>
+              <span class="bb-row__title">Transportation</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="why-02"><div><p>Haze cuts visibility and grounds flights. In 2015, thick smoke left thousands of air travelers losing time and money, and recent fires in Kalimantan have again degraded visibility at airports.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="why-03">
+              <span class="bb-row__idx">03</span>
+              <span class="bb-row__title">Workforce and economy</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="why-03"><div><p>Peatland fires in Sumatra and Kalimantan are estimated to cost about 8.9 million lost workdays in an average year, on top of hospitalizations and severe childhood asthma.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="why-04">
+              <span class="bb-row__idx">04</span>
+              <span class="bb-row__title">Schools and public services</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="why-04"><div><p>Authorities advise children, older adults and people with asthma to stay indoors or wear masks, and they must divert staff and budgets into enforcement and emergency response when air quality turns dangerous.</p></div></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bbiss-section" aria-labelledby="islamabad-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 02 — STORY ]</span></div>
+          <h2 id="islamabad-title">Islamabad: <em>very unhealthy</em></h2>
+        </div>
+        <div class="aq-story">
+          <div data-reveal>
+            <p style="margin:0 0 var(--space-4);font-size:18px;line-height:28px">In November 2024, dust and vehicle emissions pushed Islamabad&rsquo;s air into the &ldquo;very unhealthy&rdquo; range, according to Pakistan&rsquo;s Environmental Protection Agency (Pak-EPA). Officials pointed to outdated brick kilns on the city&rsquo;s outskirts that had not adopted cleaner zigzag technology, plus pollution drifting in from neighboring Rawalpindi. Fine particles made up about 90 percent of the city&rsquo;s air pollution.</p>
+            <p style="margin:0;font-size:18px;line-height:28px">The response shows what sustainable air practice looks like in a city: fines and legal action for open waste burning, smoky vehicles and non-compliant kilns; emissions checks for heavy vehicles at entry points; and the use of the city&rsquo;s existing safe city camera network to spot violations.</p>
+          </div>
+          <div class="bb-photo bb-photo--empty" role="img" aria-label="Placeholder for a photo of smog over an Islamabad avenue">
+            <!-- Replace with: <div class="bb-photo"><img src="images/islamabad-smog.jpg" alt="..." width="..." height="..."></div> -->
+            <span class="bb-photo__tick bb-photo__tick--tl"></span>
+            <span class="bb-photo__tick bb-photo__tick--br"></span>
+            <span class="bb-label bb-photo__cap">[ Photo: Islamabad smog ]</span>
+          </div>
+        </div>
+        <div class="aq-stats" data-reveal>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Peak AQI</span><span class="bb-label">Nov 15, 2024</span></div><span class="bb-note__stat">227</span><p class="bb-note__body">Highest reading between noon and 8 pm.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">PM2.5</span><span class="bb-label">Peak</span></div><span class="bb-note__stat">177 &micro;g/m&sup3;</span><p class="bb-note__body">Versus a national standard of 35.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Share</span><span class="bb-label">Of pollution</span></div><span class="bb-note__stat">90%</span><p class="bb-note__body">Fine particles, the most harmful kind.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Cameras</span><span class="bb-label">Enforcement</span></div><span class="bb-note__stat">3,300</span><p class="bb-note__body">Safe city cameras to be used to catch burning and emissions.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbiss-section" aria-labelledby="islands-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 03 — STORY ]</span></div>
+          <h2 id="islands-title">Kalimantan and Sumatra: <em>smoke across borders</em></h2>
+        </div>
+        <div class="aq-story">
+          <div data-reveal>
+            <p style="margin:0 0 var(--space-4);font-size:18px;line-height:28px">Sumatra and Kalimantan are where most of Indonesia&rsquo;s peatland fires occur. Drained peatland burns easily, and fires are far worse in dry El Ni&ntilde;o years. The resulting haze blankets cities across both islands and drifts into Malaysia and Singapore. In 2015, Palangkaraya in Central Kalimantan recorded the worst air in the country, and Pekanbaru in Sumatra hit a pollutant index of 858.</p>
+            <p style="margin:0;font-size:18px;line-height:28px">The toll is not a one-off. Researchers estimate that peatland fire smoke causes around 33,100 premature adult deaths and 2,900 infant deaths in an average year. Their conclusion points toward prevention: move toward peatland management that does not require drainage, and so is not prone to fire.</p>
+          </div>
+          <div class="bb-photo bb-photo--empty" role="img" aria-label="Placeholder for a photo of haze over Sumatra or Kalimantan">
+            <!-- Replace with: <div class="bb-photo"><img src="images/peatland-haze.jpg" alt="..." width="..." height="..."></div> -->
+            <span class="bb-photo__tick bb-photo__tick--tl"></span>
+            <span class="bb-photo__tick bb-photo__tick--br"></span>
+            <span class="bb-label bb-photo__cap">[ Photo: Peatland haze ]</span>
+          </div>
+        </div>
+        <div class="aq-stats" data-reveal>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Deaths</span><span class="bb-label">Per year</span></div><span class="bb-note__stat">36,000</span><p class="bb-note__body">About 33,100 adults and 2,900 infants, on average.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Asthma</span><span class="bb-label">Per year</span></div><span class="bb-note__stat">635,000</span><p class="bb-note__body">Severe childhood asthma cases, on average.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Workdays</span><span class="bb-label">Per year</span></div><span class="bb-note__stat">8.9M</span><p class="bb-note__body">Lost to illness from peatland fire smoke.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">2015 haze</span><span class="bb-label">Ill</span></div><span class="bb-note__stat">~500,000</span><p class="bb-note__body">People sickened across six provinces.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbiss-section" aria-labelledby="practices-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 04 — SOLUTIONS ]</span></div>
+          <h2 id="practices-title">Sustainable air <em>practices</em></h2>
+        </div>
+        <ul class="bb-rows bbiss-stack">
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="practice-01">
+              <span class="bb-row__idx">01</span>
+              <span class="bb-row__title">Stop fires at the source</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="practice-01"><div><p>Shift peatland management away from drainage, since drained peat is what makes land so fire-prone, and enforce rules against open burning of waste and land.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="practice-02">
+              <span class="bb-row__idx">02</span>
+              <span class="bb-row__title">Clean up industry and transport</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="practice-02"><div><p>Upgrade brick kilns to zigzag technology, check heavy vehicle emissions at city entry points, and keep vehicles fit and low-smoke.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="practice-03">
+              <span class="bb-row__idx">03</span>
+              <span class="bb-row__title">Monitor and enforce</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="practice-03"><div><p>Publish real-time air quality data, set clear standards, and use existing city infrastructure such as cameras to find violators and apply fines quickly.</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="practice-04">
+              <span class="bb-row__idx">04</span>
+              <span class="bb-row__title">Coordinate across borders</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="practice-04"><div><p>Smoke ignores boundaries: pollution from Rawalpindi reaches Islamabad, and fires in Indonesia reach Malaysia and Singapore. Neighboring cities and countries need shared monitoring and response.</p></div></div>
+          </li>
+        </ul>
+        <div class="bbiss-actions">
+          <a class="bb-btn bb-btn--primary" href="https://sustainablesystems.gatech.edu/" target="_blank" rel="noopener">Explore BBISS research <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+          <a class="bb-btn bb-btn--secondary" href="resources.html">Georgia Tech initiatives</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
+      <section class="bbiss-sources" aria-labelledby="sources-title">
+        <h2 class="bb-label" id="sources-title">[ Sources ]</h2>
+        <ul class="bbiss-refs">
+          <li>Hein, L., Spadaro, J. V., Ostro, B., et al. (2022). The health impacts of Indonesian peatland fires. <i>Environmental Health, 21</i>. <a href="https://link.springer.com/doi/10.1186/s12940-022-00872-w" target="_blank" rel="noopener">https://link.springer.com/doi/10.1186/s12940-022-00872-w</a></li>
+          <li>Shahid, J. (2024, November 16). Islamabad&rsquo;s air quality becomes &lsquo;very unhealthy&rsquo;: Pak-EPA. <i>Dawn</i>. <a href="https://www.dawn.com/news/1872628/islamabads-air-quality-becomes-very-unhealthy-pak-epa" target="_blank" rel="noopener">https://www.dawn.com/news/1872628/islamabads-air-quality-becomes-very-unhealthy-pak-epa</a></li>
+          <li><i>The Jakarta Post</i>. (2015, September 29). RI struggles to conquer haze crisis. <a href="https://www.thejakartapost.com/news/2015/09/29/ri-struggles-conquer-haze-crisis.html" target="_blank" rel="noopener">https://www.thejakartapost.com/news/2015/09/29/ri-struggles-conquer-haze-crisis.html</a></li>
+          <li><i>The Jakarta Post</i>. (2015, October 8). Smoke claims new victim, triggers prolonged health crisis. <a href="https://www.thejakartapost.com/news/2015/10/08/smoke-claims-new-victim-triggers-prolonged-health-crisis" target="_blank" rel="noopener">https://www.thejakartapost.com/news/2015/10/08/smoke-claims-new-victim-triggers-prolonged-health-crisis</a></li>
+          <li><i>The Jakarta Post</i>. (2015, October 17). Haze sickens half a million in six provinces in Kalimantan, Sumatra. <a href="https://www.thejakartapost.com/news/2015/10/17/haze-sickens-half-a-million-six-provinces-kalimantan-sumatra" target="_blank" rel="noopener">https://www.thejakartapost.com/news/2015/10/17/haze-sickens-half-a-million-six-provinces-kalimantan-sumatra</a></li>
+        </ul>
+      </section>
       <p>&copy; <span id="year"></span> Site Name</p>
     </div>
   </footer>

@@ -8,3 +8,6 @@
 Link: https://colorhunt.co/palette/db9558fcf9ea97a87aa8bba3
 
 Style Guide: https://claude.ai/artifact/F8Rk17KjL2BGAPQRyMU6o2
+## How to Open:
+**Terminal Commands**: python3 -m http.server 8000
+**Local Host**: http://localhost:8000 
