@@ -125,6 +125,13 @@
 .bb-hero__cue svg { width: 48px; height: 24px; fill: var(--orange); transition: transform var(--dur-base) var(--ease-out); }
 .bb-hero__cue:hover svg { transform: translateY(4px); }
 .bb-hero__cue:focus-visible { outline: none; box-shadow: var(--focus); border-radius: var(--radius-sm); }
+/* Optional intro (from the home page): each headline line rises out of its own mask */
+.bb-hero__line { display: block; overflow: hidden; padding-bottom: 0.05em; }
+.bb-hero__line > span { display: block; animation: bb-rise 900ms var(--ease-out) both; }
+.bb-hero__line:nth-child(2) > span { animation-delay: 90ms; }
+.bb-hero__kicker, .bb-hero__cue { animation: bb-fade var(--dur-slow) ease 400ms both; }
+@keyframes bb-rise { from { transform: translateY(105%); } }
+@keyframes bb-fade { from { opacity: 0; } }
 
 /* ---------- Feature card (Vision / Mission): flips to its statement ---------- */
 .bb-feature { position: relative; padding: var(--space-3); border: 2px solid var(--orange); border-radius: var(--radius-lg); background: var(--cream); color: var(--forest); perspective: 1400px; transition: box-shadow var(--dur-base) var(--ease-out); }
