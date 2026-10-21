@@ -332,35 +332,6 @@ main {
   padding-block: 2rem;
 }
 
-/* Long-form text: keep lines at a readable length */
-.prose {
-  max-width: 68ch;
-}
-
-.prose h2 {
-  margin-top: 2rem;
-  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.6rem);
-  color: var(--color-link);
-}
-
-.prose p {
-  margin: 0 0 1rem;
-}
-
-/* MLA works cited: hanging indent, long URLs wrap instead of overflowing */
-.works-cited ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.works-cited li {
-  margin-bottom: 0.75rem;
-  padding-left: 2rem;
-  text-indent: -2rem;
-  overflow-wrap: anywhere;
-}
-
 .site-footer {
   padding-block: 1.5rem;
   background: var(--color-surface);
