@@ -1,0 +1,202 @@
+/* Hero: headline, intro animation, and the stage (sage backdrop, cream sheet, city canvas). */
+
+/* --- Hero: the headline and the stage share one grid cell --- */
+.hero {
+  position: relative;
+  display: grid;
+  background: var(--color-bg);
+}
+
+.hero-copy,
+.vc-stage {
+  grid-area: 1 / 1;
+}
+
+.hero-copy {
+  --vc-sk: 0;
+  position: relative;
+  z-index: 3;
+  align-self: start;
+  padding: calc(var(--vc-frame) + var(--header-height) + 0.5rem) var(--vc-inset) 0;
+  /* scroll parallax (set by JS); filter + translate so it isn't smoothed by the transitions below */
+  filter: opacity(calc(1 - var(--vc-sk) * 1.6));
+  translate: 0 calc(var(--vc-sk) * -4rem);
+  pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(3rem, 1rem + 6vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+}
+
+/* Each headline line rises out of its own mask */
+/* extra room at the bottom (taken back with the negative margin) so descenders aren't cut off
+   by the mask */
+.hero-copy .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.35em;
+  margin-bottom: -0.3em;
+}
+
+.hero-copy .line > span {
+  display: block;
+}
+
+/* The model's date range, top right of the sheet, level with the top of the headline. It rises in
+   with the headline (it is a .line mask too). Phones: tucked under the headline instead. */
+.hero-date {
+  position: absolute;
+  top: calc(var(--vc-frame) + var(--header-height) + 0.5rem);
+  right: var(--vc-inset);
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 0.5rem + 4.2vw, 5.5rem);
+  font-style: italic;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .hero-date {
+    position: static;
+    margin-top: 0.25rem;
+    font-size: 2rem;
+  }
+}
+
+/* Zoomed in on the city: the headline steps aside */
+.hero.is-zoomed .hero-copy {
+  opacity: 0;
+  transform: translateX(-1.5rem);
+  visibility: hidden;
+  transition: opacity var(--dur-base) ease, transform var(--dur-base) ease, visibility 0s var(--dur-base);
+}
+
+/* --- Intro. JS adds .is-intro as soon as it runs, .intro-type when the headline
+   should rise, and .intro-done once the window has opened. If the script never
+   runs, vc-failsafe shows everything after a moment. --- */
+.js .hero:not(.intro-type) .line > span {
+  transform: translateY(105%);
+}
+
+.js .hero:not(.intro-done) :is(.vc-box, .vc-frame i) {
+  opacity: 0;
+  translate: 0 0.75rem;
+}
+
+.js .hero:not(.is-intro):not(.intro-done) :is(.line > span, .vc-box, .vc-frame i, .vc-stage, .vc-line > *),
+.js .hero:not(.is-intro):not(.intro-done) .vc-line::before {
+  animation: vc-failsafe 0s 3s forwards;
+}
+
+@keyframes vc-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+    translate: none;
+    clip-path: none;
+  }
+}
+
+.js .hero .line > span {
+  transition: transform 900ms var(--ease-out);
+}
+
+.js .hero.intro-type .line > span {
+  transform: none;
+}
+
+.js .hero.intro-type .line:nth-child(2) > span {
+  transition-delay: 90ms;
+}
+
+.vc-box,
+.vc-frame i {
+  transition: opacity 700ms ease, translate 900ms var(--ease-out);
+}
+
+.hero.intro-done .vc-about { transition-delay: 300ms; }
+
+.js .hero:not(.intro-done) .vc-line {
+  pointer-events: none;
+}
+
+/* The stage starts as a closed square window; JS opens it (inline clip-path) */
+.js .hero:not(.intro-done) .vc-stage {
+  clip-path: inset(50% 50% 50% 50%);
+}
+
+/* --- Stage: sage backdrop, cream sheet inset by the frame, city canvas on top --- */
+.vc-stage {
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  max-height: 1100px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--sage), var(--sage-tint));
+}
+
+/* a rounded cream sheet; the green waves are painted on it by ui/waves.js */
+.vc-frame {
+  position: absolute;
+  inset: var(--vc-frame);
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--cream);
+  pointer-events: none;
+}
+
+/* soft-focus waves; the canvas overhangs the sheet so the blur doesn't fade out at the edges */
+.vc-waves {
+  position: absolute;
+  top: -24px;
+  left: -24px;
+  width: calc(100% + 48px);
+  height: calc(100% + 48px);
+  filter: blur(6px);
+}
+
+.vc-frame i {
+  display: none;
+}
+
+/* While engaged (clicked or focused) the wheel zooms the scene; a hairline frame says so */
+.vc-stage::after {
+  content: "";
+  position: absolute;
+  inset: var(--vc-frame);
+  z-index: 1;
+  border-radius: 28px;
+  box-shadow: inset 0 0 0 2px var(--orange);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) ease;
+}
+
+.vc-stage.is-engaged::after {
+  opacity: 1;
+}
+
+.vc-stage canvas {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.vc-stage canvas:focus-visible {
+  outline: 0;
+}
+
+.vc-stage canvas:active {
+  cursor: grabbing;
+}
+
+.vc-stage canvas.pick {
+  cursor: pointer;
+}

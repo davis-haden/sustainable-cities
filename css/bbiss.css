@@ -1,9 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&family=Saira+Condensed:wght@500;600&display=swap");
-
 /* ==========================================================================
    BBISS design system: tokens + components for the About BBISS page.
    Source of truth: the BBISS design system (tokens.json, components/bundle.css).
-   Load after css/styles.css.
+   Load after css/styles.css. Each page loads the fonts itself (see its <head>).
    ========================================================================== */
 
 :root {
@@ -245,6 +243,17 @@ main.bbiss { padding-block: 0; font-family: var(--font-sans); color: var(--fores
 .bbiss-refs { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; font-family: var(--font-sans); font-size: 14px; line-height: 1.5; }
 .bbiss-refs li { padding-left: 2em; text-indent: -2em; }
 .bbiss-refs a { color: var(--forest); overflow-wrap: anywhere; }
+
+/* Site footer: brand, page links and copyright (shared by every page) */
+.footer-grid { display: grid; gap: var(--space-4); font-family: var(--font-sans); }
+.footer-grid p { margin: 0; }
+.footer-brand b { margin-right: var(--space-2); font-family: var(--font-display); font-size: 20px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); margin: 0; padding: 0; list-style: none; }
+.footer-links a { color: var(--forest); text-underline-offset: 3px; }
+@media (min-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr auto; align-items: center; }
+  .footer-grid > p:last-child { grid-column: 1 / -1; color: var(--muted); }
+}
 
 /* ==========================================================================
    Header: the style guide's nav pill over the hero (projects.html only).

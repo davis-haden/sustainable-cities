@@ -3,18 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <title>Home | Site Name</title>
+  <meta name="description" content="How cities can cut emissions and clean their air, and how the Brook Byers Institute for Sustainable Systems at Georgia Tech is helping. Watch a model city go green, then find what you can do.">
+  <title>Sustainable Cities | BBISS</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232b3123'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%2397a87a' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23db9558'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&family=Saira+Condensed:wght@500;600&display=fallback">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/bbiss.css">
+  <link rel="stylesheet" href="home/css/home.css">
   <script>document.documentElement.classList.add("js");</script>
   <script src="js/main.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script type="module" src="home/js/main.js"></script>
+  <script type="module" src="home/js/story.js"></script>
 </head>
-<body>
+<body class="page-home">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="container">
-      <a class="site-logo" href="index.html">Site Name</a>
+      <a class="site-logo" href="index.html">BBISS</a>
 
       <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
         <span class="nav-toggle-bar"></span>
@@ -26,24 +35,263 @@
         <ul class="nav-list">
           <li><a href="index.html" aria-current="page">Home</a></li>
           <li><a href="about.html">Why It Matters</a></li>
-          <li><a href="projects.html">Projects</a></li>
+          <li><a href="projects.html">About BBISS</a></li>
           <li><a href="resources.html">At GT</a></li>
-          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
   <div class="nav-overlay" aria-hidden="true"></div>
 
-  <main id="main">
-    <div class="container">
-      <h1 data-reveal>Home</h1>
+  <main id="main" class="main-home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">
+          <span class="line"><span>Sustainable</span></span>
+          <span class="line"><span>Cities</span></span>
+        </h1>
+        <p class="hero-date line"><span><span data-vc-year="0">2026</span>&ndash;<span data-vc-year="30">2076</span></span></p>
+      </div>
+
+      <div class="vc-stage" id="vc-stage">
+        <div class="vc-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <canvas id="vc-gl" tabindex="0" aria-label="3D voxel city, ten by ten tiles, changing from polluted to green over the next fifty years. Drag to orbit, scroll to zoom once selected, arrow keys to rotate." data-vc-aria="3D voxel city, ten by ten tiles, changing from polluted to green between {start} and {end}. Drag to orbit, scroll to zoom once selected, arrow keys to rotate."></canvas>
+
+        <!-- leader lines from live tiles to their labels (desktop) -->
+        <svg class="vc-lines" id="vc-lines" aria-hidden="true"></svg>
+        <div class="vc-calls" id="vc-calls" role="group" aria-label="Featured tiles"></div>
+
+        <div class="vc-tip" id="vc-tip" hidden></div>
+        <div class="vc-msg" id="vc-msg" hidden></div>
+        <div class="vc-toast" id="vc-toast" aria-hidden="true">Click the city to zoom with your scroll wheel</div>
+
+        <aside class="vc-pop" id="vc-pop" hidden aria-live="polite">
+          <button type="button" class="vc-close" id="vc-popClose" aria-label="Close details">&times;</button>
+          <div class="vc-meta"><span class="vc-tag" id="vc-popTag"></span><span id="vc-popWhere"></span></div>
+          <h2 id="vc-popTitle"></h2>
+          <p id="vc-popBlurb"></p>
+          <dl id="vc-popStats"></dl>
+          <button type="button" class="vc-skip" id="vc-popSkip" hidden></button>
+          <p class="vc-note">Typical figures for illustration. Real values vary by site and technology.</p>
+        </aside>
+
+        <div class="vc-dock" id="vc-dock">
+          <div class="vc-dock-top">
+            <div class="vc-box vc-about">
+              <p class="vc-box-hd"><b>About the model</b></p>
+              <p class="hero-lede">A model of Atlanta swaps smokestacks, traffic and bare land for clean power, light rail and restored nature. Press play to watch fifty years of change, or scroll down for the story.</p>
+              <p class="vc-links">
+                <a href="#story">Read the story</a>
+                <a href="projects.html">About BBISS</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="vc-line">
+            <button type="button" class="vc-play" id="vc-play" data-state="play" aria-label="Play">
+              <svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.5v11l9-5.5z"/></svg>
+              <svg class="i-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4.5h2.75v11H6zM11.25 4.5H14v11h-2.75z"/></svg>
+              <svg class="i-replay" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 8.5A6 6 0 1 1 4 11.5"/><path d="M4 4v4.5h4.5"/></svg>
+            </button>
+            <div class="vc-when">
+              <span class="vc-year" id="vc-year">2026</span>
+              <span class="vc-phase" id="vc-phase">Starting point</span>
+            </div>
+            <span class="vc-end" aria-hidden="true" data-vc-year="0">2026</span>
+            <div class="vc-track">
+              <input class="vc-scrub" id="vc-scrub" type="range" min="0" max="30" step="0.05" value="0" aria-label="Timeline, 2026 to 2076" data-vc-aria="Timeline, {start} to {end}">
+              <div class="vc-phases">
+                <button type="button" data-vc-seek="0">01 Clean power</button>
+                <button type="button" data-vc-seek="10">02 Light rail</button>
+                <button type="button" data-vc-seek="20">03 Nature</button>
+              </div>
+            </div>
+            <span class="vc-end" aria-hidden="true" data-vc-year="30">2076</span>
+            <div class="vc-zoom" id="vc-zoom" role="group" aria-label="View">
+              <button type="button" id="vc-zoomIn" aria-label="Zoom in">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+              </button>
+              <button type="button" id="vc-zoomOut" aria-label="Zoom out">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12"/></svg>
+              </button>
+              <button type="button" id="vc-resetView" aria-label="Reset view">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 8.5A6 6 0 1 1 4 11.5"/><path d="M4 4v4.5h4.5"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The story below the city: five chapters joined by one thread that draws as you scroll
+         (home/js/story.js). Problem → plan → people → proof → your turn. -->
+    <div class="story" id="story">
+      <div class="story-rail" aria-hidden="true"><span class="story-rail__fill"></span></div>
+
+      <a class="story-cue" href="#problem">
+        <span>Scroll for the story</span>
+        <svg viewBox="0 0 48 24" aria-hidden="true"><path d="M0 0h48L24 24z"/></svg>
+      </a>
+
+      <!-- 1. Why It Matters: a taste of about.html -->
+      <section class="chapter chapter--problem" id="problem" aria-labelledby="problem-title">
+        <span class="chapter-dot" aria-hidden="true"></span>
+        <div class="container chapter-grid">
+          <div class="chapter-copy">
+            <div class="bb-heading__rule" data-reveal><span class="bb-label">[ 01 — WHY IT MATTERS ]</span></div>
+            <h2 id="problem-title" data-split>Where we live shapes <em>every breath</em></h2>
+            <p class="chapter-lead" data-reveal>Dirty air doesn&rsquo;t stay in our lungs. It reaches hospitals, airports, schools and paychecks, until a whole city feels it. Why It Matters follows two places where the air turned dangerous: a capital city choking on smog, and islands buried in smoke that drifted across borders.</p>
+            <p data-reveal>What did it cost them, and what did they do about it?</p>
+            <div class="stat-row">
+              <div class="stat" data-reveal><b><span data-count="30">30</span>%</b><span>of greenhouse gas emissions come from transportation</span></div>
+              <div class="stat" data-reveal><b>1 in 2</b><span>people on Earth live in a city</span></div>
+            </div>
+            <a class="teaser" href="about.html" data-reveal>
+              <span>Why It Matters</span>
+              <b>See what happens when a city runs out of clean air</b>
+              <i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i>
+            </a>
+          </div>
+
+          <!-- the same skyline, smoggy then clear: the clear one fades in as the chapter scrolls past -->
+          <figure class="haze" aria-hidden="true">
+            <div class="haze-frame">
+              <img class="haze-img" src="images/haze-smoggy.webp" alt="" width="1200" height="800">
+              <img class="haze-img haze-img--clear" src="images/haze-clear.webp" alt="" width="1200" height="800">
+            </div>
+            <figcaption class="haze-cap"><span class="haze-cap__smog">Smoggy</span><span class="haze-cap__clear">Clearing up</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 2. About BBISS: a taste of projects.html -->
+      <section class="chapter chapter--people" id="people" aria-labelledby="people-title">
+        <span class="chapter-dot" aria-hidden="true"></span>
+        <div class="container">
+          <div class="bb-heading__rule" data-reveal><span class="bb-label">[ 02 — ABOUT BBISS ]</span></div>
+          <h2 id="people-title" data-split>Meet the <em>Brook Byers Institute</em></h2>
+          <div class="people-grid">
+            <div>
+              <p class="chapter-lead" data-reveal>Georgia Tech has a whole institute built around one question: how do we make the systems we depend on last? The Brook Byers Institute for Sustainable Systems brings scientists, engineers and economists together to find out.</p>
+              <a class="teaser" href="projects.html" data-reveal>
+                <span>About BBISS</span>
+                <b>Their vision, their mission and what they work on</b>
+                <i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i>
+              </a>
+            </div>
+            <div class="vision vision--hook" data-reveal>
+              <p>One institute. <em>Six focus areas.</em> Four research stories and a talk you can watch.</p>
+              <span class="vision__cite">Inside About BBISS</span>
+            </div>
+          </div>
+
+          <p class="chapter-lead chapter-lead--sub" data-reveal>And the research is already out in the world. Pick a question.</p>
+          <div class="proof-grid">
+            <a class="proof-card" href="projects.html#research" data-reveal>
+              <span class="proof-card__img"><img src="images/driving_change.webp" alt="" loading="lazy"></span>
+              <span class="proof-card__body"><b>Driving change</b><span>How do you electrify every road in America?</span><span class="proof-card__more">Read the story</span></span>
+            </a>
+            <a class="proof-card" href="projects.html#research" data-reveal>
+              <span class="proof-card__img"><img src="images/greener_georgia.webp" alt="" loading="lazy"></span>
+              <span class="proof-card__body"><b>A greener Georgia</b><span>Emissions down, economy up. How?</span><span class="proof-card__more">Read the story</span></span>
+            </a>
+            <a class="proof-card" href="projects.html#research" data-reveal>
+              <span class="proof-card__img"><img src="images/costal_ecosystems.webp" alt="" loading="lazy"></span>
+              <span class="proof-card__body"><b>Coastal ecosystems</b><span>Can a coastline pull carbon out of the sky?</span><span class="proof-card__more">Read the story</span></span>
+            </a>
+            <a class="proof-card" href="projects.html#research" data-reveal>
+              <span class="proof-card__img"><img src="images/climate_center.webp" alt="" loading="lazy"></span>
+              <span class="proof-card__body"><b>A world climate center</b><span>Why did Georgia Tech join a new climate hub?</span><span class="proof-card__more">Read the story</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. At GT: a taste of resources.html -->
+      <section class="chapter chapter--campus" id="campus" aria-labelledby="campus-title">
+        <span class="chapter-dot" aria-hidden="true"></span>
+        <div class="container">
+          <div class="bb-heading__rule" data-reveal><span class="bb-label">[ 03 — AT GEORGIA TECH ]</span></div>
+          <h2 id="campus-title" data-split>What are we breathing <em>on campus?</em></h2>
+          <p class="chapter-lead" data-reveal>Georgia Tech sits in Midtown, with part of campus right beside the Downtown Connector. Researchers have studied what that means for the people who live and learn here, and students have set up sensors so anyone can check the air.</p>
+          <div class="hooks">
+            <div class="bb-note" data-reveal><div class="bb-note__head"><span class="bb-label">Sources</span><span class="bb-label">01</span></div><p class="bb-note__body">Traffic is the obvious one. A few others might surprise you.</p></div>
+            <div class="bb-note" data-reveal><div class="bb-note__head"><span class="bb-label">Tracking</span><span class="bb-label">02</span></div><p class="bb-note__body">Live readings from around campus, open to anyone.</p></div>
+            <div class="bb-note" data-reveal><div class="bb-note__head"><span class="bb-label">Equity</span><span class="bb-label">03</span></div><p class="bb-note__body">Why the same city doesn&rsquo;t breathe the same air.</p></div>
+          </div>
+          <a class="teaser" href="resources.html" data-reveal>
+            <span>At GT</span>
+            <b>Find out what the sensors are picking up</b>
+            <i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- 4. Your turn: the conclusion -->
+      <section class="chapter chapter--act" id="act" aria-labelledby="act-title">
+        <span class="chapter-dot" aria-hidden="true"></span>
+        <div class="container">
+          <div class="bb-heading__rule" data-reveal><span class="bb-label">[ 04 — YOUR TURN ]</span></div>
+          <h2 id="act-title" data-split>What <em>you</em> can do</h2>
+          <p class="chapter-lead" data-reveal>Cities, researchers and campuses can set the direction, but the air changes one habit at a time. Small choices, made by a lot of people, shrink a city&rsquo;s footprint and often save money too. Tap the ones you&rsquo;ll try this week.</p>
+          <ul class="pledges">
+            <li data-reveal><button type="button" class="pledge" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-8h5l3 8M10 9l-1-3H7M14 9l1.5-3H18"/></svg>
+              <b>Leave the car at home</b>
+              <span>Walk, bike, or ride MARTA or the Stinger. Getting around is the biggest slice of emissions.</span>
+            </button></li>
+            <li data-reveal><button type="button" class="pledge" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-5 0-8-4-8-9h16c0 5-3 9-8 9zM12 12c0-4 2-7 6-8M12 12c-1-3-3-5-6-5"/></svg>
+              <b>Eat more plants</b>
+              <span>Swap in a few plant-based meals a week. It is one of the easiest ways to cut your footprint, and it is often cheaper.</span>
+            </button></li>
+            <li data-reveal><button type="button" class="pledge" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
+              <b>Power down</b>
+              <span>Switch off what you aren't using, wash in cold water and use LED bulbs. Lower bills, cleaner air.</span>
+            </button></li>
+            <li data-reveal><button type="button" class="pledge" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-2 4M17 17H6l2-4M18 7l-3-3M6 17l3 3"/></svg>
+              <b>Buy less, keep it longer</b>
+              <span>Repair, reuse and recycle. Everything you buy carries the carbon it took to make it.</span>
+            </button></li>
+            <li data-reveal><button type="button" class="pledge" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-7M12 14c-4 0-6-3-6-6 3 0 6 2 6 6zM12 14c0-5 3-8 7-8 0 4-3 8-7 8z"/></svg>
+              <b>Show up locally</b>
+              <span>Join a campus sustainability group, plant a tree, and speak up for transit and green space in your city.</span>
+            </button></li>
+          </ul>
+          <p class="pledge-count" aria-live="polite"><b id="pledge-n">0</b> of 5 picked. <span id="pledge-msg">Every city starts with one choice.</span></p>
+        </div>
+
+        <!-- closing banner: send people on to the rest of the site -->
+        <div class="container">
+          <div class="finale" data-reveal>
+            <h2 class="finale__title">Every city is a <em>work in progress.</em></h2>
+            <p>Every page of this site has a piece of the story. Pick up where you want to start.</p>
+            <p class="finale__links">
+              <a class="bb-btn bb-btn--primary" href="about.html">Why it matters <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
+              <a class="bb-btn bb-btn--glass" href="projects.html">About BBISS</a>
+              <a class="bb-btn bb-btn--glass" href="resources.html">At GT</a>
+              <a class="bb-btn bb-btn--glass" href="https://sustainablesystems.gatech.edu/" target="_blank" rel="noopener">Visit BBISS <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+            </p>
+            <button type="button" class="finale__replay" data-vc-seek="0">Replay the city from <span data-vc-year="0">2026</span></button>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Site Name</p>
+    <div class="container footer-grid">
+      <p class="footer-brand"><b>BBISS</b> Sustainable cities, block by block.</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Why It Matters</a></li>
+        <li><a href="projects.html">About BBISS</a></li>
+        <li><a href="resources.html">At GT</a></li>
+      </ul>
+      <p>&copy; <span id="year"></span> BBISS project, Georgia Tech</p>
     </div>
   </footer>
 </body>

@@ -1,0 +1,159 @@
+/* Home page base: tokens, label text, headings and the header as it sits inside the frame.
+   Colors, fonts, radii and motion come from the BBISS design system (css/bbiss.css);
+   shapes, labels and motion follow the same style guide as the other pages.
+   Everything here is scoped to body.page-home. */
+
+.page-home {
+  --vc-ink: var(--forest);
+  --vc-hair: rgb(43 49 35 / 0.14);
+  --vc-line: var(--line);
+  --vc-frame: clamp(0.3125rem, 0.8vw, 0.75rem);
+  --vc-pad: clamp(0.875rem, 1.4vw, 1.375rem);
+  --vc-inset: calc(var(--vc-frame) + var(--vc-pad));
+  --ease-spring: var(--ease-out); /* no overshoot, to match the other pages */
+  --shadow-soft: 0 2px 6px rgb(43 49 35 / 0.06), 0 10px 24px rgb(43 49 35 / 0.08);
+  font-family: var(--font-sans);
+  color: var(--forest);
+}
+
+/* HUD labels: the style guide's mono, uppercase label */
+.page-home :is(.vc-box-hd, .vc-phase, .vc-end, .vc-phases button, .vc-call, .vc-meta) {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Sentences and links stay in the body sans */
+.page-home :is(.vc-links a, .vc-tip, .vc-toast, .site-footer) {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Display headings: Saira Condensed, uppercase; one <em> phrase in italic serif */
+.page-home :is(h1, h2, h3, .vc-year) {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.page-home :is(h1, h2) em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.page-home :focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+/* --- Header: stays at the top like on the other pages. On phones it starts inside the
+   frame with no background, and becomes the same full-width cream bar once you scroll
+   (home/js/story.js adds .is-scrolled). --- */
+.page-home .site-header {
+  position: fixed;
+  top: var(--vc-frame);
+  left: var(--vc-frame);
+  right: var(--vc-frame);
+  background: transparent;
+  border-bottom: 0;
+  transition: top var(--dur-base) var(--ease-out), left var(--dur-base) var(--ease-out), right var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) ease, box-shadow var(--dur-base) ease;
+}
+
+.page-home .site-header.is-scrolled {
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--cream);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.page-home .site-header .container {
+  position: relative;
+  max-width: none;
+  padding-inline: var(--vc-pad);
+}
+
+.page-home .site-logo {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+.main-home {
+  padding-top: 0;
+}
+
+/* Desktop nav: the style guide's nav pill, in the same spot as on the other pages (centred,
+   24px from the top, logo hidden) so it doesn't jump when you move between pages. There is no
+   photo behind it here, so it uses the solid (forest) variant with the current page as a cream chip. */
+@media (min-width: 768px) {
+  .page-home .site-header,
+  .page-home .site-header.is-scrolled {
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  .page-home .site-header .container {
+    justify-content: center;
+    height: auto;
+    max-width: var(--content-width);
+    padding-block: var(--space-6) var(--space-3);
+  }
+
+  .page-home .site-logo {
+    display: none;
+  }
+
+  .page-home .site-nav {
+    pointer-events: auto;
+    padding: 6px;
+    border: 1px solid var(--forest);
+    border-radius: var(--radius-pill);
+    background: var(--forest);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .page-home .nav-list {
+    gap: var(--space-1);
+  }
+
+  .page-home .nav-list a {
+    padding: var(--space-2) 14px;
+    border-radius: var(--radius-pill);
+    font: 500 14px/20px var(--font-sans);
+    color: var(--on-dark);
+    white-space: nowrap;
+    transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+  }
+
+  .page-home .nav-list a::after {
+    display: none;
+  }
+
+  .page-home .nav-list a:hover {
+    background: rgb(252 249 234 / 0.2);
+  }
+
+  .page-home .nav-list a[aria-current="page"] {
+    background: var(--cream);
+    color: var(--forest);
+    font-weight: 600;
+  }
+}

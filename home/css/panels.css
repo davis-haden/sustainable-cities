@@ -1,0 +1,72 @@
+/* The about box (bottom right, wide screens only). The city's numbers are drawn as waves (ui/waves.js). */
+
+/* --- Rounded cards with a soft shadow and a tinted title strip --- */
+.vc-box {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--cream);
+  box-shadow: var(--shadow-soft);
+}
+
+.vc-box-hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.625rem 1rem 0.5rem;
+  background: var(--sage-tint);
+  color: var(--muted);
+}
+
+.vc-box-hd b {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+/* zoomed in or reading a tile: the about box steps aside */
+.hero.is-zoomed .vc-about,
+.vc-stage.has-sel .vc-about {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* About: short text + boxed links */
+.vc-about {
+  width: 19rem;
+  margin-left: auto;
+}
+
+.vc-about .hero-lede {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--vc-ink);
+}
+
+.vc-links {
+  display: flex;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0 1rem 1rem;
+}
+
+.page-home .vc-links a {
+  padding: 6px var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--orange-tint);
+  color: var(--forest);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur-fast) ease, transform var(--dur-base) var(--ease-spring);
+}
+
+.vc-links a:hover {
+  background: var(--orange);
+  transform: translateY(-2px);
+}
