@@ -1,6 +1,6 @@
 /* When each tile converts. Phase 1 (0-10) is clean power in a shuffled order, phase 2 (10-20) lays
    track outward from the interchange, and phase 3 (20-30) greens the rest, nearest the interchange first.
-   Sets t.ts on every tile and returns how many tiles each class has (for the readout). */
+   Sets t.ts on every tile (and returns how many tiles each class has). */
 import { hash } from '../lib/util.js';
 import { TD } from '../world/constants.js';
 import { LINES, HUBT } from '../world/rail.js';

@@ -1,11 +1,16 @@
 /* Home page entry point. Finds the hero's elements, checks that three.js and WebGL are available, then
    loads the app (home/js/app.js). If either is missing the page shows a message instead of the city.
    Element ids are prefixed "vc-" (voxel city) so they can't clash with the rest of the site. */
-import { T_END } from './world/constants.js';
-import { startClock } from './ui/clock.js';
+import { T_END, yearAt } from './world/constants.js';
 
 var $ = function (id) { return document.getElementById('vc-' + id); };
-startClock(document.getElementById('hdr-clock'));
+
+/* Years on the page follow the timeline, which starts this year: data-vc-year holds a timeline time,
+   and {start}/{end} in data-vc-aria become the first and last year. */
+document.querySelectorAll('[data-vc-year]').forEach(function (n) { n.textContent = yearAt(+n.dataset.vcYear); });
+document.querySelectorAll('[data-vc-aria]').forEach(function (n) {
+  n.setAttribute('aria-label', n.dataset.vcAria.replace('{start}', yearAt(0)).replace('{end}', yearAt(T_END)));
+});
 
 var stage = $('stage');
 if (stage) boot();
@@ -14,14 +19,13 @@ function boot() {
   var hero = stage.parentElement;
   var el = {
     stage: stage, hero: hero, canvas: $('gl'), msg: $('msg'), tip: $('tip'), toast: $('toast'),
-    lines: $('lines'), calls: $('calls'), legend: $('legend'), dock: $('dock'),
+    lines: $('lines'), calls: $('calls'), dock: $('dock'),
     pop: $('pop'), popClose: $('popClose'), popTag: $('popTag'), popWhere: $('popWhere'), popTitle: $('popTitle'),
     popBlurb: $('popBlurb'), popStats: $('popStats'), popSkip: $('popSkip'),
     play: $('play'), scrub: $('scrub'), year: $('year'), phase: $('phase'),
     zoomIn: $('zoomIn'), zoomOut: $('zoomOut'), resetView: $('resetView'),
-    bPower: $('bPower'), bTiles: $('bTiles'), bCo2: $('bCo2'), barPower: $('barPower'), barTiles: $('barTiles'), barCo2: $('barCo2'),
     header: document.querySelector('.site-header'), copy: hero.querySelector('.hero-copy'), h1: hero.querySelector('.hero-copy h1'),
-    line: hero.querySelector('.vc-line'), spec: hero.querySelector('.vc-spec'), explore: hero.querySelector('.vc-explore'), about: hero.querySelector('.vc-about')
+    line: hero.querySelector('.vc-line'), about: hero.querySelector('.vc-about'), date: hero.querySelector('.hero-date')
   };
   hero.classList.add('is-intro');
 
@@ -43,7 +47,7 @@ function boot() {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ctx = {
     el: el, renderer: renderer, reduce: reduce, onScreen: false,
-    /* reduced motion: start at 2050, no orbit, nothing animating */
+    /* reduced motion: start at the end year, no orbit, nothing animating */
     input: { orbit: !reduce, animate: !reduce, engaged: false, ptrs: new Map(), mouse: { x: 0, y: 0, cx: 0, cy: 0, in: false, dirty: false } },
     tl: { T: reduce ? T_END : -0.8, playing: false, scrubbing: false, drawnT: null },
     sel: { tile: null, hover: null, green: false, saved: null },

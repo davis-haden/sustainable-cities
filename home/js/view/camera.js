@@ -82,7 +82,7 @@ export function createCamera(ctx) {
       var tr = rg.getBoundingClientRect();
       add({ left: tr.left, right: tr.right, top: hb.top, bottom: hb.bottom, width: tr.width, height: hb.height });
     }
-    [el.spec, el.explore, el.about].forEach(function (p) { if (p && p.offsetParent) add(p.getBoundingClientRect()); });
+    [el.about, view.w >= 900 && el.date].forEach(function (p) { if (p && p.offsetParent) add(p.getBoundingClientRect()); });
     return out;
   }
   function hitsPanels(rects) {
@@ -110,10 +110,10 @@ export function createCamera(ctx) {
     view.w = w; view.h = h; view.focus = (ins.b - ins.t) / 2; view.freeCy = (ins.t + h - ins.b) / 2;
     view.side = (ins.r - ins.l) / 2; view.centre = 0;
     /* room for the island: between the header and the timeline, and on wide screens between the
-       side columns that hold the callouts and boxes */
-    var availW = w - ins.l - ins.r, availH = h - ins.t - ins.b;
-    if (w >= 900 && el.explore && el.explore.offsetParent) {
-      var cr = el.explore.getBoundingClientRect().right - stage.getBoundingClientRect().left + 24;
+       side columns that hold the callout labels */
+    var availW = w - ins.l - ins.r, availH = h - ins.t - ins.b, call = el.calls && el.calls.firstElementChild;
+    if (w >= 900 && call && el.calls.offsetParent) {
+      var cr = call.offsetLeft + call.offsetWidth + 24;
       availW = Math.min(availW, w - 2 * cr);
     }
     availW *= 0.96; availH *= 0.9;

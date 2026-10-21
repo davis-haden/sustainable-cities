@@ -1,11 +1,9 @@
 /* Hover tooltip, the details card, and flying the camera to a tile and back.
    Only tiles with a kind (power, rail, nature) react; plain city blocks stay quiet. */
-import { clamp } from '../lib/util.js';
-import { TD, T_END } from '../world/constants.js';
-import { NAMES, INFO, PHASE_NAMES, oldName } from '../world/info.js';
+import { TD, yearAt } from '../world/constants.js';
+import { NAMES, INFO, PHASE_NAMES, oldName, placeName } from '../world/info.js';
 import { placeGlow } from '../scene/glow.js';
 
-export function yearAt(tt) { return Math.round(2000 + 50 * clamp(tt / T_END, 0, 1)); }
 export function isGreen(t) { return !!(t && t.kind && t.p >= 0.98); }
 
 export function createDetails(ctx) {
@@ -33,7 +31,8 @@ export function createDetails(ctx) {
     var tile = sel.tile;
     sel.green = isGreen(tile);
     var info = INFO[tile.kind], dl = el.popStats, done = yearAt(tile.ts + TD);
-    el.popWhere.textContent = 'Tile ' + tile.label;
+    var place = placeName(tile);
+    el.popWhere.textContent = (place ? place + ' · ' : '') + 'Tile ' + tile.label;
     dl.textContent = '';
     if (sel.green) {
       el.popTag.textContent = info.tag;
@@ -74,9 +73,9 @@ export function createDetails(ctx) {
   });
   el.popClose.addEventListener('click', unfocus);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && sel.tile) unfocus(); });
-  /* a click anywhere off the scene (apart from the legend chips) also closes the details */
+  /* a click anywhere off the scene also closes the details */
   document.addEventListener('pointerdown', function (e) {
-    if (sel.tile && !el.stage.contains(e.target) && !e.target.closest('.vc-explore')) unfocus();
+    if (sel.tile && !el.stage.contains(e.target)) unfocus();
   });
 
   /* called every frame: keep the tooltip and card in step with a tile that's converting */

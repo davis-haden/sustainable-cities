@@ -14,6 +14,30 @@ function oldName(t) {
   return { G: 'Vacant lot', F: 'Clear-cut land', R: 'Polluted river' }[t.code] || 'City block';
 }
 
+/* the Atlanta neighbourhood or landmark each tile stands in for, keyed 'col,row'; tiles not listed show only their label */
+const AREAS = [
+  ['Buckhead', ['5,1', '6,0', '6,1', '7,0', '7,1', '8,0', '8,1']],
+  ['North Springs', ['5,0']],
+  ['Midtown', ['4,3', '5,2', '5,3', '6,2', '6,3', '4,2']],
+  ['Piedmont Park', ['7,2', '7,3', '8,3']],
+  ['Downtown', ['4,4', '5,4', '6,4', '4,6', '5,6', '6,6']],
+  ['Five Points', ['5,5']],
+  ['Vine City', ['3,5', '2,5', '3,4']],
+  ['West End', ['5,7', '2,6', '3,6', '2,7', '3,7', '4,7']],
+  ['Old Fourth Ward', ['7,4', '6,5', '7,5']],
+  ['Inman Park', ['8,4']],
+  ['Decatur', ['8,5']],
+  ['Indian Creek', ['9,5']],
+  ['H. E. Holmes', ['0,5']],
+  ['Grant Park', ['7,6', '8,6', '6,7', '7,7']],
+  ['Chattahoochee River', ['3,0', '4,0', '2,1', '3,1', '4,1', '1,2', '2,2', '1,3', '2,3', '1,4', '1,5', '0,6', '1,6', '0,7', '1,7', '0,8']],
+  ['South River Forest', ['9,6', '8,7', '9,7', '7,8', '8,8', '8,9']],
+  ['Hartsfield-Jackson', ['4,9', '4,8', '5,8', '3,8', '2,9', '3,9', '5,9', '6,9']]
+];
+const PLACES = {};
+AREAS.forEach(function (a) { a[1].forEach(function (k) { PLACES[k] = a[0]; }); });
+function placeName(t) { return PLACES[t.c + ',' + t.r] || ''; }
+
 const INFO = {
   wind: {
     tag: 'Renewable',
@@ -48,17 +72,17 @@ INFO.station = {
 };
 INFO.bridge = {
   tag: 'Clean transit',
-  blurb: 'The light rail crosses the river on a low bridge. In 2000 this was a four-lane road bridge over a concrete channel. Now trains carry people across while the restored banks below stay open for wildlife and walkers.',
+  blurb: 'The light rail crosses the river on a low bridge. Before, this was a four-lane road bridge over a concrete channel. Now trains carry people across while the restored banks below stay open for wildlife and walkers.',
   stats: INFO.rail.stats
 };
 INFO.hub = {
   tag: 'Clean transit',
-  blurb: 'The two light-rail lines cross here, under a glass and solar roof. Riders change lines on the platforms, and the trains take turns through the crossing. It sits where the busiest road junction used to be.',
+  blurb: 'The two light-rail lines cross here, under a glass and solar roof. Riders change lines on the platforms, and the trains take turns through the crossing. It sits at Five Points, where the busiest road junction used to be.',
   stats: [['Lines', 'Two lines, one running east to west and one north to south'], ['Roof', 'Solar panels alternate with glass to light the platforms'], ['Transfers', 'Changing lines takes a short walk across the platform'], ['Emissions', 'Zero tailpipe emissions, electric traction']]
 };
 INFO.river = {
   tag: 'Nature',
-  blurb: 'In 2000 the river ran in a concrete channel past drain pipes. The walls have come out, and planted banks, reeds and riverside trees now filter runoff and shade the water. The banks also act as a floodplain that soaks up storm water.',
+  blurb: 'The river used to run in a concrete channel past drain pipes. The walls have come out, and planted banks, reeds and riverside trees now filter runoff and shade the water. The banks also act as a floodplain that soaks up storm water.',
   stats: [['Flooding', 'Floodplains store water that would otherwise rush into streets'], ['Water quality', 'Plants on the banks trap sediment and fertilizer before they reach the water'], ['Habitat', 'Shaded, cooler water holds more oxygen for fish'], ['Real example', "Seoul uncovered its Cheonggyecheon stream from beneath an elevated highway in 2005"]]
 };
 INFO.forest = {
@@ -67,4 +91,4 @@ INFO.forest = {
   stats: [['Carbon', 'A mature tree absorbs roughly 22 kg of CO₂ a year (commonly cited estimate)'], ['Cooling', 'Tree canopy can lower nearby air temperature by a few degrees on hot days'], ['Air', 'Leaves trap fine particle pollution'], ['Habitat', 'Native trees support birds, insects and mammals']]
 };
 
-export { NAMES, INFO, oldName };
+export { NAMES, INFO, oldName, placeName };

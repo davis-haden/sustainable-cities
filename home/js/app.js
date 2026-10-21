@@ -5,7 +5,7 @@
      world/     the map and the voxel builders (pure: no DOM, no scene)
      scene/     three.js objects: city, transit, lights, glow
      view/      camera framing and camera controls
-     ui/        picking, details card, legend, callouts, HUD, scroll
+     ui/        picking, details card, callouts, HUD, background waves, scroll
      timeline/  schedule, tile conversion, playback
      intro.js   the opening animation
      loop.js    the per-frame update */
@@ -18,7 +18,7 @@ import { createCamera, DEF } from './view/camera.js';
 import { createControls } from './view/controls.js';
 import { createPicker } from './ui/picking.js';
 import { createDetails } from './ui/details.js';
-import { createLegend } from './ui/legend.js';
+import { createWaves } from './ui/waves.js';
 import { createCallouts } from './ui/callouts.js';
 import { createHud } from './ui/hud.js';
 import { watchScroll } from './ui/scroll.js';
@@ -39,14 +39,14 @@ export function startApp(ctx) {
   ctx.cam = createCamera(ctx);
   ctx.pickTile = createPicker(ctx);
   ctx.details = createDetails(ctx);
-  var updateLegend = createLegend(ctx);
   var updateCalls = createCallouts(ctx);
-  var classCounts = scheduleTiles(ctx.city.tiles);
+  scheduleTiles(ctx.city.tiles);
   var updateTile = createConverter(ctx.city);
   ctx.timeline = createPlayback(ctx);
-  var updateHud = createHud(ctx, classCounts, updateLegend);
+  var updateHud = createHud(ctx);
+  var drawWaves = createWaves(ctx);
   createIntro(ctx);
-  var loop = createLoop(ctx, { playback: ctx.timeline, updateTile: updateTile, transit: transit, updateHud: updateHud, updateCalls: updateCalls });
+  var loop = createLoop(ctx, { playback: ctx.timeline, updateTile: updateTile, transit: transit, updateHud: updateHud, updateCalls: updateCalls, drawWaves: drawWaves });
   ctx.wake = loop.wake;
   ctx.controls = createControls(ctx);
   watchScroll(ctx);

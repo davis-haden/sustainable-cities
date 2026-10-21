@@ -3,9 +3,10 @@
 .vc-tip {
   position: absolute;
   z-index: 3;
-  padding: 0.3rem 0.625rem;
-  background: var(--vc-ink);
-  color: var(--color-bg);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--forest);
+  color: var(--on-dark);
   white-space: nowrap;
   pointer-events: none;
 }
@@ -15,9 +16,11 @@
   z-index: 3;
   top: 42%;
   left: 50%;
-  padding: 0.5rem 1rem;
-  background: var(--vc-ink);
-  color: var(--color-bg);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--forest);
+  color: var(--on-dark);
+  box-shadow: var(--shadow-glass);
   white-space: nowrap;
   opacity: 0;
   transform: translate(-50%, 0.5rem);
@@ -51,26 +54,25 @@
   max-height: calc(100% - var(--vc-frame) - var(--header-height) - 2rem - var(--vc-dock-h, 14rem));
   overflow: auto;
   padding: 1.25rem 1.25rem 1rem;
-  border: 1px solid var(--vc-ink);
-  background: var(--color-bg);
-  animation: vc-pop-in var(--dur-base) var(--ease-out);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--cream);
+  box-shadow: var(--shadow-card);
+  animation: vc-pop-in var(--dur-slow) var(--ease-spring);
 }
 
 @keyframes vc-pop-in {
   from {
     opacity: 0;
-    transform: translateX(1rem);
+    transform: translateY(0.75rem) scale(0.96);
   }
 }
 
 .vc-pop h2 {
   margin: 0.5rem 0 0.5rem;
   padding-right: 2rem;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 2rem;
   line-height: 1;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
 }
 
 .vc-pop p {
@@ -87,15 +89,15 @@
 }
 
 .vc-tag {
-  padding: 0.1rem 0.375rem;
-  border: 1px solid var(--vc-ink);
-  color: var(--vc-ink);
-  font-weight: 500;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--olive);
+  color: var(--forest);
 }
 
 .vc-pop.is-before .vc-tag {
-  border-color: var(--color-link);
-  color: var(--color-link);
+  background: var(--orange-tint);
+  color: var(--rust);
 }
 
 .vc-pop dl {
@@ -109,13 +111,12 @@
 
 .vc-pop dl div {
   padding: 0.5rem 0;
-  border-top: 1px solid var(--vc-hair);
+  border-top: 1px dashed var(--line);
 }
 
 .vc-pop dt {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--color-muted);
 }
 
@@ -142,8 +143,9 @@
   height: 2rem;
   padding: 0;
   border: 0;
+  border-radius: var(--radius-pill);
   background: transparent;
-  color: var(--vc-ink);
+  color: var(--forest);
   font-size: 1.375rem;
   line-height: 1;
   cursor: pointer;
@@ -151,23 +153,20 @@
 }
 
 .vc-close:hover {
-  background: var(--vc-ink);
-  color: var(--color-bg);
+  background: var(--orange-tint);
 }
 
 .vc-skip {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--vc-ink);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--forest);
+  border-radius: var(--radius-pill);
   background: transparent;
-  color: var(--vc-ink);
-  font: inherit;
-  font-size: 0.875rem;
-  font-weight: 500;
+  color: var(--forest);
+  font: 600 14px/1.2 var(--font-sans);
   cursor: pointer;
   transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 
 .vc-skip:hover {
-  background: var(--vc-ink);
-  color: var(--color-bg);
+  background: var(--orange-tint);
 }

@@ -1,18 +1,5 @@
 /* Breakpoints for the home page, widest first. */
 
-/* --- Header extras appear only where the nav leaves room for them --- */
-@media (min-width: 1024px) {
-  .hdr-clock {
-    display: flex;
-  }
-}
-
-@media (min-width: 1200px) {
-  .hdr-tag {
-    display: flex;
-  }
-}
-
 /* the about box needs the corner to itself; on narrower screens the nav covers its links */
 @media (max-width: 1199px) {
   .vc-about {
@@ -36,11 +23,10 @@
   }
 }
 
-/* --- Below the callout breakpoint: no leader lines, readout tucked away --- */
+/* --- Below the callout breakpoint: no leader lines --- */
 @media (max-width: 899px) {
   .vc-lines,
-  .vc-calls,
-  .vc-spec {
+  .vc-calls {
     display: none;
   }
 }
@@ -49,10 +35,6 @@
 @media (max-width: 767px) {
   .vc-stage {
     min-height: 640px;
-  }
-
-  .vc-frame::before {
-    display: none;
   }
 
   .vc-line {
@@ -81,33 +63,6 @@
 
   .vc-about {
     display: none;
-  }
-
-  /* the legend becomes one sideways-scrolling row */
-  .vc-explore {
-    width: auto;
-    border: 0;
-    background: none;
-  }
-
-  .vc-explore .vc-box-hd {
-    display: none;
-  }
-
-  .vc-legend {
-    display: flex;
-    gap: 0.375rem;
-    padding: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .vc-chip {
-    display: inline-flex;
-    width: auto;
-    padding: 0.3rem 0.5rem;
-    border: 1px solid var(--vc-hair);
-    background: var(--color-bg);
   }
 
   .vc-pop {

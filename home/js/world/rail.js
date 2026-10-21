@@ -1,13 +1,16 @@
-/* Light rail: two bending lines that cross at one interchange.
+/* Light rail: two lines that cross at one interchange, after MARTA's: a red north-south line from
+   Buckhead through Midtown and Downtown to the airport, and a blue east-west line that crosses the
+   Chattahoochee. They meet at Five Points.
    Builds each line's world-space path and, per tile, the track pieces the tile builders follow. */
 import { clamp } from '../lib/util.js';
 import { TS, codeAt } from './constants.js';
 
 const LINES = [
-  { name: 'A', color: '#3fae5a', tiles: [[1, 3], [1, 4], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5], [8, 4], [8, 3], [9, 3]] },
-  { name: 'B', color: '#2f80c8', tiles: [[4, 0], [4, 1], [5, 1], [6, 1], [7, 1], [7, 2], [7, 3], [7, 4], [6, 4], [6, 5], [6, 6], [6, 7], [5, 7], [5, 8], [5, 9]] }
+  { name: 'Red', color: '#d8452f', tiles: [[5, 0], [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6], [5, 7], [5, 8], [4, 8], [4, 9]] },
+  { name: 'Blue', color: '#2f80c8', tiles: [[0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5], [9, 5]] }
 ];
-const STATIONS = { '4,5': 1, '8,4': 1, '7,2': 1, '5,8': 1 };
+/* Midtown, Vine City, Decatur, West End */
+const STATIONS = { '5,3': 1, '3,5': 1, '8,5': 1, '5,7': 1 };
 const MID = { N: [9.5, -0.5], S: [9.5, 19.5], W: [-0.5, 9.5], E: [19.5, 9.5] };
 const OPP = { N: 'S', S: 'N', E: 'W', W: 'E' };
 const EV = { N: [0, -1], S: [0, 1], E: [1, 0], W: [-1, 0] };

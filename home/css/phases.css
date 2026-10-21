@@ -1,97 +1,96 @@
-/* The section below the hero: three phase cards. And the home footer. */
-
-/* --- Phases section below the hero: three boxed sheets --- */
-.phases {
-  padding-block: 5rem 3rem;
-}
-
-.phases h2 {
-  max-width: 18ch;
-  text-wrap: balance;
-  font-size: clamp(2rem, 1.2rem + 2.8vw, 3.75rem);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.045em;
-  text-transform: uppercase;
-}
+/* Chapter 2 of the story: the three phase cards (the chapter itself is styled in story.css). */
 
 .phase-list {
   display: grid;
-  gap: 1rem;
-  margin: 3rem 0 0;
+  gap: var(--space-6);
+  margin: var(--space-8) 0 0;
   padding: 0;
   list-style: none;
 }
 
+/* Tinted, rounded cards that hop up and tilt a touch on hover */
 .phase-card {
+  --tint: var(--orange-tint);
+  --badge: var(--orange);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1rem 1.125rem 1.25rem;
-  border: 1px solid var(--vc-line);
+  padding: var(--space-6);
+  border-radius: 28px;
+  background: var(--tint);
+  transition: translate var(--dur-base) var(--ease-spring), rotate var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out);
 }
 
-/* filled corner square, like the leader-line ends */
-.phase-card::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  width: 7px;
-  height: 7px;
-  background: var(--vc-ink);
+.phase-card:nth-child(2) { --tint: var(--sage-tint); --badge: var(--sage); }
+.phase-card:nth-child(3) { --tint: var(--cream-deep); --badge: var(--olive); }
+
+/* the lift uses `translate`/`rotate` so it doesn't fight the data-reveal `transform` */
+.js .phase-card[data-reveal] {
+  transition: opacity var(--dur-slow) ease, transform var(--dur-slow) var(--ease-out),
+    translate var(--dur-base) var(--ease-spring), rotate var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * var(--stagger)), calc(var(--i, 0) * var(--stagger)), 0s, 0s, 0s;
 }
 
+.phase-card:hover {
+  translate: 0 -6px;
+  rotate: -1deg;
+  box-shadow: var(--shadow-card);
+}
+
+.phase-card:nth-child(2):hover {
+  rotate: 1deg;
+}
+
+/* the phase number sits in the top-right corner; the icon gets a round badge */
 .phase-num {
-  color: var(--color-muted);
-  font-variant-numeric: tabular-nums;
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1;
+  color: rgb(43 49 35 / 0.18);
+}
+
+.phase-icon {
+  width: 56px;
+  height: 56px;
+  padding: 14px;
+  border-radius: 50%;
+  background: var(--badge);
+  fill: none;
+  stroke: var(--forest);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: rotate var(--dur-slow) var(--ease-spring);
+}
+
+.phase-card:hover .phase-icon {
+  rotate: -12deg;
 }
 
 .phase-card h3 {
-  margin: 2.5rem 0 0.25rem;
-  font-size: 1.75rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.035em;
-  text-transform: uppercase;
+  margin: var(--space-6) 0 var(--space-1);
+  font-size: 34px;
+  line-height: 1.05;
 }
 
 .phase-years {
-  margin: 0 0 1rem;
-  color: var(--color-muted);
+  margin: 0 0 var(--space-4);
+  color: var(--muted);
 }
 
 .phase-card p:not(.phase-years) {
   flex: 1;
-  margin: 0 0 1.5rem;
-  font-size: 0.9375rem;
-  color: var(--color-muted);
+  margin: 0 0 var(--space-6);
+  font-size: 16px;
+  line-height: 24px;
 }
 
+/* .phase-go is a bb-btn--secondary; inherit the button font, not the section's */
 .phase-go {
-  padding: 0.25rem 0.5rem;
-  border: 1px solid var(--vc-ink);
-  background: none;
-  color: var(--vc-ink);
-  cursor: pointer;
-  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
-}
-
-.phase-go::before {
-  content: "[ ";
-}
-
-.phase-go::after {
-  content: " ]";
-}
-
-.phase-go:hover {
-  background: var(--vc-ink);
-  color: var(--color-bg);
-}
-
-.page-home .site-footer {
-  background: transparent;
-  border-top-color: var(--vc-hair);
+  font-family: var(--font-sans);
 }

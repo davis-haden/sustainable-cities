@@ -3,6 +3,9 @@
 import { clamp } from '../lib/util.js';
 import { DEF } from './camera.js';
 
+/* zoom limits: in to a close-up, out only as far as the opening view, where scrolling moves on down the page */
+var ZOOM_MIN = 0.2, ZOOM_MAX = DEF.zoom;
+
 export function createControls(ctx) {
   var el = ctx.el, stage = el.stage, canvas = el.canvas, cam = ctx.cam, input = ctx.input, mouse = input.mouse, ptrs = input.ptrs;
   var lastPinch = 0, down = null, moved = false, toastTimer = 0, toastShown = 0;
@@ -49,7 +52,7 @@ export function createControls(ctx) {
       cam.phi = clamp(cam.phi - dy * 0.0075, 0.25, 1.5);
     } else if (ptrs.size === 2) {
       var dd = pinch();
-      if (lastPinch && dd) cam.zoom = clamp(cam.zoom * lastPinch / dd, 0.2, 1.5);
+      if (lastPinch && dd) cam.zoom = clamp(cam.zoom * lastPinch / dd, ZOOM_MIN, ZOOM_MAX);
       lastPinch = dd;
     }
   });
@@ -69,9 +72,9 @@ export function createControls(ctx) {
     if (!input.engaged && !e.ctrlKey && !e.metaKey) { if (ctx.intro.done) toast(); return; }
     ctx.intro.finish();
     /* already zoomed all the way out and still scrolling down: hand the wheel back to the page */
-    if (e.deltaY > 0 && !e.ctrlKey && !e.metaKey && (cam.focusing ? cam.zoomGoal : cam.zoom) >= 1.5 - 1e-3) { engage(false); return; }
+    if (e.deltaY > 0 && !e.ctrlKey && !e.metaKey && (cam.focusing ? cam.zoomGoal : cam.zoom) >= ZOOM_MAX - 1e-3) { engage(false); return; }
     e.preventDefault(); cam.focusing = false;
-    cam.zoom = clamp(cam.zoom * Math.exp(e.deltaY * 0.0015), 0.2, 1.5); cam.zoomGoal = cam.zoom;
+    cam.zoom = clamp(cam.zoom * Math.exp(e.deltaY * 0.0015), ZOOM_MIN, ZOOM_MAX); cam.zoomGoal = cam.zoom;
   }, { passive: false });
   canvas.addEventListener('keydown', function (e) {
     var used = true;
@@ -79,14 +82,14 @@ export function createControls(ctx) {
     else if (e.key === 'ArrowRight') cam.theta += 0.12;
     else if (e.key === 'ArrowUp') cam.phi = clamp(cam.phi - 0.08, 0.25, 1.5);
     else if (e.key === 'ArrowDown') cam.phi = clamp(cam.phi + 0.08, 0.25, 1.5);
-    else if (e.key === '+' || e.key === '=') cam.zoom = clamp(cam.zoom * 0.92, 0.2, 1.5);
-    else if (e.key === '-') cam.zoom = clamp(cam.zoom * 1.08, 0.2, 1.5);
+    else if (e.key === '+' || e.key === '=') cam.zoom = clamp(cam.zoom * 0.92, ZOOM_MIN, ZOOM_MAX);
+    else if (e.key === '-') cam.zoom = clamp(cam.zoom * 1.08, ZOOM_MIN, ZOOM_MAX);
     else used = false;
     if (used) { e.preventDefault(); input.orbit = false; }
   });
 
   function zoomBy(f) {
-    cam.goal.copy(cam.target); cam.zoomGoal = clamp((cam.focusing ? cam.zoomGoal : cam.zoom) * f, 0.2, 1.5); cam.focusing = true; ctx.wake();
+    cam.goal.copy(cam.target); cam.zoomGoal = clamp((cam.focusing ? cam.zoomGoal : cam.zoom) * f, ZOOM_MIN, ZOOM_MAX); cam.focusing = true; ctx.wake();
   }
   /* glide back to the opening view */
   function resetView() {

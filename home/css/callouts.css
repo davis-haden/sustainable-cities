@@ -17,15 +17,22 @@
   overflow: visible;
 }
 
+/* dotted leader lines ending in a round orange dot */
 .vc-lines path {
   fill: none;
-  stroke: var(--vc-ink);
-  stroke-width: 1;
+  stroke: var(--moss);
+  stroke-width: 1.5;
+  stroke-dasharray: 1 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
 .vc-lines rect {
-  fill: var(--vc-ink);
+  rx: 3px;
+  fill: var(--orange);
+  stroke: var(--cream);
+  stroke-width: 1.5;
 }
 
 .vc-stage.calls-on :is(.vc-lines, .vc-calls) {
@@ -41,32 +48,30 @@
   display: grid;
   gap: 0.125rem;
   width: 15.5rem;
-  padding: 0.4rem 0.625rem 0.45rem;
-  border: 1px solid var(--vc-ink);
-  background: var(--color-bg);
-  color: var(--vc-ink);
+  padding: 0.5rem 0.875rem 0.55rem;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--cream);
+  box-shadow: var(--shadow-soft);
+  color: var(--forest);
   text-align: left;
   line-height: 1.35;
   cursor: pointer;
   translate: 0 -50%;
-  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
+  transition: background-color var(--dur-fast) ease, transform var(--dur-base) var(--ease-spring);
 }
 
 .vc-call b {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .vc-call span {
-  color: var(--color-muted);
+  color: var(--muted);
 }
 
 .vc-call:hover {
-  background: var(--vc-ink);
-  color: var(--color-bg);
-}
-
-.vc-call:hover span {
-  color: var(--palette-sage);
+  background: var(--orange-tint);
+  transform: scale(1.03);
 }
 
 .vc-call.is-swap {

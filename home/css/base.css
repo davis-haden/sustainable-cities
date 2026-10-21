@@ -1,25 +1,50 @@
-/* Home page base: tokens, the mono label style, and the header as it sits inside the frame.
+/* Home page base: tokens, label text, headings and the header as it sits inside the frame.
+   Colors, fonts, radii and motion come from the BBISS design system (css/bbiss.css);
+   the home page leans on its softer side: rounded shapes, tinted fills, springy motion.
    Everything here is scoped to body.page-home. */
 
 .page-home {
-  --vc-ink: var(--color-text);
-  --vc-hair: rgb(43 49 35 / 0.22);
-  --vc-line: rgb(43 49 35 / 0.55);
+  --vc-ink: var(--forest);
+  --vc-hair: rgb(43 49 35 / 0.14);
+  --vc-line: var(--line);
   --vc-frame: clamp(0.625rem, 1.6vw, 1.5rem);
   --vc-pad: clamp(0.875rem, 1.4vw, 1.375rem);
   --vc-inset: calc(var(--vc-frame) + var(--vc-pad));
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  font-family: "Inter Tight", var(--font-body);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --shadow-soft: 0 2px 6px rgb(43 49 35 / 0.06), 0 10px 24px rgb(43 49 35 / 0.08);
+  font-family: var(--font-sans);
+  color: var(--forest);
 }
 
-/* Small uppercase mono used for every label on the sheet */
-.page-home :is(.hdr-tag, .hdr-clock, .nav-list a, .hero-tag, .vc-box-hd, .vc-chip, .vc-board, .vc-links a,
-  .vc-phase, .vc-end, .vc-phases button, .vc-call, .vc-meta, .vc-tip, .vc-toast, .phase-num, .phase-years, .phase-go, .site-footer) {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 400;
-  letter-spacing: 0.02em;
+/* Small label text: friendly sans, sentence case */
+.page-home :is(.vc-box-hd, .vc-links a,
+  .vc-phase, .vc-end, .vc-phases button, .vc-call, .vc-meta, .vc-tip, .vc-toast, .phase-years, .site-footer) {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Display headings: Saira Condensed, uppercase; one <em> phrase in italic serif */
+.page-home :is(h1, h2, h3, .vc-year) {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0;
   text-transform: uppercase;
+}
+
+.page-home :is(h1, h2) em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.page-home :focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
 }
 
 /* --- Header: sits inside the top of the frame --- */
@@ -39,72 +64,61 @@
 }
 
 .page-home .site-logo {
-  font-size: 0.9375rem;
+  font-family: var(--font-display);
+  font-size: 24px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-}
-
-.hdr-tag,
-.hdr-clock {
-  display: none;
-  margin: 0;
-}
-
-.hdr-tag {
-  position: absolute;
-  top: 0.875rem;
-  left: 50%;
-  translate: -50% 0;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.375rem;
-}
-
-.hdr-tag span {
-  padding: 0.25rem 0.625rem;
-  border: 1px solid var(--vc-ink);
-  background: var(--color-bg);
-}
-
-.hdr-tag svg {
-  width: 1rem;
-  height: 1rem;
-  fill: none;
-  stroke: var(--vc-ink);
-  stroke-width: 1.25;
-}
-
-.hdr-clock {
-  order: 3;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-left: 1.5rem;
-  line-height: 1.35;
-  font-variant-numeric: tabular-nums;
-}
-
-.hdr-clock span:first-child {
-  color: var(--color-muted);
-}
-
-.page-home .site-nav {
-  margin-left: auto;
-}
-
-.page-home .nav-list a {
-  border-radius: 0;
+  color: var(--forest);
 }
 
 .main-home {
   padding-top: 0;
 }
 
-/* Desktop nav: a thin ink underline instead of the site's orange bar */
+/* Desktop nav: the style guide's nav pill, centred in the header. There is no photo
+   behind it here, so it uses the solid (forest) variant with the current page as a cream chip. */
 @media (min-width: 768px) {
+  .page-home .site-nav {
+    position: absolute;
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    translate: -50% -50%;
+    width: max-content;
+    padding: 6px;
+    border: 1px solid var(--forest);
+    border-radius: var(--radius-pill);
+    background: var(--forest);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .page-home .nav-list {
+    gap: var(--space-1);
+  }
+
+  .page-home .nav-list a {
+    padding: var(--space-2) 14px;
+    border-radius: var(--radius-pill);
+    font: 500 14px/20px var(--font-sans);
+    color: var(--on-dark);
+    white-space: nowrap;
+    transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease, transform var(--dur-base) var(--ease-spring);
+  }
+
   .page-home .nav-list a::after {
-    height: 2px;
-    border-radius: 0;
-    background: var(--color-text);
+    display: none;
+  }
+
+  .page-home .nav-list a:hover {
+    background: rgb(252 249 234 / 0.2);
+    transform: translateY(-1px);
+  }
+
+  .page-home .nav-list a[aria-current="page"] {
+    background: var(--cream);
+    color: var(--forest);
+    font-weight: 600;
   }
 }

@@ -1,0 +1,686 @@
+/* The story below the city: five chapters on one thread. Motion is driven by home/js/story.js,
+   which sets --story-p (thread fill), --clear (chapter 1 smog) and --py (photo parallax), and adds
+   .is-in / .is-reached / .is-clear as you scroll. */
+
+/* --- The thread down the left edge, in line with the chapter dots --- */
+.story {
+  --rail-gap: 44px;
+  --rail-x: calc(max(0px, (100% - var(--content-width)) / 2) + var(--gutter) + 8px);
+  --story-p: 0;
+  position: relative;
+  padding-bottom: var(--space-24);
+  overflow-x: clip; /* cards waiting to slide in sit just off the edge */
+}
+
+.story .container {
+  padding-left: calc(var(--gutter) + var(--rail-gap));
+}
+
+.story-rail {
+  position: absolute;
+  top: 0;
+  bottom: var(--space-24);
+  left: var(--rail-x);
+  width: 4px;
+  border-radius: var(--radius-pill);
+  background: repeating-linear-gradient(180deg, var(--sage) 0 6px, transparent 6px 14px);
+}
+
+/* the fill grows as you read; a dot rides on its tip */
+.story-rail__fill {
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(var(--story-p) * 100%);
+  border-radius: inherit;
+  background: var(--orange);
+}
+
+.story-rail__fill::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--cream);
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 6px rgb(219 149 88 / 0.25);
+  translate: -50% 0;
+  animation: rail-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes rail-pulse {
+  50% { box-shadow: 0 0 0 10px rgb(219 149 88 / 0.08); }
+}
+
+/* --- "Scroll for the story" cue between the city and chapter 1 --- */
+.story-cue {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  width: max-content;
+  margin: var(--space-12) auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity var(--dur-slow) ease, translate var(--dur-slow) var(--ease-out);
+}
+
+.story-cue svg {
+  width: 32px;
+  height: 16px;
+  fill: var(--orange);
+  animation: cue-bob 1.6s var(--ease-in-out) infinite;
+}
+
+.story-cue.is-gone {
+  opacity: 0;
+  translate: 0 -0.75rem;
+  pointer-events: none;
+}
+
+@keyframes cue-bob {
+  50% { transform: translateY(6px); }
+}
+
+/* --- Chapter shell: dot on the thread, chip, split heading, lead --- */
+.chapter {
+  position: relative;
+  padding-top: var(--space-24);
+}
+
+.chapter-dot {
+  position: absolute;
+  top: calc(var(--space-24) + 2px);
+  left: calc(var(--rail-x) + 2px);
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--sage);
+  border-radius: 50%;
+  background: var(--cream);
+  translate: -50% 0;
+  transition: background-color var(--dur-base) ease, border-color var(--dur-base) ease, scale var(--dur-slow) var(--ease-spring);
+}
+
+.chapter-dot.is-reached {
+  border-color: var(--cream);
+  background: var(--orange);
+  box-shadow: 0 0 0 3px var(--orange);
+  scale: 1.15;
+}
+
+.chapter-chip {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--orange-tint);
+  color: var(--rust);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chapter h2 {
+  max-width: 18ch;
+  margin: var(--space-4) 0 var(--space-6);
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+/* each word rises out of its own mask. The padding (taken back by the negative margin) gives
+   tall capitals, descenders and leaning italics room so nothing is clipped once it lands. */
+.chapter h2 .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.12em 0.14em 0.3em;
+  margin: -0.12em -0.14em -0.3em;
+}
+
+.chapter h2 .w > span {
+  display: inline-block;
+  transition: transform 900ms var(--ease-out);
+  transition-delay: calc(var(--w, 0) * 55ms);
+}
+
+.js .chapter h2:not(.is-in) .w > span {
+  transform: translateY(110%) rotate(4deg);
+}
+
+/* the emphasised phrase gets the orange squiggle, drawn in after the words land */
+.chapter h2 em {
+  position: relative;
+}
+
+.chapter h2 em::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.04em;
+  width: 0;
+  height: 0.14em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 4c5 0 5-3 10-3s5 6 10 6 5-6 10-6 5 3 10 3' fill='none' stroke='%23db9558' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 0.6em 100% repeat-x;
+  transition: width 900ms var(--ease-out) 450ms;
+}
+
+.chapter h2.is-in em::after,
+html:not(.js) .chapter h2 em::after {
+  width: 100%;
+}
+
+.chapter-lead {
+  max-width: 60ch;
+  margin: 0 0 var(--space-4);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.chapter p {
+  max-width: 64ch;
+}
+
+.chapter-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-8) 0 0;
+}
+
+.bb-btn {
+  transition: transform var(--dur-base) var(--ease-spring), background-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+
+.bb-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* --- Chapter 1: the problem. Copy on the left, a skyline that clears on the right --- */
+.chapter-grid {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.stat {
+  display: grid;
+  gap: var(--space-1);
+  flex: 1 1 12rem;
+  max-width: 16rem;
+  padding: var(--space-4) var(--space-6) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--sage-tint);
+}
+
+.stat b {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat > span {
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.haze {
+  --clear: 0;
+  position: relative;
+  margin: 0;
+  align-self: start;
+}
+
+.haze-frame {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--sage-tint);
+  box-shadow: var(--shadow-card);
+}
+
+.haze-frame > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* both photos ease out of a slight zoom as the air clears; the clear one fades in on top */
+.haze-img {
+  object-fit: cover;
+  transform: scale(calc(1.08 - var(--clear) * 0.08));
+}
+
+.haze-img--clear {
+  opacity: var(--clear);
+}
+
+
+.haze-cap {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  display: grid;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--cream);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+
+.haze-cap span {
+  grid-area: 1 / 1;
+  transition: opacity var(--dur-base) ease, translate var(--dur-base) var(--ease-spring);
+}
+
+.haze-cap__clear,
+.haze.is-clear .haze-cap__smog {
+  opacity: 0;
+  translate: 0 4px;
+}
+
+.haze.is-clear .haze-cap__clear {
+  opacity: 1;
+  translate: none;
+}
+
+/* --- Chapter 3: the people --- */
+.people-grid {
+  display: grid;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.vision {
+  position: relative;
+  margin: 0;
+  padding: var(--space-12) var(--space-8) var(--space-8);
+  border-radius: 32px;
+  background: var(--forest);
+  color: var(--on-dark);
+  rotate: -1.5deg;
+}
+
+.vision::before {
+  content: "\201C";
+  position: absolute;
+  top: -0.3em;
+  left: var(--space-6);
+  font-family: var(--font-serif);
+  font-size: 140px;
+  line-height: 1;
+  color: var(--orange);
+}
+
+.vision p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.vision em {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.vision cite {
+  display: block;
+  margin-top: var(--space-4);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--sage);
+}
+
+/* --- Teaser links: a question that sends people to the page that answers it --- */
+.teaser {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-1) var(--space-4);
+  max-width: 34rem;
+  margin-top: var(--space-8);
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--sage-tint);
+  color: var(--forest);
+  text-decoration: none;
+  transition: background-color var(--dur-base) ease, translate var(--dur-base) var(--ease-spring);
+}
+
+.teaser span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.teaser b {
+  grid-column: 1;
+  text-wrap: balance;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.teaser i {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--on-orange);
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.teaser svg {
+  width: 18px;
+  height: 18px;
+}
+
+.teaser:hover {
+  background: var(--orange-tint);
+  translate: 0 -2px;
+}
+
+.teaser:hover i {
+  transform: translateX(4px) rotate(-8deg);
+}
+
+/* --- Chapter 4: the proof. Photo "doors": a title and a question, the story is one click away --- */
+.proof-grid {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.proof-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--cream-deep);
+  color: var(--forest);
+  text-decoration: none;
+}
+
+/* the photos carry their own titles, so show them whole */
+.proof-card__img {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--sage-tint);
+}
+
+.proof-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateY(var(--py, 0)) scale(1.08);
+  transition: scale var(--dur-slow) var(--ease-out);
+}
+
+.proof-card__body {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-4) var(--space-6);
+}
+
+.proof-card__body b {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.proof-card__body > span {
+  font-size: 15px;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.proof-card__more {
+  margin-top: var(--space-2);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--rust);
+}
+
+.proof-card__more::after {
+  content: " \2192";
+  display: inline-block;
+  transition: translate var(--dur-base) var(--ease-spring);
+}
+
+.proof-card:hover .proof-card__more::after {
+  translate: 4px 0;
+}
+
+.proof-card:hover img {
+  scale: 1.02;
+}
+
+.js .proof-card[data-reveal]:nth-child(odd):not(.is-visible) { transform: translateY(2rem) rotate(-2deg); }
+.js .proof-card[data-reveal]:nth-child(even):not(.is-visible) { transform: translateY(2rem) rotate(2deg); }
+
+.js .proof-card[data-reveal] {
+  transition: opacity var(--dur-slow) ease, transform 900ms var(--ease-out), translate var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) ease;
+}
+
+.proof-card:hover {
+  translate: 0 -6px;
+  box-shadow: var(--shadow-card);
+}
+
+/* --- Chapter 5: your turn. Pledge cards you can tap --- */
+.pledges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-8) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pledges li {
+  display: grid;
+}
+
+.pledge {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border: 2px solid transparent;
+  border-radius: 24px;
+  background: var(--cream-deep);
+  color: var(--forest);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--dur-base) ease, border-color var(--dur-base) ease, translate var(--dur-base) var(--ease-spring), rotate var(--dur-base) var(--ease-spring);
+}
+
+.pledge:hover {
+  translate: 0 -4px;
+  border-color: var(--orange);
+}
+
+.pledge svg {
+  width: 52px;
+  height: 52px;
+  margin-bottom: var(--space-2);
+  padding: 12px;
+  border-radius: 50%;
+  background: var(--cream);
+  fill: none;
+  stroke: var(--forest);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: rotate var(--dur-slow) var(--ease-spring), background-color var(--dur-base) ease;
+}
+
+.pledge b {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.pledge span {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* picked: green card, the icon spins, a check badge pops in */
+.pledge::after {
+  content: "";
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--forest) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5 6.5 11.5 12.5 4.5' fill='none' stroke='%23fcf9ea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px no-repeat;
+  scale: 0;
+  transition: scale var(--dur-slow) var(--ease-spring);
+}
+
+.pledge[aria-pressed="true"] {
+  background: var(--olive);
+  rotate: -1deg;
+}
+
+.pledge[aria-pressed="true"]::after {
+  scale: 1;
+}
+
+.pledge[aria-pressed="true"] svg {
+  rotate: 360deg;
+  background: var(--sage-tint);
+}
+
+.pledge-count {
+  margin: var(--space-6) 0 0;
+  font-size: 18px;
+}
+
+.pledge-count b {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+/* --- The finale: a dark banner that sends people on to the rest of the site --- */
+.finale {
+  position: relative;
+  overflow: hidden;
+  margin-top: var(--space-24);
+  padding: var(--space-24) var(--space-8);
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 12% 110%, rgb(151 168 122 / 0.45) 0, rgb(151 168 122 / 0) 40%),
+    radial-gradient(circle at 92% -10%, rgb(219 149 88 / 0.4) 0, rgb(219 149 88 / 0) 38%),
+    var(--forest);
+  color: var(--on-dark);
+  text-align: center;
+}
+
+/* scoped under .chapter so it wins over the generic chapter heading rules (which pin h2 left) */
+.chapter .finale__title {
+  max-width: 14ch;
+  margin: 0 auto var(--space-6);
+  font-size: clamp(44px, 6.5vw, 84px);
+  line-height: 0.95;
+}
+
+.chapter .finale__title + p {
+  max-width: 46ch;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+.chapter .finale__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  max-width: 40rem;
+  margin: var(--space-8) auto 0;
+}
+
+.finale__replay {
+  margin-top: var(--space-6);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sage);
+  font: 600 15px/1.4 var(--font-sans);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.finale__replay:hover {
+  color: var(--cream);
+}
+
+/* --- Footer --- */
+.page-home .site-footer {
+  padding-block: var(--space-8);
+}
+
+/* --- Wider screens --- */
+@media (min-width: 768px) {
+  .proof-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .chapter-grid { grid-template-columns: 1.1fr 1fr; align-items: start; }
+  /* the skyline stays in view while the copy scrolls past it */
+  .haze { position: sticky; top: 18vh; }
+  .people-grid { grid-template-columns: 1.2fr 1fr; }
+}
+
+@media (min-width: 1100px) {
+  .proof-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* --- Phones: a slimmer gutter for the thread --- */
+@media (max-width: 767px) {
+  .story { --rail-gap: 30px; --rail-x: calc(var(--gutter) + 4px); }
+  .chapter-dot { width: 20px; height: 20px; }
+  .vision { rotate: none; }
+  .finale { padding: var(--space-12) var(--space-6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-rail__fill::after,
+  .story-cue svg { animation: none; }
+  .js .chapter h2 .w > span { transform: none; }
+  .chapter h2 em::after { width: 100%; }
+}

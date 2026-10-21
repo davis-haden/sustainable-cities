@@ -114,6 +114,7 @@ export function createLoop(ctx, parts) {
     parts.updateCalls(hudTick);
     ctx.glow.hover.userData.halo.material.opacity = 0.78 + 0.22 * Math.sin(now * 0.005);
     ctx.glow.sel.userData.halo.material.opacity = 1;
+    parts.drawWaves(dt, animate);
     ctx.renderer.render(ctx.scene, cam.camera);
     if (ctx.onScreen && !document.hidden) rafId = requestAnimationFrame(frame);
   }

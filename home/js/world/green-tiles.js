@@ -2,6 +2,7 @@
 import { hash, pick } from '../lib/util.js';
 import { GREEN_BASE } from './constants.js';
 import { tree, bush, bld, plaza } from './pieces.js';
+import { LANDMARKS } from './landmarks.js';
 
 function buildWind(tb) {
   tb.rect(0, 0, 19, 19, GREEN_BASE);
@@ -94,6 +95,8 @@ function buildGarden(tb) {
 
 function buildTower(tb) {
   plaza(tb);
+  var lm = LANDMARKS[tb.c + ',' + tb.r];
+  if (lm) { lm.build(tb); return; }
   var specs = [[2, 2, 7, 7], [11, 3, 6, 7], [5, 12, 8, 6]];
   specs.forEach(function (s, i) {
     var ht = 17 + Math.floor(hash(tb.c * 7 + i, tb.r * 3, i) * 10);

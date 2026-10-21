@@ -1,7 +1,9 @@
 /* River: one smooth curve across the map, stored as a 200 x 200 field of cells.
-   RW = water (2) / bank (1) / dry (0), RD = distance to the centreline, RWID = local half-width. */
+   RW = water (2) / bank (1) / dry (0), RD = distance to the centreline, RWID = local half-width.
+   The curve is the Chattahoochee, coming in at the top and running down the west edge. Water is only
+   drawn on R and rail tiles, so every tile it crosses must be one of those in MAP. */
 
-const RCP = [[6.3, -0.6], [6.1, 1.0], [5.2, 2.3], [3.8, 3.1], [3.1, 4.4], [3.3, 5.9], [2.5, 7.3], [1.3, 8.2], [0.5, 9.3], [0.2, 10.6]];
+const RCP = [[4.8, -0.6], [4.3, 0.7], [3.3, 1.5], [2.4, 2.4], [1.7, 3.5], [1.3, 4.8], [1.1, 6.2], [0.6, 7.6], [-0.6, 8.8]];
 const RW = new Uint8Array(40000), RD = new Float32Array(40000), RWID = new Float32Array(40000);
 (function () {
   function cr(p0, p1, p2, p3, t) {
