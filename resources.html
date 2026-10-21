@@ -3,18 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <title>Resources | Site Name</title>
+  <meta name="description" content="Air pollution on Georgia Tech’s campus: where it comes from, how students and researchers track it, and why it matters.">
+  <title>At GT | Site Name</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/bbiss.css">
+  <style>
+    /* Page-only helpers: stat callouts laid out in a row */
+    .gt-stats { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8); }
+    .gt-stats .bb-note { flex: 1 1 200px; max-width: none; }
+  </style>
   <script>document.documentElement.classList.add("js");</script>
   <script src="js/main.js" defer></script>
+  <script src="js/bbiss.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
+  <header class="site-header bb-header">
     <div class="container">
-      <a class="site-logo" href="index.html">Site Name</a>
+      <a class="site-logo" href="index.html">BBISS</a>
 
       <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
         <span class="nav-toggle-bar"></span>
@@ -25,24 +32,131 @@
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <ul class="nav-list">
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="resources.html" aria-current="page">Resources</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">Why It Matters</a></li>
+          <li><a href="projects.html">About BBISS</a></li>
+          <li><a href="resources.html" aria-current="page">At GT</a></li>
         </ul>
       </nav>
     </div>
   </header>
   <div class="nav-overlay" aria-hidden="true"></div>
 
-  <main id="main">
-    <div class="container">
-      <h1 data-reveal>Resources</h1>
-    </div>
+  <main id="main" class="bbiss">
+    <header class="bb-hero">
+      <div class="bb-hero__media" aria-hidden="true">
+        <!-- Placeholder: replace this SVG with a campus photo, e.g. <img src="images/downtown-connector.jpg" alt=""> -->
+        <svg viewBox="0 0 960 600" preserveAspectRatio="xMidYMid slice">
+          <rect width="960" height="600" style="fill: var(--moss)"/>
+          <g class="rings">
+            <circle cx="480" cy="120" r="70"/><circle cx="480" cy="120" r="130"/><circle cx="480" cy="120" r="200"/><circle cx="480" cy="120" r="280"/>
+            <circle cx="120" cy="560" r="90"/><circle cx="120" cy="560" r="170"/><circle cx="840" cy="560" r="90"/><circle cx="840" cy="560" r="170"/>
+          </g>
+        </svg>
+      </div>
+      <div class="bb-hero__inner">
+        <span class="bb-label bb-label--dark bb-hero__kicker">[ AT GEORGIA TECH ]</span>
+        <h1>
+          <span class="bb-hero__line"><span>Air pollution</span></span>
+          <span class="bb-hero__line"><span>on our campus</span></span>
+        </h1>
+      </div>
+      <a class="bb-hero__cue" href="#campus">
+        <span class="bb-label">Scroll</span>
+        <svg viewBox="0 0 48 24" aria-hidden="true"><path d="M0 0h48L24 24z"/></svg>
+      </a>
+    </header>
+
+    <section class="bbiss-section" id="campus" aria-labelledby="campus-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 01 — CAMPUS ]</span></div>
+          <h2 id="campus-title">Clean air is a <em>campus</em> issue</h2>
+        </div>
+        <p class="bbiss-copy" data-reveal>Georgia Tech is located in Midtown Atlanta, with parts of campus next to the Downtown Connector. Two of its dorms are so close to the highway, it inspired researchers to study how traffic pollution affects the people living in them (McKenzie). This indicates the significance of the air we breathe every day and how it presents itself as a real sustainability issue. Over the past two decades, researchers at Georgia Tech and Emory have linked Atlanta’s air quality to emergency room visits for asthma and cardiovascular disease (McKenzie), so clean air is a health issue as much as an environmental one.</p>
+        <div class="gt-stats" data-reveal>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Dorms</span><span class="bb-label">By the highway</span></div><span class="bb-note__stat">2</span><p class="bb-note__body">Close enough to the Downtown Connector to prompt a traffic pollution study.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Research</span><span class="bb-label">GT + Emory</span></div><span class="bb-note__stat">20 yrs</span><p class="bb-note__body">Linking Atlanta’s air to ER visits for asthma and heart disease.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">NO&#8322;</span><span class="bb-label">2020 shutdown</span></div><span class="bb-note__stat">&darr; Fell</span><p class="bb-note__body">As cars disappeared from the roads around campus.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbiss-section" aria-labelledby="sources-area-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 02 — SOURCES ]</span></div>
+          <h2 id="sources-area-title">Where it <em>comes from</em></h2>
+        </div>
+        <p class="bbiss-copy" data-reveal>Traffic is the best-known source, but campus sources matter too. Open each one to see what Georgia Tech researchers and students have found.</p>
+        <ul class="bb-rows bbiss-stack" data-reveal>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="source-01">
+              <span class="bb-row__idx">01</span>
+              <span class="bb-row__title">Traffic</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="source-01"><div><p>When people stayed home during the 2020 COVID shutdown, Georgia Tech researchers measuring air from a rooftop station on the Ford ES&amp;T building saw nitrogen dioxide levels fall as cars disappeared from the roads (“Professor Sally Ng’s Research”).</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="source-02">
+              <span class="bb-row__idx">02</span>
+              <span class="bb-row__title">Construction and buses</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="source-02"><div><p>Students working on the air quality sensor project have noted that construction zones and buses are worth keeping an eye on (Langner and Abernathy).</p></div></div>
+          </li>
+          <li class="bb-row">
+            <button type="button" aria-expanded="false" aria-controls="source-03">
+              <span class="bb-row__idx">03</span>
+              <span class="bb-row__title">Indoor activities</span>
+              <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
+            </button>
+            <div class="bb-row__body" id="source-03"><div><p>Everyday activities like cooking and cleaning can cause spikes indoors (Langner and Abernathy).</p></div></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bbiss-section" aria-labelledby="track-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 03 — MONITORING ]</span></div>
+          <h2 id="track-title">How we <em>track it</em></h2>
+        </div>
+        <p class="bbiss-copy" data-reveal>Georgia Tech students and researchers are measuring campus air quality in real time. A student team installed wireless sensors across campus, indoors and outdoors, with data available to anyone through the PurpleAir map (Langner and Abernathy).</p>
+        <div class="bbiss-actions" data-reveal>
+          <a class="bb-btn bb-btn--primary" href="https://www.purpleair.com/map?opt=1/mAQI/a10/cC0#15.54/33.776276/-84.39831" target="_blank" rel="noopener">Open the PurpleAir map <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbiss-section" aria-labelledby="matters-title">
+      <div class="container">
+        <div class="bb-heading" data-reveal>
+          <div class="bb-heading__rule"><span class="bb-label">[ 04 — EQUITY ]</span></div>
+          <h2 id="matters-title">Why it <em>matters</em></h2>
+        </div>
+        <p class="bbiss-copy" data-reveal>The student team behind the sensor project lists equity as one of their main goals. Studies they cited showed how many low-income communities are exposed to more harmful air pollutants, with local data helping show where these problems are (Langner and Abernathy). The shutdown also showed that the air changes when our habits do. The data shows both how much progress is possible and how much there is left to do. Researchers and administrators can help but so can students. Students are part of this campus too, and what we do here counts. Go to the next tab to find out what you can do!</p>
+        <div class="bbiss-actions" data-reveal>
+          <a class="bb-btn bb-btn--secondary" href="projects.html">About BBISS</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
+      <section class="bbiss-sources" aria-labelledby="sources-title">
+        <h2 class="bb-label" id="sources-title">[ Works Cited ]</h2>
+        <ul class="bbiss-refs">
+          <li>“Education.” <cite>Global Change Program</cite>, Georgia Institute of Technology, <a href="https://globalchange.gatech.edu/our-work/education/" target="_blank" rel="noopener">globalchange.gatech.edu/our-work/education/</a>. Accessed 19 Oct. 2026.</li>
+          <li>Langner, Selena, and Kelsey Abernathy. “Georgia Tech Students Map Campus Air Quality.” <cite>Global Change Program</cite>, Georgia Institute of Technology, 25 Nov. 2020, <a href="https://globalchange.gatech.edu/news/georgia-tech-students-map-campus-air-quality/" target="_blank" rel="noopener">globalchange.gatech.edu/news/georgia-tech-students-map-campus-air-quality/</a>. Accessed 19 Oct. 2026.</li>
+          <li>McKenzie, Martha. “Driving Innovation.” <cite>Emory News Center</cite>, Emory University, Oct. 2019, <a href="https://news.emory.edu/features/2019/10/driving-innovation-emorys-rollins-school-public-health" target="_blank" rel="noopener">news.emory.edu/features/2019/10/driving-innovation-emorys-rollins-school-public-health</a>. Accessed 19 Oct. 2026.</li>
+          <li>“Professor Sally Ng Monitoring Air Quality in Georgia Tech Classrooms.” <cite>School of Chemical and Biomolecular Engineering</cite>, Georgia Institute of Technology, 29 Sept. 2020, <a href="https://chbe.gatech.edu/news/2020/09/professor-sally-ng-monitoring-air-quality-georgia-tech-classrooms" target="_blank" rel="noopener">chbe.gatech.edu/news/2020/09/professor-sally-ng-monitoring-air-quality-georgia-tech-classrooms</a>. Accessed 19 Oct. 2026.</li>
+          <li>“Professor Sally Ng’s Research Featured in AJC Article on Atlanta’s Improved Air Quality During Pandemic.” <cite>School of Chemical and Biomolecular Engineering</cite>, Georgia Institute of Technology, 16 June 2020, <a href="https://chbe.gatech.edu/news/2020/06/professor-sally-ngs-research-featured-ajc-article-atlantas-improved-air-quality-during" target="_blank" rel="noopener">chbe.gatech.edu/news/2020/06/professor-sally-ngs-research-featured-ajc-article-atlantas-improved-air-quality-during</a>. Accessed 19 Oct. 2026.</li>
+          <li>“Real-Time Air Quality Map.” <cite>PurpleAir</cite>, PurpleAir, Inc., <a href="https://www2.purpleair.com/" target="_blank" rel="noopener">www2.purpleair.com/</a>. Accessed 19 Oct. 2026.</li>
+        </ul>
+      </section>
       <p>&copy; <span id="year"></span> Site Name</p>
     </div>
   </footer>
