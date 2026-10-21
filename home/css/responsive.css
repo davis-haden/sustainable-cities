@@ -18,8 +18,18 @@
 
   .vc-phase {
     max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+  }
+}
+
+/* touch screens: give the small timeline buttons a finger-sized hit area */
+@media (pointer: coarse) {
+  .vc-phases button {
+    padding-block: 8px;
+  }
+
+  .finale__replay {
+    padding-block: var(--space-2);
   }
 }
 
@@ -81,11 +91,5 @@
     from {
       transform: translateY(100%);
     }
-  }
-}
-
-@media (min-width: 768px) {
-  .phase-list {
-    grid-template-columns: repeat(3, 1fr);
   }
 }

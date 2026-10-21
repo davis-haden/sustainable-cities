@@ -38,30 +38,24 @@
   --stagger: 50ms;
 }
 
-/* Cross-page transitions (supported browsers only; others navigate normally) */
+/* Cross-page transitions (supported browsers only; others navigate normally).
+   The old page stays fully opaque underneath while the new one fades in over it,
+   so there is never a frame where both are see-through and the page flashes. */
 @view-transition {
   navigation: auto;
 }
 
 ::view-transition-old(root) {
-  animation: page-out var(--dur-base) var(--ease-in-out) both;
+  animation: none;
 }
 
 ::view-transition-new(root) {
-  animation: page-in var(--dur-slow) var(--ease-out) both;
-}
-
-@keyframes page-out {
-  to {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
+  animation: page-in var(--dur-base) var(--ease-out) both;
 }
 
 @keyframes page-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
   }
 }
 
@@ -313,19 +307,21 @@ html:not(.js) .site-nav {
 }
 
 /* ==========================================================================
-   Scroll reveal: add data-reveal to any element to fade it up into view
+   Scroll reveal: add data-reveal to any element to fade it up into view.
+   js/main.js marks only the ones below the fold as is-pending, so content
+   that is on screen when a page opens shows straight away.
    ========================================================================== */
 
-.js [data-reveal] {
+.js [data-reveal].is-pending {
   opacity: 0;
   transform: translateY(1.5rem);
-  transition: opacity var(--dur-slow) ease, transform var(--dur-slow) var(--ease-out);
-  transition-delay: calc(var(--i, 0) * var(--stagger));
 }
 
 .js [data-reveal].is-visible {
   opacity: 1;
   transform: none;
+  transition: opacity var(--dur-slow) ease, transform var(--dur-slow) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * var(--stagger));
 }
 
 /* ==========================================================================
@@ -444,7 +440,7 @@ main {
     transition-delay: 0s !important;
   }
 
-  .js [data-reveal] {
+  .js [data-reveal].is-pending {
     opacity: 1;
     transform: none;
   }

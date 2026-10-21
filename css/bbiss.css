@@ -1,9 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&family=Saira+Condensed:wght@500;600&display=swap");
-
 /* ==========================================================================
    BBISS design system: tokens + components for the About BBISS page.
    Source of truth: the BBISS design system (tokens.json, components/bundle.css).
-   Load after css/styles.css.
+   Load after css/styles.css. Each page loads the fonts itself (see its <head>).
    ========================================================================== */
 
 :root {

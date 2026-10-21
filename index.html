@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="How cities can cut emissions and clean their air, and how the Brook Byers Institute for Sustainable Systems at Georgia Tech is helping. Watch a model city go green, then find what you can do.">
   <title>Sustainable Cities | BBISS</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232b3123'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%2397a87a' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23db9558'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&family=Saira+Condensed:wght@500;600&display=fallback">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/bbiss.css">
   <link rel="stylesheet" href="home/css/home.css">
@@ -131,21 +133,22 @@
         <svg viewBox="0 0 48 24" aria-hidden="true"><path d="M0 0h48L24 24z"/></svg>
       </a>
 
-      <!-- 1. The problem -->
+      <!-- 1. Why It Matters: a taste of about.html -->
       <section class="chapter chapter--problem" id="problem" aria-labelledby="problem-title">
         <span class="chapter-dot" aria-hidden="true"></span>
         <div class="container chapter-grid">
           <div class="chapter-copy">
-            <span class="chapter-chip" data-reveal>Chapter 1 · The problem</span>
+            <div class="bb-heading__rule" data-reveal><span class="bb-label">[ 01 — WHY IT MATTERS ]</span></div>
             <h2 id="problem-title" data-split>Where we live shapes <em>every breath</em></h2>
-            <p class="chapter-lead" data-reveal>More than half of the world's people live in cities, and that share keeps growing. Cities are where most of our energy gets used, most of our trips get taken and most of our emissions get made.</p>
+            <p class="chapter-lead" data-reveal>Dirty air doesn&rsquo;t stay in our lungs. It reaches hospitals, airports, schools and paychecks, until a whole city feels it. Why It Matters follows two places where the air turned dangerous: a capital city choking on smog, and islands buried in smoke that drifted across borders.</p>
+            <p data-reveal>What did it cost them, and what did they do about it?</p>
             <div class="stat-row">
               <div class="stat" data-reveal><b><span data-count="30">30</span>%</b><span>of greenhouse gas emissions come from transportation</span></div>
               <div class="stat" data-reveal><b>1 in 2</b><span>people on Earth live in a city</span></div>
             </div>
             <a class="teaser" href="about.html" data-reveal>
-              <span>Why it matters</span>
-              <b>Who breathes the worst air, and what does it do to them?</b>
+              <span>Why It Matters</span>
+              <b>See what happens when a city runs out of clean air</b>
               <i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i>
             </a>
           </div>
@@ -153,112 +156,84 @@
           <!-- the same skyline, smoggy then clear: the clear one fades in as the chapter scrolls past -->
           <figure class="haze" aria-hidden="true">
             <div class="haze-frame">
-              <img class="haze-img" src="images/haze-smoggy.webp" alt="" width="1536" height="1024">
-              <img class="haze-img haze-img--clear" src="images/haze-clear.webp" alt="" width="1536" height="1024">
+              <img class="haze-img" src="images/haze-smoggy.webp" alt="" width="1200" height="800">
+              <img class="haze-img haze-img--clear" src="images/haze-clear.webp" alt="" width="1200" height="800">
             </div>
             <figcaption class="haze-cap"><span class="haze-cap__smog">Smoggy</span><span class="haze-cap__clear">Clearing up</span></figcaption>
           </figure>
         </div>
       </section>
 
-      <!-- 2. The plan: the three phases the model above plays through -->
-      <section class="chapter phases" id="plan" aria-labelledby="phases-title">
-        <span class="chapter-dot" aria-hidden="true"></span>
-        <div class="container">
-          <span class="chapter-chip" data-reveal>Chapter 2 · The plan</span>
-          <h2 id="phases-title" data-split>Three moves to a <em>green city</em></h2>
-          <p class="chapter-lead" data-reveal>The UN's Sustainable Development Goal 11 asks for cities that are inclusive, safe, resilient and sustainable. The model Atlanta at the top of this page gets there in three moves, and real cities are making each one today.</p>
-          <ol class="phase-list">
-            <li class="phase-card" data-reveal>
-              <span class="phase-num">01</span>
-              <svg class="phase-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg>
-              <h3>Clean power</h3>
-              <p class="phase-years"><span data-vc-year="0">2026</span>&ndash;<span data-vc-year="10">2043</span></p>
-              <p>Coal stacks and fuel tanks give way to wind turbines, solar fields and a low-carbon reactor. Cleaner power means cleaner air for every neighborhood downwind.</p>
-              <button type="button" class="phase-go bb-btn bb-btn--secondary" data-vc-seek="0">Watch phase 1</button>
-            </li>
-            <li class="phase-card" data-reveal>
-              <span class="phase-num">02</span>
-              <svg class="phase-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="14" height="13" rx="3"/><path d="M5 11h14M9 14h.01M15 14h.01M8.5 16.5 6.5 20.5M15.5 16.5l2 4M7.5 19h9"/></svg>
-              <h3>Light rail</h3>
-              <p class="phase-years"><span data-vc-year="10">2043</span>&ndash;<span data-vc-year="20">2059</span></p>
-              <p>Transportation makes up nearly a third of greenhouse gas emissions. Two rail lines replace car-choked roads, and electric vehicles take over the trips that are left.</p>
-              <button type="button" class="phase-go bb-btn bb-btn--secondary" data-vc-seek="10">Watch phase 2</button>
-            </li>
-            <li class="phase-card" data-reveal>
-              <span class="phase-num">03</span>
-              <svg class="phase-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-4 6-7 10-9"/></svg>
-              <h3>Nature</h3>
-              <p class="phase-years"><span data-vc-year="20">2059</span>&ndash;<span data-vc-year="30">2076</span></p>
-              <p>Trees and open ground cool hot streets and soak up storm water. Atlanta's BeltLine shows how a city can track what new canopy and less pavement do for its climate resilience.</p>
-              <button type="button" class="phase-go bb-btn bb-btn--secondary" data-vc-seek="20">Watch phase 3</button>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <!-- 3. The people: BBISS -->
+      <!-- 2. About BBISS: a taste of projects.html -->
       <section class="chapter chapter--people" id="people" aria-labelledby="people-title">
         <span class="chapter-dot" aria-hidden="true"></span>
         <div class="container">
-          <span class="chapter-chip" data-reveal>Chapter 3 · The people</span>
+          <div class="bb-heading__rule" data-reveal><span class="bb-label">[ 02 — ABOUT BBISS ]</span></div>
           <h2 id="people-title" data-split>Meet the <em>Brook Byers Institute</em></h2>
           <div class="people-grid">
             <div>
-              <p class="chapter-lead" data-reveal>The Brook Byers Institute for Sustainable Systems (BBISS) is Georgia Tech's home for sustainability research. It brings scientists, engineers and economists together to turn research into solutions for real communities.</p>
-              <a class="teaser" href="projects.html#who" data-reveal>
+              <p class="chapter-lead" data-reveal>Georgia Tech has a whole institute built around one question: how do we make the systems we depend on last? The Brook Byers Institute for Sustainable Systems brings scientists, engineers and economists together to find out.</p>
+              <a class="teaser" href="projects.html" data-reveal>
                 <span>About BBISS</span>
-                <b>Who they are, and the six areas they work on</b>
+                <b>Their vision, their mission and what they work on</b>
                 <i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i>
               </a>
             </div>
-            <blockquote class="vision" data-reveal>
-              <p>&ldquo;To grow and mobilize Georgia Tech&rsquo;s knowledge assets to create a <em>sustainable future for all.</em>&rdquo;</p>
-              <cite>BBISS vision</cite>
-            </blockquote>
+            <div class="vision vision--hook" data-reveal>
+              <p>One institute. <em>Six focus areas.</em> Four research stories and a talk you can watch.</p>
+              <span class="vision__cite">Inside About BBISS</span>
+            </div>
           </div>
-        </div>
-      </section>
 
-      <!-- 4. The proof: research already under way -->
-      <section class="chapter chapter--proof" id="proof" aria-labelledby="proof-title">
-        <span class="chapter-dot" aria-hidden="true"></span>
-        <div class="container">
-          <span class="chapter-chip" data-reveal>Chapter 4 · The proof</span>
-          <h2 id="proof-title" data-split>Research that&rsquo;s <em>already working</em></h2>
-          <p class="chapter-lead" data-reveal>Georgia Tech researchers are testing these ideas on real roads, coastlines and power grids. Pick a story.</p>
+          <p class="chapter-lead chapter-lead--sub" data-reveal>And the research is already out in the world. Pick a question.</p>
           <div class="proof-grid">
             <a class="proof-card" href="projects.html#research" data-reveal>
-              <span class="proof-card__img"><img src="images/driving_change.png" alt="" loading="lazy"></span>
+              <span class="proof-card__img"><img src="images/driving_change.webp" alt="" loading="lazy"></span>
               <span class="proof-card__body"><b>Driving change</b><span>How do you electrify every road in America?</span><span class="proof-card__more">Read the story</span></span>
             </a>
             <a class="proof-card" href="projects.html#research" data-reveal>
-              <span class="proof-card__img"><img src="images/greener_georgia.png" alt="" loading="lazy"></span>
+              <span class="proof-card__img"><img src="images/greener_georgia.webp" alt="" loading="lazy"></span>
               <span class="proof-card__body"><b>A greener Georgia</b><span>Emissions down, economy up. How?</span><span class="proof-card__more">Read the story</span></span>
             </a>
             <a class="proof-card" href="projects.html#research" data-reveal>
-              <span class="proof-card__img"><img src="images/costal_ecosystems.png" alt="" loading="lazy"></span>
+              <span class="proof-card__img"><img src="images/costal_ecosystems.webp" alt="" loading="lazy"></span>
               <span class="proof-card__body"><b>Coastal ecosystems</b><span>Can a coastline pull carbon out of the sky?</span><span class="proof-card__more">Read the story</span></span>
             </a>
             <a class="proof-card" href="projects.html#research" data-reveal>
-              <span class="proof-card__img"><img src="images/climate_center.png" alt="" loading="lazy"></span>
-              <span class="proof-card__body"><b>A world climate center</b><span>Why Georgia Tech joined New York’s new climate hub</span><span class="proof-card__more">Read the story</span></span>
+              <span class="proof-card__img"><img src="images/climate_center.webp" alt="" loading="lazy"></span>
+              <span class="proof-card__body"><b>A world climate center</b><span>Why did Georgia Tech join a new climate hub?</span><span class="proof-card__more">Read the story</span></span>
             </a>
           </div>
-          <p class="chapter-links" data-reveal>
-            <a class="bb-btn bb-btn--secondary" href="projects.html#research">Read the research stories <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
-            <a class="bb-btn bb-btn--secondary" href="resources.html">Air quality at Georgia Tech</a>
-          </p>
         </div>
       </section>
 
-      <!-- 5. Your turn: the call to action -->
+      <!-- 3. At GT: a taste of resources.html -->
+      <section class="chapter chapter--campus" id="campus" aria-labelledby="campus-title">
+        <span class="chapter-dot" aria-hidden="true"></span>
+        <div class="container">
+          <div class="bb-heading__rule" data-reveal><span class="bb-label">[ 03 — AT GEORGIA TECH ]</span></div>
+          <h2 id="campus-title" data-split>What are we breathing <em>on campus?</em></h2>
+          <p class="chapter-lead" data-reveal>Georgia Tech sits in Midtown, with part of campus right beside the Downtown Connector. Researchers have studied what that means for the people who live and learn here, and students have set up sensors so anyone can check the air.</p>
+          <div class="hooks">
+            <div class="bb-note" data-reveal><div class="bb-note__head"><span class="bb-label">Sources</span><span class="bb-label">01</span></div><p class="bb-note__body">Traffic is the obvious one. A few others might surprise you.</p></div>
+            <div class="bb-note" data-reveal><div class="bb-note__head"><span class="bb-label">Tracking</span><span class="bb-label">02</span></div><p class="bb-note__body">Live readings from around campus, open to anyone.</p></div>
+            <div class="bb-note" data-reveal><div class="bb-note__head"><span class="bb-label">Equity</span><span class="bb-label">03</span></div><p class="bb-note__body">Why the same city doesn&rsquo;t breathe the same air.</p></div>
+          </div>
+          <a class="teaser" href="resources.html" data-reveal>
+            <span>At GT</span>
+            <b>Find out what the sensors are picking up</b>
+            <i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- 4. Your turn: the conclusion -->
       <section class="chapter chapter--act" id="act" aria-labelledby="act-title">
         <span class="chapter-dot" aria-hidden="true"></span>
         <div class="container">
-          <span class="chapter-chip" data-reveal>Chapter 5 · Your turn</span>
+          <div class="bb-heading__rule" data-reveal><span class="bb-label">[ 04 — YOUR TURN ]</span></div>
           <h2 id="act-title" data-split>What <em>you</em> can do</h2>
-          <p class="chapter-lead" data-reveal>Research sets the direction, but cities change one habit at a time. Small choices, made by a lot of people, shrink a city's footprint and often save money too. Tap the ones you'll try this week.</p>
+          <p class="chapter-lead" data-reveal>Cities, researchers and campuses can set the direction, but the air changes one habit at a time. Small choices, made by a lot of people, shrink a city&rsquo;s footprint and often save money too. Tap the ones you&rsquo;ll try this week.</p>
           <ul class="pledges">
             <li data-reveal><button type="button" class="pledge" aria-pressed="false">
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-8h5l3 8M10 9l-1-3H7M14 9l1.5-3H18"/></svg>
@@ -293,11 +268,11 @@
         <div class="container">
           <div class="finale" data-reveal>
             <h2 class="finale__title">Every city is a <em>work in progress.</em></h2>
-            <p>Keep going: see who is affected, meet the people doing the research, and find a way in at Georgia Tech.</p>
+            <p>Every page of this site has a piece of the story. Pick up where you want to start.</p>
             <p class="finale__links">
               <a class="bb-btn bb-btn--primary" href="about.html">Why it matters <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
               <a class="bb-btn bb-btn--glass" href="projects.html">About BBISS</a>
-              <a class="bb-btn bb-btn--glass" href="resources.html">Air quality at Georgia Tech</a>
+              <a class="bb-btn bb-btn--glass" href="resources.html">At GT</a>
               <a class="bb-btn bb-btn--glass" href="https://sustainablesystems.gatech.edu/" target="_blank" rel="noopener">Visit BBISS <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
             </p>
             <button type="button" class="finale__replay" data-vc-seek="0">Replay the city from <span data-vc-year="0">2026</span></button>

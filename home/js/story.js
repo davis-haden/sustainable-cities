@@ -1,4 +1,4 @@
-/* The story below the city: scroll-linked motion that ties the five chapters into one narrative.
+/* The story below the city: scroll-linked motion that ties the four chapters into one narrative.
    - the thread down the left fills as you read, and each chapter's dot pops when you reach it
    - chapter headings rise in word by word
    - in chapter 1 the smog over the skyline lifts as the figure scrolls through the view
@@ -58,6 +58,7 @@ function init() {
   var haze = story.querySelector('.haze');
   var pics = Array.from(story.querySelectorAll('.proof-card img'));
   var cue = story.querySelector('.story-cue');
+  var header = document.querySelector('.site-header');
   var ticking = false;
 
   function update() {
@@ -67,6 +68,8 @@ function init() {
     story.style.setProperty('--story-p', clamp((mid - r.top) / r.height, 0, 1).toFixed(4));
     dots.forEach(function (d) { d.classList.toggle('is-reached', d.getBoundingClientRect().top < mid); });
     if (cue) cue.classList.toggle('is-gone', r.top < vh * 0.35);
+    /* phones: the header turns into a solid bar once the page moves, like on the other pages */
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 8);
 
     if (haze) {
       /* wide screens pin the figure beside the copy, so read progress through the whole chapter.

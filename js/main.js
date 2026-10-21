@@ -11,14 +11,12 @@
   const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   // Scroll reveal: elements with data-reveal fade in as they enter the viewport.
+  // Only elements below the fold are hidden (is-pending), so whatever is on screen
+  // when a page opens is there from the first frame and never flashes in.
   // Siblings that appear together are staggered via the --i custom property.
   const revealItems = document.querySelectorAll("[data-reveal]");
 
-  if (REDUCED_MOTION.matches || !("IntersectionObserver" in window)) {
-    revealItems.forEach(function (el) {
-      el.classList.add("is-visible");
-    });
-  } else {
+  if (!REDUCED_MOTION.matches && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       function (entries) {
         entries
@@ -27,6 +25,7 @@
           })
           .forEach(function (entry, index) {
             entry.target.style.setProperty("--i", index);
+            entry.target.classList.remove("is-pending");
             entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
           });
@@ -35,6 +34,8 @@
     );
 
     revealItems.forEach(function (el) {
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.classList.add("is-pending");
       observer.observe(el);
     });
   }

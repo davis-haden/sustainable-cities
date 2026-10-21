@@ -1,4 +1,4 @@
-/* The story below the city: five chapters on one thread. Motion is driven by home/js/story.js,
+/* The story below the city: four chapters on one thread, one per page of the site. Motion is driven by home/js/story.js,
    which sets --story-p (thread fill), --clear (chapter 1 smog) and --py (photo parallax), and adds
    .is-in / .is-reached / .is-clear as you scroll. */
 
@@ -112,21 +112,15 @@
   scale: 1.15;
 }
 
-.chapter-chip {
-  display: inline-block;
-  padding: 4px 14px;
-  border-radius: var(--radius-pill);
-  background: var(--orange-tint);
-  color: var(--rust);
-  font-size: 14px;
-  font-weight: 600;
+.chapter .bb-heading__rule {
+  max-width: 40rem;
 }
 
 .chapter h2 {
   max-width: 18ch;
-  margin: var(--space-4) 0 var(--space-6);
-  font-size: clamp(40px, 6vw, 76px);
-  line-height: 0.95;
+  margin: var(--space-3) 0 var(--space-6);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1;
   text-wrap: balance;
 }
 
@@ -147,28 +141,7 @@
 }
 
 .js .chapter h2:not(.is-in) .w > span {
-  transform: translateY(110%) rotate(4deg);
-}
-
-/* the emphasised phrase gets the orange squiggle, drawn in after the words land */
-.chapter h2 em {
-  position: relative;
-}
-
-.chapter h2 em::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.04em;
-  width: 0;
-  height: 0.14em;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 4c5 0 5-3 10-3s5 6 10 6 5-6 10-6 5 3 10 3' fill='none' stroke='%23db9558' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 0.6em 100% repeat-x;
-  transition: width 900ms var(--ease-out) 450ms;
-}
-
-.chapter h2.is-in em::after,
-html:not(.js) .chapter h2 em::after {
-  width: 100%;
+  transform: translateY(110%);
 }
 
 .chapter-lead {
@@ -189,15 +162,7 @@ html:not(.js) .chapter h2 em::after {
   margin: var(--space-8) 0 0;
 }
 
-.bb-btn {
-  transition: transform var(--dur-base) var(--ease-spring), background-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
-}
-
-.bb-btn:hover {
-  transform: translateY(-2px);
-}
-
-/* --- Chapter 1: the problem. Copy on the left, a skyline that clears on the right --- */
+/* --- Chapter 1: Why It Matters. Copy on the left, a skyline that clears on the right --- */
 .chapter-grid {
   display: grid;
   gap: var(--space-12);
@@ -215,14 +180,15 @@ html:not(.js) .chapter h2 em::after {
   gap: var(--space-1);
   flex: 1 1 12rem;
   max-width: 16rem;
-  padding: var(--space-4) var(--space-6) var(--space-6);
-  border-radius: var(--radius-lg);
-  background: var(--sage-tint);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border: 1px solid var(--forest);
+  border-radius: var(--radius-sm);
+  background: var(--cream);
 }
 
 .stat b {
   font-family: var(--font-display);
-  font-size: 56px;
+  font-size: 48px;
   font-weight: 600;
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -245,9 +211,8 @@ html:not(.js) .chapter h2 em::after {
   position: relative;
   aspect-ratio: 3 / 2;
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: var(--radius-md);
   background: var(--sage-tint);
-  box-shadow: var(--shadow-card);
 }
 
 .haze-frame > * {
@@ -273,12 +238,13 @@ html:not(.js) .chapter h2 em::after {
   top: var(--space-4);
   left: var(--space-4);
   display: grid;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
   background: var(--cream);
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow: var(--shadow-soft);
+  font: 500 11px/16px var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .haze-cap span {
@@ -297,7 +263,7 @@ html:not(.js) .chapter h2 em::after {
   translate: none;
 }
 
-/* --- Chapter 3: the people --- */
+/* --- Chapter 2: About BBISS --- */
 .people-grid {
   display: grid;
   gap: var(--space-12);
@@ -308,10 +274,9 @@ html:not(.js) .chapter h2 em::after {
   position: relative;
   margin: 0;
   padding: var(--space-12) var(--space-8) var(--space-8);
-  border-radius: 32px;
+  border-radius: var(--radius-lg);
   background: var(--forest);
   color: var(--on-dark);
-  rotate: -1.5deg;
 }
 
 .vision::before {
@@ -338,13 +303,41 @@ html:not(.js) .chapter h2 em::after {
   font-weight: 400;
 }
 
-.vision cite {
+/* a summary line rather than a quote: no opening quote mark */
+.vision--hook::before {
+  content: none;
+}
+
+.vision--hook {
+  padding-top: var(--space-8);
+}
+
+.vision cite,
+.vision__cite {
   display: block;
   margin-top: var(--space-4);
-  font-size: 14px;
+  font: 500 11px/16px var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   font-style: normal;
-  font-weight: 600;
   color: var(--sage);
+}
+
+.chapter-lead--sub {
+  margin-top: var(--space-12);
+}
+
+/* --- Chapter 3: what the At GT page covers, as annotation callouts --- */
+.hooks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.hooks .bb-note {
+  flex: 1 1 200px;
+  max-width: 16rem;
 }
 
 /* --- Teaser links: a question that sends people to the page that answers it --- */
@@ -356,7 +349,7 @@ html:not(.js) .chapter h2 em::after {
   max-width: 34rem;
   margin-top: var(--space-8);
   padding: var(--space-4) var(--space-4) var(--space-4) var(--space-6);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   background: var(--sage-tint);
   color: var(--forest);
   text-decoration: none;
@@ -364,8 +357,9 @@ html:not(.js) .chapter h2 em::after {
 }
 
 .teaser span {
-  font-size: 13px;
-  font-weight: 600;
+  font: 500 11px/16px var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--muted);
 }
 
@@ -382,29 +376,28 @@ html:not(.js) .chapter h2 em::after {
   grid-column: 2;
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--forest);
   border-radius: 50%;
-  background: var(--orange);
-  color: var(--on-orange);
+  color: var(--forest);
   transition: transform var(--dur-base) var(--ease-spring);
 }
 
 .teaser svg {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
 }
 
 .teaser:hover {
   background: var(--orange-tint);
-  translate: 0 -2px;
 }
 
 .teaser:hover i {
-  transform: translateX(4px) rotate(-8deg);
+  transform: translateX(4px);
 }
 
-/* --- Chapter 4: the proof. Photo "doors": a title and a question, the story is one click away --- */
+/* --- Chapter 2, continued: research. Photo "doors": a title and a question, the story is one click away --- */
 .proof-grid {
   display: grid;
   gap: var(--space-4);
@@ -415,7 +408,7 @@ html:not(.js) .chapter h2 em::after {
   display: grid;
   grid-template-rows: auto 1fr;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: var(--radius-md);
   background: var(--cream-deep);
   color: var(--forest);
   text-decoration: none;
@@ -460,8 +453,9 @@ html:not(.js) .chapter h2 em::after {
 
 .proof-card__more {
   margin-top: var(--space-2);
-  font-size: 13px;
-  font-weight: 600;
+  font: 500 11px/16px var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--rust);
 }
 
@@ -479,19 +473,16 @@ html:not(.js) .chapter h2 em::after {
   scale: 1.02;
 }
 
-.js .proof-card[data-reveal]:nth-child(odd):not(.is-visible) { transform: translateY(2rem) rotate(-2deg); }
-.js .proof-card[data-reveal]:nth-child(even):not(.is-visible) { transform: translateY(2rem) rotate(2deg); }
-
 .js .proof-card[data-reveal] {
   transition: opacity var(--dur-slow) ease, transform 900ms var(--ease-out), translate var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) ease;
 }
 
 .proof-card:hover {
-  translate: 0 -6px;
+  translate: 0 -4px;
   box-shadow: var(--shadow-card);
 }
 
-/* --- Chapter 5: your turn. Pledge cards you can tap --- */
+/* --- Chapter 4: your turn. Pledge cards you can tap --- */
 .pledges {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -512,13 +503,13 @@ html:not(.js) .chapter h2 em::after {
   gap: var(--space-2);
   padding: var(--space-6);
   border: 2px solid transparent;
-  border-radius: 24px;
+  border-radius: var(--radius-md);
   background: var(--cream-deep);
   color: var(--forest);
   font: inherit;
   text-align: left;
   cursor: pointer;
-  transition: background-color var(--dur-base) ease, border-color var(--dur-base) ease, translate var(--dur-base) var(--ease-spring), rotate var(--dur-base) var(--ease-spring);
+  transition: background-color var(--dur-base) ease, border-color var(--dur-base) ease, translate var(--dur-base) var(--ease-out);
 }
 
 .pledge:hover {
@@ -538,7 +529,7 @@ html:not(.js) .chapter h2 em::after {
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: rotate var(--dur-slow) var(--ease-spring), background-color var(--dur-base) ease;
+  transition: background-color var(--dur-base) ease;
 }
 
 .pledge b {
@@ -554,7 +545,7 @@ html:not(.js) .chapter h2 em::after {
   line-height: 1.45;
 }
 
-/* picked: green card, the icon spins, a check badge pops in */
+/* picked: olive card (like an open focus row) and a check badge */
 .pledge::after {
   content: "";
   position: absolute;
@@ -570,7 +561,6 @@ html:not(.js) .chapter h2 em::after {
 
 .pledge[aria-pressed="true"] {
   background: var(--olive);
-  rotate: -1deg;
 }
 
 .pledge[aria-pressed="true"]::after {
@@ -578,7 +568,6 @@ html:not(.js) .chapter h2 em::after {
 }
 
 .pledge[aria-pressed="true"] svg {
-  rotate: 360deg;
   background: var(--sage-tint);
 }
 
@@ -599,7 +588,7 @@ html:not(.js) .chapter h2 em::after {
   overflow: hidden;
   margin-top: var(--space-24);
   padding: var(--space-24) var(--space-8);
-  border-radius: 36px;
+  border-radius: var(--radius-lg);
   background:
     radial-gradient(circle at 12% 110%, rgb(151 168 122 / 0.45) 0, rgb(151 168 122 / 0) 40%),
     radial-gradient(circle at 92% -10%, rgb(219 149 88 / 0.4) 0, rgb(219 149 88 / 0) 38%),
@@ -674,7 +663,6 @@ html:not(.js) .chapter h2 em::after {
 @media (max-width: 767px) {
   .story { --rail-gap: 30px; --rail-x: calc(var(--gutter) + 4px); }
   .chapter-dot { width: 20px; height: 20px; }
-  .vision { rotate: none; }
   .finale { padding: var(--space-12) var(--space-6); }
 }
 
