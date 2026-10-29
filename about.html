@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="How air pollution harms people and city infrastructure, and why sustainable air practices matter: stories from Islamabad, Kalimantan and Sumatra.">
+  <meta name="description" content="How fine particle pollution harms people and city systems, and why sustainable air practices matter: Islamabad, Kalimantan and Sumatra.">
   <title>Clean Air &amp; Cities | BBISS</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232b3123'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%2397a87a' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23db9558'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,13 +12,26 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/bbiss.css">
   <style>
-    /* Page-only helpers: stat callouts laid out in a row */
+    /* Page-only helpers (built from the BBISS tokens) */
     .aq-stats { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8); }
     .aq-stats .bb-note { flex: 1 1 200px; max-width: none; }
     .aq-story { display: grid; gap: var(--space-6); margin-top: var(--space-8); }
-    @media (min-width: 768px) { .aq-story { grid-template-columns: 3fr 2fr; align-items: start; } }
     .aq-copy { margin: 0 0 var(--space-4); font-size: 18px; line-height: 28px; }
     .aq-copy:last-child { margin-bottom: 0; }
+    .aq-chart { margin: var(--space-12) 0 0; padding: var(--space-6); border: 2px solid var(--orange); border-radius: var(--radius-lg); background: var(--cream); }
+    .aq-chart > figcaption { margin: 0 0 var(--space-4); font-family: var(--font-display); font-weight: 600; font-size: 28px; line-height: 1.1; text-transform: uppercase; }
+    .aq-chart__src { margin: var(--space-4) 0 0; font-size: 13px; color: var(--muted); }
+    .aq-fact { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); padding: 0 var(--space-4) var(--space-2) 72px; }
+    .aq-big { font-family: var(--font-display); font-weight: 600; font-size: 44px; line-height: 1; }
+    .aq-graphs { display: grid; gap: var(--space-4); }
+    .aq-graphs figure { margin: 0; }
+    .aq-graphs img { width: 100%; height: auto; border-radius: var(--radius-sm); background: #fff; }
+    .aq-graphs figcaption { margin-top: var(--space-2); }
+    @media (min-width: 768px) {
+      .aq-graphs { grid-template-columns: 1fr 1fr; }
+      .aq-story { grid-template-columns: 3fr 2fr; align-items: start; }
+    }
+    @media (max-width: 600px) { .aq-fact { padding-left: var(--space-4); } }
   </style>
   <script>document.documentElement.classList.add("js");</script>
   <script src="js/main.js" defer></script>
@@ -75,18 +88,22 @@
       <div class="container">
         <div class="bb-heading" data-reveal>
           <div class="bb-heading__rule"><span class="bb-label">[ 01 — WHY IT MATTERS ]</span></div>
-          <h2 id="why-title">Dirty air is a <em>city-wide</em> problem</h2>
+          <h2 id="why-title">Dirty air strains <em>everything</em></h2>
         </div>
-        <p class="bbiss-copy" data-reveal>Fine particulate matter (PM2.5) is the most harmful form of air pollution. It is small enough to travel deep into the lungs and bloodstream. When it builds up, the damage does not stop at personal health. Hospitals fill, workers miss shifts, schools and flights are disrupted, and governments are forced into emergency measures. Cities run on people and networks that all depend on breathable air, which makes sustainable air practices a matter of protecting infrastructure as much as protecting lungs.</p>
+
+        <p class="bbiss-copy" data-reveal>When air turns dangerous, the effects reach far beyond individual health. Clinics fill at the same moment, flights and roads slow down, workers stay home, and city governments divert money into emergency response. The effects below show how quickly a single pollution event, such as the 2015 Indonesia forest fires, becomes a problem for an entire city.</p>
 
         <ul class="bb-rows bbiss-stack">
-          <li class="bb-row">
-            <button type="button" aria-expanded="false" aria-controls="why-01">
+          <li class="bb-row is-open">
+            <button type="button" aria-expanded="true" aria-controls="why-01">
               <span class="bb-row__idx">01</span>
               <span class="bb-row__title">Health systems</span>
               <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
             </button>
-            <div class="bb-row__body" id="why-01"><div><p>Smoke and smog send people to clinics and hospitals at the same moment. During Indonesia&rsquo;s 2015 haze, almost half a million people fell ill across six provinces, and infants needed intensive care for respiratory illness.</p></div></div>
+            <div class="bb-row__body" id="why-01"><div>
+              <div class="aq-fact"><strong class="aq-big">~500,000</strong><span class="bb-label">sickened in six provinces, Indonesia 2015</span></div>
+              <p>Pollution events send people to clinics all at once. In 2015 during peak pollution levels in Indonesia due to slash and burn fires, thousands of infants needed intensive care for respiratory illness. However, with hospitals overwhelmed mothers struggled to find treatment for their children.</p>
+            </div></div>
           </li>
           <li class="bb-row">
             <button type="button" aria-expanded="false" aria-controls="why-02">
@@ -94,23 +111,32 @@
               <span class="bb-row__title">Transportation</span>
               <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
             </button>
-            <div class="bb-row__body" id="why-02"><div><p>Haze cuts visibility and grounds flights. In 2015, thick smoke left thousands of air travelers losing time and money, and recent fires in Kalimantan have again degraded visibility at airports.</p></div></div>
+            <div class="bb-row__body" id="why-02"><div>
+              <div class="aq-fact"><strong class="aq-big">&lt;800 m</strong><span class="bb-label">visibility in two Sumatran cities, 2015</span></div>
+              <p>Thick haze cuts visibility and disrupts travel. Thousands of air travelers lost time and money.</p>
+            </div></div>
           </li>
           <li class="bb-row">
             <button type="button" aria-expanded="false" aria-controls="why-03">
               <span class="bb-row__idx">03</span>
-              <span class="bb-row__title">Workforce and economy</span>
+              <span class="bb-row__title">Economy</span>
               <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
             </button>
-            <div class="bb-row__body" id="why-03"><div><p>Peatland fires in Sumatra and Kalimantan are estimated to cost about 8.9 million lost workdays in an average year, on top of hospitalizations and severe childhood asthma.</p></div></div>
+            <div class="bb-row__body" id="why-03"><div>
+              <div class="aq-fact"><strong class="aq-big">6.5% of GDP</strong><span class="bb-label">~$22 billion a year, Pakistan</span></div>
+              <p>In Indonesia, peatland smoke accounts for about 8.9 million lost workdays in an average year.</p>
+            </div></div>
           </li>
           <li class="bb-row">
             <button type="button" aria-expanded="false" aria-controls="why-04">
               <span class="bb-row__idx">04</span>
-              <span class="bb-row__title">Schools and public services</span>
+              <span class="bb-row__title">Public services</span>
               <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
             </button>
-            <div class="bb-row__body" id="why-04"><div><p>Authorities advise children, older adults and people with asthma to stay indoors or wear masks, and they must divert staff and budgets into enforcement and emergency response when air quality turns dangerous.</p></div></div>
+            <div class="bb-row__body" id="why-04"><div>
+              <div class="aq-fact"><strong class="aq-big">~100M</strong><span class="bb-label">people breathing air ~10&times; WHO limits, Pakistan</span></div>
+              <p>When pollution peaks, daily life can stall. Economic and social activity across Punjab and Khyber Pakhtunkhwa came to a standstill.</p>
+            </div></div>
           </li>
         </ul>
       </div>
@@ -120,13 +146,10 @@
       <div class="container">
         <div class="bb-heading" data-reveal>
           <div class="bb-heading__rule"><span class="bb-label">[ 02 — STORY ]</span></div>
-          <h2 id="islamabad-title">Islamabad: <em>very unhealthy</em></h2>
+          <h2 id="islamabad-title">Islamabad: <em>announcements aren&rsquo;t enough</em></h2>
         </div>
         <div class="aq-story">
-          <div data-reveal>
-            <p class="aq-copy">In November 2024, dust and vehicle emissions pushed Islamabad&rsquo;s air into the &ldquo;very unhealthy&rdquo; range, according to Pakistan&rsquo;s Environmental Protection Agency (Pak-EPA). Officials pointed to outdated brick kilns on the city&rsquo;s outskirts that had not adopted cleaner zigzag technology, plus pollution drifting in from neighboring Rawalpindi. Fine particles made up about 90 percent of the city&rsquo;s air pollution.</p>
-            <p class="aq-copy">The response shows what sustainable air practice looks like in a city: fines and legal action for open waste burning, smoky vehicles and non-compliant kilns; emissions checks for heavy vehicles at entry points; and the use of the city&rsquo;s existing safe city camera network to spot violations.</p>
-          </div>
+          <p class="aq-copy" data-reveal>In November 2024, Islamabad&rsquo;s air quality leveled just below hazardous sparking massive concerns for health across the city. Officials responded with promises of fines, legal action and emissions checks. Yet, a national assessment a year later found the problem to be persistent, with transportion being the leading source in Islamabad and Rawalpindi for pollution. When it comes to sustainable air practices for cities, lasting change requires developements in city infrastructure and increased enforcement against unsustainable practices such as unregulated vehicle emissions. Solutions vary across each city, but the most effective methodologies are centered around limiting emissions at the source. Without consistent testing for vehicle emission and enforcement, the quality of air in Islamabad is likely to worsen.</p>
           <div class="bb-photo" data-reveal>
             <img src="images/ish.jpg" alt="Traffic and metro buses on a city avenue under thick grey smog" width="800" height="480" loading="lazy">
             <span class="bb-photo__tick bb-photo__tick--tl"></span>
@@ -135,10 +158,9 @@
           </div>
         </div>
         <div class="aq-stats" data-reveal>
-          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Peak AQI</span><span class="bb-label">Nov 15, 2024</span></div><span class="bb-note__stat">227</span><p class="bb-note__body">Highest reading between noon and 8 pm.</p></div>
-          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">PM2.5</span><span class="bb-label">Peak</span></div><span class="bb-note__stat">177 &micro;g/m&sup3;</span><p class="bb-note__body">Versus a national standard of 35.</p></div>
-          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Share</span><span class="bb-label">Of pollution</span></div><span class="bb-note__stat">90%</span><p class="bb-note__body">Fine particles, the most harmful kind.</p></div>
-          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Cameras</span><span class="bb-label">Enforcement</span></div><span class="bb-note__stat">3,300</span><p class="bb-note__body">Safe city cameras to be used to catch burning and emissions.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Peak AQI</span><span class="bb-label">Nov 2024</span></div><span class="bb-note__stat">227</span><p class="bb-note__body">Islamabad, ahead of the announced crackdown.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Life lost</span><span class="bb-label">National</span></div><span class="bb-note__stat">3.9 yrs</span><p class="bb-note__body">Average life expectancy cut by pollution.</p></div>
+          <div class="bb-note"><div class="bb-note__head"><span class="bb-label">Deaths</span><span class="bb-label">Per year</span></div><span class="bb-note__stat">128,000</span><p class="bb-note__body">Premature deaths linked to polluted air.</p></div>
         </div>
       </div>
     </section>
@@ -150,10 +172,7 @@
           <h2 id="islands-title">Kalimantan and Sumatra: <em>smoke across borders</em></h2>
         </div>
         <div class="aq-story">
-          <div data-reveal>
-            <p class="aq-copy">Sumatra and Kalimantan are where most of Indonesia&rsquo;s peatland fires occur. Drained peatland burns easily, and fires are far worse in dry El Ni&ntilde;o years. The resulting haze blankets cities across both islands and drifts into Malaysia and Singapore. In 2015, Palangkaraya in Central Kalimantan recorded the worst air in the country, and Pekanbaru in Sumatra hit a pollutant index of 858.</p>
-            <p class="aq-copy">The toll is not a one-off. Researchers estimate that peatland fire smoke causes around 33,100 premature adult deaths and 2,900 infant deaths in an average year. Their conclusion points toward prevention: move toward peatland management that does not require drainage, and so is not prone to fire.</p>
-          </div>
+          <p class="aq-copy" data-reveal> A peatland is a wetland with an accumulated layer of organic peat soil. However, peatlands are often drained, dried, and burned to make room for agriculture and commercial expansion. Due to the peatland's organic material being carbon dense, its burning releases an incredible amount of emissions into the atmosphere. Additionally, once peat is drained it ignites easily. This combined with the dry season caused yearly by El Ni&ntilde;o can often result in extensive fires that spiral beyond traditional peatland burning. The excess smoke settles over cities on both islands, killing an estimated 36,000 people in an average year.  Most of Indonesia&rsquo;s peatland fires burn on Sumatra and Kalimantan. However, the spread of the smoke is not limited to borders which often drifts into Malaysia and Singapore affecting communities far beyond the city.</p>
           <div class="bb-photo" data-reveal>
             <img src="images/yellow_haze.webp" alt="A masked mother and child look out over a bridge almost hidden in orange peatland smoke" width="1536" height="864" loading="lazy">
             <span class="bb-photo__tick bb-photo__tick--tl"></span>
@@ -176,22 +195,39 @@
           <div class="bb-heading__rule"><span class="bb-label">[ 04 — SOLUTIONS ]</span></div>
           <h2 id="practices-title">Sustainable air <em>practices</em></h2>
         </div>
+
+        <figure class="aq-chart" data-reveal role="group" aria-labelledby="trend-title">
+          <figcaption id="trend-title">Georgia: emissions fall, fires remain</figcaption>
+          <p class="aq-copy">Georgia&rsquo;s emissions show both sides of the story. Between 1990 and 2024, NOx fell by roughly 70% and CO by roughly half, largely because on-road vehicles became cleaner. Fires have not followed that trend. They remain a large, persistent source and made up roughly a quarter of the state&rsquo;s CO in 2024.</p>
+          <div class="aq-graphs">
+            <figure>
+              <img src="images/nox-emission-trends.png" alt="Stacked area chart of Georgia NOx emissions in thousand tons, 1990 to 2024, falling from about 730 to about 205, with on-road vehicles the largest and fastest-shrinking source" width="1918" height="1100" loading="lazy">
+              <figcaption class="bb-label">[ NOx, 1990&ndash;2024 ]</figcaption>
+            </figure>
+            <figure>
+              <img src="images/co-emission-trends.png" alt="Stacked area chart of Georgia CO emissions in thousand tons, 1990 to 2024, falling from about 5,250 to about 2,550, with on-road vehicles shrinking and fires a growing share" width="1918" height="1100" loading="lazy">
+              <figcaption class="bb-label">[ CO, 1990&ndash;2024 ]</figcaption>
+            </figure>
+          </div>
+          <p class="aq-chart__src">Georgia emissions by source category, 1990&ndash;2024. Source: Georgia Environmental Protection Division, <i>2024 Air Quality Report</i>.</p>
+        </figure>
+
         <ul class="bb-rows bbiss-stack">
           <li class="bb-row">
             <button type="button" aria-expanded="false" aria-controls="practice-01">
               <span class="bb-row__idx">01</span>
-              <span class="bb-row__title">Stop fires at the source</span>
+              <span class="bb-row__title">Prevent fires at the source</span>
               <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
             </button>
-            <div class="bb-row__body" id="practice-01"><div><p>Shift peatland management away from drainage, since drained peat is what makes land so fire-prone, and enforce rules against open burning of waste and land.</p></div></div>
+            <div class="bb-row__body" id="practice-01"><div><p>Manage peatland without drainage so it stops being fire-prone. Fire is a major CO source in Georgia as well.</p></div></div>
           </li>
           <li class="bb-row">
             <button type="button" aria-expanded="false" aria-controls="practice-02">
               <span class="bb-row__idx">02</span>
-              <span class="bb-row__title">Clean up industry and transport</span>
+              <span class="bb-row__title">Cut transport and industry emissions</span>
               <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
             </button>
-            <div class="bb-row__body" id="practice-02"><div><p>Upgrade brick kilns to zigzag technology, check heavy vehicle emissions at city entry points, and keep vehicles fit and low-smoke.</p></div></div>
+            <div class="bb-row__body" id="practice-02"><div><p>Transport leads in Islamabad. Reliable public transit, walkable streets and cleaner kilns and vehicles tackle the largest sources.</p></div></div>
           </li>
           <li class="bb-row">
             <button type="button" aria-expanded="false" aria-controls="practice-03">
@@ -199,7 +235,7 @@
               <span class="bb-row__title">Monitor and enforce</span>
               <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
             </button>
-            <div class="bb-row__body" id="practice-03"><div><p>Publish real-time air quality data, set clear standards, and use existing city infrastructure such as cameras to find violators and apply fines quickly.</p></div></div>
+            <div class="bb-row__body" id="practice-03"><div><p>Expand air quality monitoring so policies can be tested against real data.</p></div></div>
           </li>
           <li class="bb-row">
             <button type="button" aria-expanded="false" aria-controls="practice-04">
@@ -207,7 +243,7 @@
               <span class="bb-row__title">Coordinate across borders</span>
               <span class="bb-row__arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span>
             </button>
-            <div class="bb-row__body" id="practice-04"><div><p>Smoke ignores boundaries: pollution from Rawalpindi reaches Islamabad, and fires in Indonesia reach Malaysia and Singapore. Neighboring cities and countries need shared monitoring and response.</p></div></div>
+            <div class="bb-row__body" id="practice-04"><div><p>Smoke crosses city and national lines, so monitoring and response must be shared.</p></div></div>
           </li>
         </ul>
         <div class="bbiss-actions">
@@ -223,11 +259,16 @@
       <section class="bbiss-sources" aria-labelledby="sources-title">
         <h2 class="bb-label" id="sources-title">[ Sources ]</h2>
         <ul class="bbiss-refs">
+          <li>Arab News. (2025). Air pollution cuts average Pakistani life expectancy by 3.9 years &mdash; report. <a href="https://www.arabnews.com/node/2625677/amp" target="_blank" rel="noopener">https://www.arabnews.com/node/2625677/amp</a></li>
+          <li>Dawn. (2024). Delivering clean air. <a href="https://www.dawn.com/news/1873804/delivering-clean-air" target="_blank" rel="noopener">https://www.dawn.com/news/1873804/delivering-clean-air</a></li>
+          <li>Editorial Board. (2025, December 14). Polluted air. <i>The News International</i>. <a href="https://www.thenews.pk/print/1386592-polluted-air" target="_blank" rel="noopener">https://www.thenews.pk/print/1386592-polluted-air</a></li>
+          <li>Georgia Environmental Protection Division. (2025, December 18). <i>2024 air quality report</i> [Interactive story]. Georgia Department of Natural Resources. <a href="https://storymaps.arcgis.com/stories/61b971863ca64572955aedf7c428bb1a" target="_blank" rel="noopener">https://storymaps.arcgis.com/stories/61b971863ca64572955aedf7c428bb1a</a></li>
           <li>Hein, L., Spadaro, J. V., Ostro, B., et al. (2022). The health impacts of Indonesian peatland fires. <i>Environmental Health, 21</i>. <a href="https://link.springer.com/doi/10.1186/s12940-022-00872-w" target="_blank" rel="noopener">https://link.springer.com/doi/10.1186/s12940-022-00872-w</a></li>
-          <li>Shahid, J. (2024, November 16). Islamabad&rsquo;s air quality becomes &lsquo;very unhealthy&rsquo;: Pak-EPA. <i>Dawn</i>. <a href="https://www.dawn.com/news/1872628/islamabads-air-quality-becomes-very-unhealthy-pak-epa" target="_blank" rel="noopener">https://www.dawn.com/news/1872628/islamabads-air-quality-becomes-very-unhealthy-pak-epa</a></li>
           <li><i>The Jakarta Post</i>. (2015, September 29). RI struggles to conquer haze crisis. <a href="https://www.thejakartapost.com/news/2015/09/29/ri-struggles-conquer-haze-crisis.html" target="_blank" rel="noopener">https://www.thejakartapost.com/news/2015/09/29/ri-struggles-conquer-haze-crisis.html</a></li>
           <li><i>The Jakarta Post</i>. (2015, October 8). Smoke claims new victim, triggers prolonged health crisis. <a href="https://www.thejakartapost.com/news/2015/10/08/smoke-claims-new-victim-triggers-prolonged-health-crisis" target="_blank" rel="noopener">https://www.thejakartapost.com/news/2015/10/08/smoke-claims-new-victim-triggers-prolonged-health-crisis</a></li>
           <li><i>The Jakarta Post</i>. (2015, October 17). Haze sickens half a million in six provinces in Kalimantan, Sumatra. <a href="https://www.thejakartapost.com/news/2015/10/17/haze-sickens-half-a-million-six-provinces-kalimantan-sumatra" target="_blank" rel="noopener">https://www.thejakartapost.com/news/2015/10/17/haze-sickens-half-a-million-six-provinces-kalimantan-sumatra</a></li>
+          <li>Pakistan Air Quality Initiative coverage via Big News Network. (n.d.). Pakistan: Toxic air cuts life expectancy by nearly 4 years, costs 6.5% of GDP. <a href="https://www.bignewsnetwork.com/news/279401158/pakistan-toxic-air-cuts-life-expectancy-by-nearly-4-years-costs-65-of-gdp" target="_blank" rel="noopener">https://www.bignewsnetwork.com/news/279401158/pakistan-toxic-air-cuts-life-expectancy-by-nearly-4-years-costs-65-of-gdp</a></li>
+          <li>Shahid, J. (2024, November 16). Islamabad&rsquo;s air quality becomes &lsquo;very unhealthy&rsquo;: Pak-EPA. <i>Dawn</i>. <a href="https://www.dawn.com/news/1872628/islamabads-air-quality-becomes-very-unhealthy-pak-epa" target="_blank" rel="noopener">https://www.dawn.com/news/1872628/islamabads-air-quality-becomes-very-unhealthy-pak-epa</a></li>
         </ul>
       </section>
       <div class="footer-grid">
