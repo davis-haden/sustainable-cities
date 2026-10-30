@@ -39,6 +39,7 @@ export function createIntro(ctx) {
     el.stage.style.clipPath = '';
     if (wasRunning) { cam.zoom = cam.zoomGoal = DEF.zoom; ctx.input.orbit = !ctx.reduce; }
     setTimeout(function () { if (!ctx.reduce && tl.T < 0 && !tl.playing) tl.playing = true; }, wasRunning ? 400 : 0);
+    if (ctx.tour) ctx.tour.offer(wasRunning ? 1400 : 600);
     ctx.wake();
   };
 }

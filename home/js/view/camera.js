@@ -57,8 +57,7 @@ export function createCamera(ctx) {
   function insets(w, h) {
     var ins = { l: 32, r: 32, t: 24, b: 24 }, wide = w >= 900; /* side margins keep the island's corners off the frame */
     if (el.header) ins.t = el.header.offsetTop + el.header.offsetHeight + 16;
-    /* on wide screens only the timeline line counts; the boxes above it sit in the corners */
-    if (el.dock) ins.b = Math.max(ins.b, h - el.dock.offsetTop - (wide && el.line ? el.line.offsetTop : 0) + 16);
+    if (el.dock) ins.b = Math.max(ins.b, h - el.dock.offsetTop + 16); /* the timeline along the bottom */
     if (el.copy && !wide) ins.t = Math.max(ins.t, el.copy.offsetTop + el.copy.offsetHeight + 8); /* below 900px the headline sits above the city; wider, it lives in the left column */
     if (h - ins.t - ins.b < h * 0.3) ins.t = Math.min(ins.t, h * 0.25);
     return ins;
@@ -82,7 +81,7 @@ export function createCamera(ctx) {
       var tr = rg.getBoundingClientRect();
       add({ left: tr.left, right: tr.right, top: hb.top, bottom: hb.bottom, width: tr.width, height: hb.height });
     }
-    [el.about, view.w >= 900 && el.date].forEach(function (p) { if (p && p.offsetParent) add(p.getBoundingClientRect()); });
+    if (el.date && el.date.offsetParent && view.w >= 900) add(el.date.getBoundingClientRect());
     return out;
   }
   function hitsPanels(rects) {

@@ -76,17 +76,6 @@
         </aside>
 
         <div class="vc-dock" id="vc-dock">
-          <div class="vc-dock-top">
-            <div class="vc-box vc-about">
-              <p class="vc-box-hd"><b>About the model</b></p>
-              <p class="hero-lede">A model of Atlanta swaps smokestacks, traffic and bare land for clean power, light rail and restored nature. Press play to watch fifty years of change, or scroll down for the story.</p>
-              <p class="vc-links">
-                <a href="#story">Read the story</a>
-                <a href="projects.html">About BBISS</a>
-              </p>
-            </div>
-          </div>
-
           <div class="vc-line">
             <button type="button" class="vc-play" id="vc-play" data-state="play" aria-label="Play">
               <svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.5v11l9-5.5z"/></svg>
@@ -116,6 +105,9 @@
               </button>
               <button type="button" id="vc-resetView" aria-label="Reset view">
                 <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 8.5A6 6 0 1 1 4 11.5"/><path d="M4 4v4.5h4.5"/></svg>
+              </button>
+              <button type="button" id="vc-help" aria-label="Show how to explore">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 7.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V12"/><path d="M10 14.5v1.5"/></svg>
               </button>
             </div>
           </div>
@@ -233,6 +225,37 @@
         <div class="container">
           <div class="bb-heading__rule" data-reveal><span class="bb-label">[ 04 — YOUR TURN ]</span></div>
           <h2 id="act-title" data-split>What <em>you</em> can do</h2>
+          <!-- upcoming BBISS events, copied from sustainablesystems.gatech.edu/news/events (their site
+               can't be read from this page). Each card hides itself once data-end has passed
+               (home/js/story.js); add new ones here, soonest first. -->
+          <div class="events" aria-labelledby="events-title">
+            <div class="events__hd" data-reveal>
+              <h3 id="events-title">Upcoming BBISS events</h3>
+              <a class="events__all" href="https://sustainablesystems.gatech.edu/news/events" target="_blank" rel="noopener">All BBISS events <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7"/></svg></a>
+            </div>
+            <ul class="event-list">
+              <li class="event" data-end="2026-11-05T14:00:00-05:00" data-reveal>
+                <time class="event__date" datetime="2026-11-05"><span>Thu</span><b>5</b><span>Nov</span></time>
+                <div class="event__body">
+                  <b>Office Hours with a Sustainability Alum: Tommy Bledsoe, CBRE</b>
+                  <span>Sign up for a 15-minute virtual chat about sustainability careers in commercial real estate.</span>
+                  <span class="event__meta">Noon&ndash;2 PM &middot; Virtual, registration required</span>
+                </div>
+                <a class="event__more" href="https://sustainablesystems.gatech.edu/events/office-hours-sustainability-alum-tommy-bledsoe-cbre" target="_blank" rel="noopener" aria-label="Details: Office Hours with Tommy Bledsoe, November 5">Details</a>
+              </li>
+              <li class="event" data-end="2026-11-14T11:00:00-05:00" data-reveal>
+                <time class="event__date" datetime="2026-11-14"><span>Sat</span><b>14</b><span>Nov</span></time>
+                <div class="event__body">
+                  <b>Community Garden Workday</b>
+                  <span>Harvest, plant and tend plots in the SOS garden on the IC lawn. Everyone welcome, no experience needed, gloves provided.</span>
+                  <span class="event__meta">9&ndash;11 AM &middot; SOS Community Garden</span>
+                </div>
+                <a class="event__more" href="https://sustainablesystems.gatech.edu/events/community-garden-workday-16" target="_blank" rel="noopener" aria-label="Details: Community Garden Workday, November 14">Details</a>
+              </li>
+            </ul>
+            <p class="events__none" hidden>Nothing on the calendar right now. <a href="https://sustainablesystems.gatech.edu/news/events" target="_blank" rel="noopener">See what BBISS has planned</a>.</p>
+          </div>
+
           <p class="chapter-lead" data-reveal>Cities, researchers and campuses can set the direction, but the air changes one habit at a time. Small choices, made by a lot of people, shrink a city&rsquo;s footprint and often save money too. Tap the ones you&rsquo;ll try this week.</p>
           <ul class="pledges">
             <li data-reveal><button type="button" class="pledge" aria-pressed="false">

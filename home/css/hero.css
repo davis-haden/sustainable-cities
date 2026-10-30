@@ -82,12 +82,12 @@
   transform: translateY(105%);
 }
 
-.js .hero:not(.intro-done) :is(.vc-box, .vc-frame i) {
+.js .hero:not(.intro-done) .vc-frame i {
   opacity: 0;
   translate: 0 0.75rem;
 }
 
-.js .hero:not(.is-intro):not(.intro-done) :is(.line > span, .vc-box, .vc-frame i, .vc-stage, .vc-line > *),
+.js .hero:not(.is-intro):not(.intro-done) :is(.line > span, .vc-frame i, .vc-stage, .vc-line > *),
 .js .hero:not(.is-intro):not(.intro-done) .vc-line::before {
   animation: vc-failsafe 0s 3s forwards;
 }
@@ -113,12 +113,9 @@
   transition-delay: 90ms;
 }
 
-.vc-box,
 .vc-frame i {
   transition: opacity 700ms ease, translate 900ms var(--ease-out);
 }
-
-.hero.intro-done .vc-about { transition-delay: 300ms; }
 
 .js .hero:not(.intro-done) .vc-line {
   pointer-events: none;

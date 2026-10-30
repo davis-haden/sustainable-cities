@@ -1,12 +1,5 @@
 /* Breakpoints for the home page, widest first. */
 
-/* the about box needs the corner to itself; on narrower screens the nav covers its links */
-@media (max-width: 1199px) {
-  .vc-about {
-    display: none;
-  }
-}
-
 /* narrower timelines: the phase name tucks under the year so the track keeps its width */
 @media (max-width: 1099px) {
   .vc-when {
@@ -64,15 +57,6 @@
   .vc-track {
     grid-row: 2;
     grid-column: 1 / -1;
-  }
-
-  .vc-dock-top {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .vc-about {
-    display: none;
   }
 
   .vc-pop {

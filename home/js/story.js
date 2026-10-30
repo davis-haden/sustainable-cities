@@ -3,7 +3,7 @@
    - chapter headings rise in word by word
    - in chapter 1 the smog over the skyline lifts as the figure scrolls through the view
    - numbers count up, research photos drift (parallax)
-   - the "what you can do" pledges toggle and remember your picks
+   - the "what you can do" pledges toggle and remember your picks, and past events drop off the list
    Everything settles to its final state under prefers-reduced-motion. Independent of three.js. */
 
 var story = document.getElementById('story');
@@ -119,4 +119,13 @@ function init() {
     });
   });
   refresh();
+
+  /* --- events: hide the ones that are over; if none are left, say so and link to the calendar --- */
+  var events = Array.from(document.querySelectorAll('.event[data-end]')), now = Date.now();
+  events.forEach(function (ev) { if (Date.parse(ev.dataset.end) < now) ev.hidden = true; });
+  var none = document.querySelector('.events__none');
+  if (none && events.length && events.every(function (ev) { return ev.hidden; })) {
+    none.hidden = false;
+    document.querySelector('.event-list').hidden = true;
+  }
 }

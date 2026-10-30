@@ -582,6 +582,150 @@
   font-weight: 600;
 }
 
+/* --- Upcoming BBISS events: date block, what and where, a link out --- */
+.events {
+  margin: var(--space-8) 0 var(--space-12);
+}
+
+.events__hd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line);
+}
+
+/* a small label, not a second headline, so "What you can do" stays the section's one title */
+.page-home .events__hd h3 {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.events__all,
+.events__none a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--rust);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.events__all {
+  font-size: 14px;
+}
+
+.events__all svg {
+  width: 14px;
+  height: 14px;
+}
+
+.events__all:hover,
+.events__none a:hover {
+  text-decoration: underline;
+}
+
+.event-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.event {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-6) 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.event[hidden],
+.event-list[hidden] {
+  display: none;
+}
+
+.event__date {
+  display: grid;
+  justify-items: center;
+  width: 72px;
+  padding: var(--space-2) 0;
+  border-radius: var(--radius-md);
+  background: var(--forest);
+  color: var(--on-dark);
+}
+
+.event__date span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--olive);
+}
+
+.event__date b {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.event__body {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.event__body b {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.event__body span {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.event__body .event__meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.event__more {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--forest);
+  border-radius: var(--radius-pill);
+  color: var(--forest);
+  font: 600 14px/1.2 var(--font-sans);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur-fast) ease;
+}
+
+.event__more:hover {
+  background: var(--orange-tint);
+}
+
+.events__none {
+  margin: var(--space-6) 0 0;
+  font-size: 18px;
+}
+
 /* --- The finale: a dark banner that sends people on to the rest of the site --- */
 .finale {
   position: relative;
@@ -664,6 +808,12 @@
   .story { --rail-gap: 30px; --rail-x: calc(var(--gutter) + 4px); }
   .chapter-dot { width: 20px; height: 20px; }
   .finale { padding: var(--space-12) var(--space-6); }
+  /* events: the date block and text side by side, the link drops under the text */
+  .event { grid-template-columns: auto 1fr; gap: var(--space-2) var(--space-4); align-items: start; }
+  .event__date { width: 60px; }
+  .event__date b { font-size: 30px; }
+  .event__body b { font-size: 20px; }
+  .event__more { grid-column: 2; justify-self: start; }
 }
 
 @media (prefers-reduced-motion: reduce) {

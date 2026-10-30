@@ -5,7 +5,7 @@
      world/     the map and the voxel builders (pure: no DOM, no scene)
      scene/     three.js objects: city, transit, lights, glow
      view/      camera framing and camera controls
-     ui/        picking, details card, callouts, HUD, background waves, scroll
+     ui/        picking, details card, callouts, HUD, background waves, scroll, guided tour
      timeline/  schedule, tile conversion, playback
      intro.js   the opening animation
      loop.js    the per-frame update */
@@ -26,6 +26,7 @@ import { scheduleTiles } from './timeline/schedule.js';
 import { createConverter } from './timeline/convert.js';
 import { createPlayback } from './timeline/playback.js';
 import { createIntro } from './intro.js';
+import { createTour } from './ui/tour.js';
 import { createLoop } from './loop.js';
 
 export function startApp(ctx) {
@@ -49,6 +50,7 @@ export function startApp(ctx) {
   var loop = createLoop(ctx, { playback: ctx.timeline, updateTile: updateTile, transit: transit, updateHud: updateHud, updateCalls: updateCalls, drawWaves: drawWaves });
   ctx.wake = loop.wake;
   ctx.controls = createControls(ctx);
+  ctx.tour = createTour(ctx);
   watchScroll(ctx);
 
   scene.updateMatrixWorld(true);
