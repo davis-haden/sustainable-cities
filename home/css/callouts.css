@@ -85,7 +85,7 @@
   }
 }
 
-/* two slots in each side column, lined up with the boxes; JS sets their height */
+/* two slots in each side column, lined up with the frame edge; JS sets their height */
 .vc-call[data-slot="0"],
 .vc-call[data-slot="1"] { left: var(--vc-inset); }
 .vc-call[data-slot="2"],

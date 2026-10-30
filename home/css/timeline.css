@@ -1,6 +1,6 @@
 /* The dock along the bottom of the stage and its timeline row: play, year, scrubber, phases, zoom. */
 
-/* --- Dock: boxed panels in the bottom corners, timeline line below --- */
+/* --- Dock: the timeline line along the bottom --- */
 .vc-dock {
   position: absolute;
   z-index: 2;
@@ -10,18 +10,6 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 0.875rem;
-}
-
-.vc-dock-top {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  pointer-events: none;
-}
-
-.vc-dock-top > * {
-  pointer-events: auto;
 }
 
 /* Timeline line */

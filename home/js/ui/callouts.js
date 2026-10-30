@@ -41,7 +41,7 @@ export function createCallouts(ctx) {
     var r = node.getBoundingClientRect(), sr = stage.getBoundingClientRect();
     return { top: r.top - sr.top, bottom: r.bottom - sr.top };
   }
-  /* the free vertical band in a side column: under the headline / date range, above the about box or timeline */
+  /* the free vertical band in a side column: under the headline / date range, above the timeline */
   function band(topEl, botEl, h) {
     var t = relRect(topEl), b = relRect(botEl), lr = relRect(el.line);
     return { top: (t ? t.bottom : 80) + 14, bottom: (b ? b.top : (lr ? lr.top : h - 80)) - 14 };
@@ -73,7 +73,7 @@ export function createCallouts(ctx) {
       left = byX.slice(0, 2).map(function (c) { return { c: c }; }).sort(bySy);
       right = byX.slice(2).map(function (c) { return { c: c }; }).sort(bySy);
       left[0].s = slots[0]; left[1].s = slots[1]; right[0].s = slots[2]; right[1].s = slots[3];
-      fits = stackSide(left, band(el.h1, null, h)) && stackSide(right, band(el.date, el.about, h));
+      fits = stackSide(left, band(el.h1, null, h)) && stackSide(right, band(el.date, null, h));
     }
     on = on && fits;
     if (on !== callsOn) { callsOn = on; stage.classList.toggle('calls-on', on); slots.forEach(function (s) { s.y = null; }); }

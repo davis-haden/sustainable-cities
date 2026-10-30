@@ -23,9 +23,9 @@ function boot() {
     pop: $('pop'), popClose: $('popClose'), popTag: $('popTag'), popWhere: $('popWhere'), popTitle: $('popTitle'),
     popBlurb: $('popBlurb'), popStats: $('popStats'), popSkip: $('popSkip'),
     play: $('play'), scrub: $('scrub'), year: $('year'), phase: $('phase'),
-    zoomIn: $('zoomIn'), zoomOut: $('zoomOut'), resetView: $('resetView'),
+    zoom: $('zoom'), zoomIn: $('zoomIn'), zoomOut: $('zoomOut'), resetView: $('resetView'), help: $('help'),
     header: document.querySelector('.site-header'), copy: hero.querySelector('.hero-copy'), h1: hero.querySelector('.hero-copy h1'),
-    line: hero.querySelector('.vc-line'), about: hero.querySelector('.vc-about'), date: hero.querySelector('.hero-date')
+    line: hero.querySelector('.vc-line'), date: hero.querySelector('.hero-date')
   };
   hero.classList.add('is-intro');
 

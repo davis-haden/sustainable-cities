@@ -17,7 +17,7 @@
 }
 
 /* HUD labels: the style guide's mono, uppercase label */
-.page-home :is(.vc-box-hd, .vc-phase, .vc-end, .vc-phases button, .vc-call, .vc-meta) {
+.page-home :is(.vc-phase, .vc-end, .vc-phases button, .vc-call, .vc-meta) {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
@@ -26,7 +26,7 @@
 }
 
 /* Sentences and links stay in the body sans */
-.page-home :is(.vc-links a, .vc-tip, .vc-toast, .site-footer) {
+.page-home :is(.vc-tip, .vc-toast, .site-footer) {
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
